@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lure
   - Sea
+  - Fish
   layers:
   - Default
   - TransparentFX
