@@ -8,7 +8,6 @@ public class Fishing : MonoBehaviour
 
     public Vector2 throwDirection = new Vector2(1f, 1f);
     //どの角度で投げるか
-    public float power = 10f;
     public float reelSpeed = 5f;         // 巻き取りの速度
     private bool isReeling = false;      // 巻き取り中かどうかを示すフラグ
 
@@ -18,12 +17,17 @@ public class Fishing : MonoBehaviour
     //距離しきい値
     public float parabolaThreshold = 2f; //この距離以下では放物線を描かない
     public float parabolaMaxDistance = 6f;//この距離以上では最大の放物線を描く
+    public float isThrowpower = 2f;               //投げる力の大きさ
+
+    public LineRenderer previewLine;    //投げる前の放物線のプレビュー用LineRenderer
 
     private Rigidbody2D LureRigidbody;  //ルアーのRigidbody2Dコンポーネントを格納する変数
-    private float RestraightLine = 2f;  //直線に戻る時間
+    private float RestraightLine = 4f;  //直線に戻る時間
     private float Retimer = 0f;         //現在の時間を追跡する変数
-    private bool isInWater = false;          //ルアーが水に入っているかどうかを示すフラグ
-    private bool isMove = false;
+    private bool isInWater = false;     //ルアーが水に入っているかどうかを示すフラグ
+    private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
+
+
 
     void Start()
     {
@@ -48,15 +52,31 @@ public class Fishing : MonoBehaviour
         // Lure、Rodtip、LureRigidbodyのいずれかがnullの場合は処理を中断
         //↑これできる男がやるやつ
 
-        if (Input.GetMouseButtonDown(0) && isReeling == false && isMove == false)
+        if (Input.GetMouseButton(0) && isReeling == false && isMove == false)
         {
+
+            Debug.Log(isThrowpower);
+            if (isThrowpower > 10f)
+            {
+                isThrowpower = 2f;
+            }
+            else
+            {
+                isThrowpower += 2f * Time.deltaTime;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0) && isReeling == false && isMove == false)
+        {
+
+            Debug.Log(isThrowpower);
             isMove = true;
             Retimer = 0f;
             Lure.transform.position = Rodtip.position;    // ルアーを竿先の位置に移動
             LureRigidbody.linearVelocity = Vector2.zero;  // 一応、ルアーの速度をリセット。
                                                           // LinearVelocityはRigidbody2Dの速度を表すプロパティで、Vector2.zeroは(0, 0)のベクトルを意味する。これにより、ルアーが投げられる前に静止状態になる。
             LureRigidbody.simulated = true;               // ルアーの物理挙動をONにする
-            LureRigidbody.AddForce(throwDirection.normalized * power, ForceMode2D.Impulse);// ルアーに力を加える。normalizedで方向ベクトルを正規化して、powerで力の大きさを調整。Impulseは瞬間的な力を加えるモード
+            LureRigidbody.AddForce(throwDirection.normalized * isThrowpower, ForceMode2D.Impulse);// ルアーに力を加える。normalizedで方向ベクトルを正規化して、isthrowpowerで力の大きさを調整。Impulseは瞬間的な力を加えるモード
 
 
         }
@@ -65,11 +85,11 @@ public class Fishing : MonoBehaviour
             isReeling = true;               // 巻き取り開始
             LureRigidbody.simulated = false;// 巻き取り中は物理挙動をOFFにする
         }
-        if (isReeling) 
-        { 
+        if (isReeling)
+        {
             Lure.transform.position = Vector2.MoveTowards(Lure.transform.position, Rodtip.position, reelSpeed * Time.deltaTime);
-                                            //Vector2.MoveTowards(今の位置, 目標位置, 移動距離)らしい
-                                            // ルアーを竿先に向かって一定速度で移動
+            //Vector2.MoveTowards(今の位置, 目標位置, 移動距離)らしい
+            // ルアーを竿先に向かって一定速度で移動
 
             if (Vector2.Distance(Lure.transform.position, Rodtip.position) < 0.5f)
             {
@@ -78,6 +98,7 @@ public class Fishing : MonoBehaviour
                 LureRigidbody.simulated = false;              // ルアーの物理挙動をOFFにする
                 isInWater = false;                             // 水から出たとみなす
                 isMove = false;
+                isThrowpower = 1f;
             }
         }
         DrawDynamicLine();
@@ -129,7 +150,7 @@ public class Fishing : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D other)
+        void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Sea"))
         {
