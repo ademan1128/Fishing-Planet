@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public enum Skilltype
+public enum SkilltypeEnum
 {
     Cooltime1,
     Colltime2,
@@ -34,5 +34,29 @@ public class SkillSystem : MonoBehaviour
     void SetText()
     {
         MoneyText.text = skillMoney.ToString();
+    }
+    
+    //スキルを覚える
+    public void LearnSkill(SkilltypeEnum type, int money)
+    {
+        skills[(int)type] = true;
+        SetSkillMoney(money);
+        SetText();
+        CheckOnOff();
+    }
+
+    //金額を減らす
+    public void SetSkillMoney(int money)
+    {
+        skillMoney -= money;
+    }
+
+    //スキル毎にボタンのオン・オフをする処理を実行させる
+    void CheckOnOff()
+    {
+        foreach (var skillParam in skillParams)
+        {
+            //SkillParam.CheckButtonOnOff();
+        }
     }
 }
