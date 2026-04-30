@@ -58,11 +58,11 @@ public class Fishing : MonoBehaviour
             Debug.Log(isThrowpower);
             if (isThrowpower > 10f)
             {
-                isThrowpower = 2f;
+                isThrowpower = 10f;
             }
             else
             {
-                isThrowpower += 2f * Time.deltaTime;
+                isThrowpower += 3f * Time.deltaTime;
             }
         }
 
