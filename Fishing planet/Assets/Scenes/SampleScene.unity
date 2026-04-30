@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 160984144}
   - component: {fileID: 160984143}
   - component: {fileID: 160984142}
+  - component: {fileID: 160984146}
   m_Layer: 0
   m_Name: sea
   m_TagString: Sea
@@ -264,12 +265,24 @@ Transform:
   m_GameObject: {fileID: 160984141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.163, y: -1.9903501, z: 0}
-  m_LocalScale: {x: 19.252098, y: 5.087458, z: 1}
+  m_LocalPosition: {x: -0.182, y: -2.5777, z: 0}
+  m_LocalScale: {x: 18.562206, y: 5.432376, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160984146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160984141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sea
 --- !u!1 &235015505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1022,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1832570102
 BoxCollider2D:
