@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 160984145}
   - component: {fileID: 160984144}
   - component: {fileID: 160984143}
-  - component: {fileID: 160984142}
   - component: {fileID: 160984146}
   m_Layer: 0
   m_Name: sea
@@ -139,18 +138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &160984142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160984141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db25dd6280212854b9906912e21cec11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!61 &160984143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -283,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sea
+  Lure: {fileID: 1832570104}
 --- !u!1 &235015505
 GameObject:
   m_ObjectHideFlags: 0
