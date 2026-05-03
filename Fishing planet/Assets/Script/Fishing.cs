@@ -55,7 +55,7 @@ public class Fishing : MonoBehaviour
         if (Input.GetMouseButton(0) && isReeling == false && isMove == false)
         {
 
-            Debug.Log(isThrowpower);
+            //Debug.Log(isThrowpower);
             if (isThrowpower > 10f)
             {
                 isThrowpower = 10f;
@@ -69,7 +69,7 @@ public class Fishing : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && isReeling == false && isMove == false)
         {
 
-            Debug.Log(isThrowpower);
+            //Debug.Log(isThrowpower);
             isMove = true;
             Retimer = 0f;
             Lure.transform.position = Rodtip.position;    // ƒ‹ƒA[‚ğŠÆæ‚ÌˆÊ’u‚ÉˆÚ“®
