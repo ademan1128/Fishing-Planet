@@ -246,8 +246,8 @@ MonoBehaviour:
     y: 580
     width: 1234
     height: 233.33331
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 231, y: 276}
+  m_MaxSize: {x: 10001, y: 10026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -590,7 +590,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 33790
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -639,11 +639,11 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 33790
+      - m_Data: 71660
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -62540
+      - m_Data: -62586
       - m_Data: -61284
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1658,7 +1658,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1668,7 +1668,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Script
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "D:\\\u6388\u696D\\2026\\\u30B2\u30FC\u30E0\u5236\u4F5CA\\skill
     tree ver2.1\\Fishing planet"
@@ -1678,9 +1678,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs:
-    - m_Data: 70414
+    - m_Data: 69916
     m_LastClickedID:
-      m_Data: 70414
+      m_Data: 69916
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 66902
@@ -1744,8 +1744,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 33790
-    m_LastClickedInstanceID: 33790
+    - m_Data: 71660
+    m_LastClickedInstanceID: 71660
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 77248
