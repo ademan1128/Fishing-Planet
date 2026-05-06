@@ -30,11 +30,6 @@ public class SkillSystem : MonoBehaviour
         skills = new bool[skillParams.Length];
         SetText();
     }
-
-    void SetText()
-    {
-        MoneyText.text = skillMoney.ToString();
-    }
     
     //スキルを覚える
     public void LearnSkill(SkilltypeEnum type, int money)
@@ -98,12 +93,12 @@ public class SkillSystem : MonoBehaviour
     }
 
     //スキル毎にボタンのオン・オフをする処理を実行させる
-#if (Skillparameterrelationship)
+
     void CheckOnOff()
     {
         foreach (var skillParam in skillParams)
         {
-            SkillParam.CheckButtonOnOff();
+            skillParam.CheckButtonOnOff();
         }
     }
 
@@ -111,5 +106,4 @@ public class SkillSystem : MonoBehaviour
     {
         MoneyText.text = "金額：" + skillMoney;
     }
-#endif
 }

@@ -883,9 +883,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481392717}
+  - component: {fileID: 481392721}
   - component: {fileID: 481392720}
   - component: {fileID: 481392719}
   - component: {fileID: 481392718}
+  - component: {fileID: 481392722}
   m_Layer: 5
   m_Name: 'Cool time '
   m_TagString: Untagged
@@ -958,7 +960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 481392719}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 481392721}
+        m_TargetAssemblyTypeName: SkillParam, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &481392719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,6 +1011,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481392716}
   m_CullTransparentMesh: 1
+--- !u!114 &481392721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481392716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 0
+  spendMoney: 5
+  skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down1"
+  skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\uFF15\uFF05\u6E1B"
+  text: {fileID: 1479389645}
+--- !u!114 &481392722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481392716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 481392721}
+          m_TargetAssemblyTypeName: SkillParam, Assembly-CSharp
+          m_MethodName: ResetText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 481392721}
+          m_TargetAssemblyTypeName: SkillParam, Assembly-CSharp
+          m_MethodName: SetText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 481392721}
+          m_TargetAssemblyTypeName: SkillParam, Assembly-CSharp
+          m_MethodName: SetText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 481392721}
+          m_TargetAssemblyTypeName: SkillParam, Assembly-CSharp
+          m_MethodName: ResetText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &527009826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 615185749}
+  - component: {fileID: 615185753}
   - component: {fileID: 615185752}
   - component: {fileID: 615185751}
   - component: {fileID: 615185750}
@@ -1193,6 +1303,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615185748}
   m_CullTransparentMesh: 1
+--- !u!114 &615185753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615185748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 3
+  spendMoney: 10
+  skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF12"
+  skillInformation: "\u8DDD\u96E2UP"
+  text: {fileID: 1479389645}
 --- !u!1 &615388418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 813682618}
+  - component: {fileID: 813682622}
   - component: {fileID: 813682621}
   - component: {fileID: 813682620}
   - component: {fileID: 813682619}
@@ -1771,6 +1900,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813682617}
   m_CullTransparentMesh: 1
+--- !u!114 &813682622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813682617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 2
+  spendMoney: 5
+  skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF11"
+  skillInformation: "\u8DDD\u96E2UP"
+  text: {fileID: 121162557}
 --- !u!1 &946021860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2691,6 +2838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533311008}
+  - component: {fileID: 1533311012}
   - component: {fileID: 1533311011}
   - component: {fileID: 1533311010}
   - component: {fileID: 1533311009}
@@ -2805,6 +2953,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533311007}
   m_CullTransparentMesh: 1
+--- !u!114 &1533311012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533311007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 6
+  spendMoney: 30
+  skillTitle: "\u5E97\u8217\u5F37\u5316"
+  skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
+  text: {fileID: 1479389645}
 --- !u!1 &1566514289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,6 +3130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673962863}
+  - component: {fileID: 1673962867}
   - component: {fileID: 1673962866}
   - component: {fileID: 1673962865}
   - component: {fileID: 1673962864}
@@ -3078,6 +3245,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673962862}
   m_CullTransparentMesh: 1
+--- !u!114 &1673962867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673962862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 4
+  spendMoney: 5
+  skillTitle: "\u7372\u5F97\u91CFUP"
+  skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
+  text: {fileID: 121162557}
 --- !u!1 &1718941480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,6 +3272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718941481}
+  - component: {fileID: 1718941484}
   - component: {fileID: 1718941483}
   - component: {fileID: 1718941482}
   m_Layer: 5
@@ -3160,6 +3346,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718941480}
   m_CullTransparentMesh: 1
+--- !u!114 &1718941484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718941480}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 0}
+  type: 0
+  spendMoney: 5
+  skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down1"
+  skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\uFF15\uFF05\u6E1B"
+  text: {fileID: 1479389645}
 --- !u!1 &1732093810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,6 +3752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1959217648}
+  - component: {fileID: 1959217652}
   - component: {fileID: 1959217651}
   - component: {fileID: 1959217650}
   - component: {fileID: 1959217649}
@@ -3662,6 +3867,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959217647}
   m_CullTransparentMesh: 1
+--- !u!114 &1959217652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959217647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 2049968985}
+  type: 5
+  spendMoney: 10
+  skillTitle: "\u7372\u5F97\u91CFUP\uFF12"
+  skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF12"
+  text: {fileID: 1479389645}
 --- !u!1 &1975907342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,6 +4054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2012063989}
+  - component: {fileID: 2012063993}
   - component: {fileID: 2012063992}
   - component: {fileID: 2012063991}
   - component: {fileID: 2012063990}
@@ -3945,6 +4169,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012063988}
   m_CullTransparentMesh: 1
+--- !u!114 &2012063993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012063988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cfe91d83f68fd41be08bb697793fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillParam
+  skillSystem: {fileID: 0}
+  type: 1
+  spendMoney: 10
+  skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
+  skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
+  text: {fileID: 1479389645}
 --- !u!1 &2028914165
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,9 +4346,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2049968982}
+  - component: {fileID: 2049968985}
   - component: {fileID: 2049968981}
   - component: {fileID: 2049968980}
   - component: {fileID: 2049968979}
+  - component: {fileID: 2049968984}
+  - component: {fileID: 2049968983}
   m_Layer: 5
   m_Name: SkillUI
   m_TagString: Untagged
@@ -4199,6 +4444,62 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2049968983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049968978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69daceaf643eb53418ba8fd6cd8cdf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSystem
+  skillMoney: 0
+  skills: 
+  skillParams: []
+  MoneyText: {fileID: 0}
+--- !u!114 &2049968984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049968978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69daceaf643eb53418ba8fd6cd8cdf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSystem
+  skillMoney: 0
+  skills: 
+  skillParams: []
+  MoneyText: {fileID: 0}
+--- !u!114 &2049968985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049968978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69daceaf643eb53418ba8fd6cd8cdf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSystem
+  skillMoney: 200
+  skills: 
+  skillParams:
+  - {fileID: 1718941484}
+  - {fileID: 481392721}
+  - {fileID: 2012063993}
+  - {fileID: 1673962867}
+  - {fileID: 1959217652}
+  - {fileID: 813682622}
+  - {fileID: 615185753}
+  - {fileID: 1533311012}
+  MoneyText: {fileID: 0}
 --- !u!1 &2096605487
 GameObject:
   m_ObjectHideFlags: 0
