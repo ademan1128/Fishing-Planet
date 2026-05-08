@@ -1302,7 +1302,7 @@ MonoBehaviour:
   curveHeight: 2
   parabolaThreshold: 2
   parabolaMaxDistance: 6
-  isThrowpower: 4
+  isThrowpower: 3
   previewLine: {fileID: 0}
 --- !u!50 &1832570101
 Rigidbody2D:
