@@ -17,7 +17,7 @@ public class Fishing : MonoBehaviour
     //距離しきい値
     public float parabolaThreshold = 2f; //この距離以下では放物線を描かない
     public float parabolaMaxDistance = 6f;//この距離以上では最大の放物線を描く
-    public float isThrowpower = 2f;               //投げる力の大きさ
+    public float isThrowpower = 3f;               //投げる力の大きさ
 
     public LineRenderer previewLine;    //投げる前の放物線のプレビュー用LineRenderer
 
@@ -62,7 +62,7 @@ public class Fishing : MonoBehaviour
             }
             else
             {
-                isThrowpower += 3f * Time.deltaTime;
+                isThrowpower += 5f * Time.deltaTime;
             }
         }
 
