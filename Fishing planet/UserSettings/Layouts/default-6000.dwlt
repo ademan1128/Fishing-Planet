@@ -168,8 +168,8 @@ MonoBehaviour:
     y: 0
     width: 231
     height: 754
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -246,8 +246,8 @@ MonoBehaviour:
     y: 0
     width: 680.5
     height: 387
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -537,6 +537,20 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      displayed: 0
+      id: Services/Environment
+      index: 8
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      floating: 0
+      collapsed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      layout: 4
+      size: {x: 0, y: 0}
+      sizeOverridden: 0
     m_ContainerData:
     - containerId: overlay-toolbar__top
       scrollOffset: 0
@@ -590,9 +604,33 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -64562
-      - m_Data: -62566
-      - m_Data: -61360
+      - m_Data: -100696
+      - m_Data: -96340
+      - m_Data: -80520
+      - m_Data: -80502
+      - m_Data: -79926
+      - m_Data: -79302
+      - m_Data: -77932
+      - m_Data: -77730
+      - m_Data: -77530
+      - m_Data: -72958
+      - m_Data: -71284
+      - m_Data: -69144
+      - m_Data: -68700
+      - m_Data: -68500
+      - m_Data: -67608
+      - m_Data: -66922
+      - m_Data: -65870
+      - m_Data: -65590
+      - m_Data: -64944
+      - m_Data: -64442
+      - m_Data: -64118
+      - m_Data: -63826
+      - m_Data: -63624
+      - m_Data: -62618
+      - m_Data: -61372
+      - m_Data: 76842
+      - m_Data: 78784
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -718,7 +756,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Script/SUI/Script
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -728,22 +766,25 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Script/SUI/Script
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: "C:\\Users\\student\\Desktop\\\u65B0\u3057\u3044\u30D5\u30A9\u30EB\u30C0\u30FC
-    (2)\\Fishing planet"
+  m_LastProjectPath: D:\team 0509\Fishing planet
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 69950
+    - m_Data: 67530
     m_LastClickedID:
-      m_Data: 69950
+      m_Data: 67530
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 66930
+    - m_Data: 66932
+    - m_Data: 67196
+    - m_Data: 69644
+    - m_Data: 70452
+    - m_Data: 72236
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -804,7 +845,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: []
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 0
     m_RenameOverlay:
@@ -1632,9 +1673,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 163.64626, y: 333.7115, z: -4.174063}
+    m_Target: {x: 443.93774, y: 195.26204, z: -1.0372814}
     speed: 2
-    m_Value: {x: 163.64626, y: 333.7115, z: -4.174063}
+    m_Value: {x: 443.93774, y: 195.26204, z: -1.0372814}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1684,9 +1725,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 427.4072
+    m_Target: 475.50613
     speed: 2
-    m_Value: 427.4072
+    m_Value: 475.50613
   m_Ortho:
     m_Target: 1
     speed: 2
