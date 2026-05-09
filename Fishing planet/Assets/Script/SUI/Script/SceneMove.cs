@@ -7,7 +7,7 @@ public class SceneMove : MonoBehaviour
     [SerializeField]
     Text timerText;
 
-    float limitTimer = 30;
+    float limitTimer = 10;
 
     void Update()
     {
@@ -18,7 +18,7 @@ public class SceneMove : MonoBehaviour
             limitTimer = 0;
 
             // ƒV[ƒ“‘JˆÚ
-            SceneManager.LoadScene("HARUAKI");
+            SceneManager.LoadScene("Skill Tree Scene");
         }
 
         timerText.text = limitTimer.ToString("F0");
