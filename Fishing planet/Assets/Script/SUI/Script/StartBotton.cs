@@ -3,12 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-    void Update()
+    // ボタンを押したときに呼ばれる関数
+    public void OnClickStartButton()
     {
-        // Enterキーが押された瞬間
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("Main game");
-        }
+        SceneManager.LoadScene("Main game");
     }
 }
