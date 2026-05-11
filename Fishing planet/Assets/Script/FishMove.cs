@@ -1,29 +1,41 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 
 public class FishMove : MonoBehaviour
 {
-    [SerializeField] float Minspeed = 0.3f; // 最低速度
-    [SerializeField] float Maxspeed = 1.0f; // 最高速度
-    [SerializeField] float Mindistance = 1.0f; // 最低往復の長さ
-    [SerializeField] float Maxdistance = 8.0f; // 最高往復の長さ
-
-    float speed;
-    float distance;
-    Vector3 startPos;
-
+    public int area;
+    Vector2 movePosition;
     void Start()
     {
-        startPos = transform.position;
-
-        //開始時にランダムな値を決める
-        speed = Random.Range(Minspeed, Maxspeed);
-        distance = Random.Range(Mindistance, Maxdistance);
+        movePosition = moveRandomPosition();
     }
+
+
 
     void Update()
     {
-        // X軸方向に往復運動
-        float movement = Mathf.PingPong(Time.time * speed, distance);
-        transform.position = startPos + new Vector3(movement, 0, 0);
+        if (Vector2.Distance(transform.position, movePosition) < 0.1f)
+        {
+
+            movePosition = moveRandomPosition();
+        }
+        float speed = Random.Range(0f, 1f); ;
+        this.transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);
+
     }
+
+    Vector2 moveRandomPosition()
+    {
+        if (area == 1)
+        {
+            int rndX = Random.Range(0, 10);
+            int rndY = Random.Range(-5, 0);
+            return new Vector2(rndX, rndY);
+        }
+        return Vector2.zero;
+    }
+
+
 }
