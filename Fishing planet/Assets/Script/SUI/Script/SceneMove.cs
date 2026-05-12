@@ -7,7 +7,7 @@ public class SceneMove : MonoBehaviour
     [SerializeField]
     Text timerText;
 
-    float limitTimer = 10;
+    float limitTimer = 30;
 
     void Update()
     {
