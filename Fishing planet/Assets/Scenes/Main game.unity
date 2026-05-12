@@ -602,9 +602,10 @@ GameObject:
   - component: {fileID: 1042699964}
   - component: {fileID: 1042699966}
   - component: {fileID: 1042699965}
+  - component: {fileID: 1042699967}
   m_Layer: 0
   m_Name: LureRange
-  m_TagString: Untagged
+  m_TagString: LureRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +623,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1320731585}
+  m_Father: {fileID: 1832570104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1042699965
 BoxCollider2D:
@@ -678,7 +679,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042699963}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -720,7 +721,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -729,6 +730,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1042699967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042699963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8604f708508b240a6d432169866b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lurerange
+  LureMove: 0
+  GetFish: 0
 --- !u!1 &1133167752
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,7 +967,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1832570104}
-  - {fileID: 1042699964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566477883
@@ -1337,6 +1351,7 @@ MonoBehaviour:
   parabolaMaxDistance: 6
   isThrowpower: 3
   previewLine: {fileID: 0}
+  MaxNumFish: 1
 --- !u!50 &1832570101
 Rigidbody2D:
   serializedVersion: 5
@@ -1481,7 +1496,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1042699964}
   m_Father: {fileID: 1320731585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1843478103

@@ -7,17 +7,17 @@ public class Sea1 : MonoBehaviour
 {   int rnd;
     List<string> Sea1List = new List<string>();
     [SerializeField] Transform Lure;
+    Lurerange Lurerange;
+    bool onsea;
     void Start()
     {
             Sea1List.Add("イワシ");
             Sea1List.Add("サバ");
             Sea1List.Add("アジ");
-
+        Lurerange = GameObject.Find("Lure").GetComponent<Lurerange>();
+        onsea = false;
     }
 
-    void Update()
-    {
-    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -48,6 +48,7 @@ public class Sea1 : MonoBehaviour
             Debug.Log("area: " + area);
             Debug.Log("Lureが海から出た");
             Debug.Log(Sea1List[rnd] + "が釣れた");
+            //onsea = true;
         }
     }
     int GetRandomIndex(List<float> weights)
@@ -64,6 +65,23 @@ public class Sea1 : MonoBehaviour
         }
         return weights.Count - 1;
     }
-
+    //void Update()
+    //{
+    //    if (onsea == true)
+    //    {
+    //        if (Input.GetMouseButtonDown(1))
+    //        {
+    //            for (int i = 0; i < Lurerange.NumFish; i++)
+    //            {
+    //                Debug.Log(Sea1List[rnd] + "が釣れた");
+    //            }
+    //            onsea = false;
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("魚は釣れなかった");
+    //        }
+    //    }
+    //}
 }
 
