@@ -9,6 +9,8 @@ public class FishMove : MonoBehaviour
     float speed;
     Lurerange LureRange;
     Fishing MaxNumFish;
+    bool isCatch;
+    public static int NumFish;
 
     void Start()
     {
@@ -16,8 +18,8 @@ public class FishMove : MonoBehaviour
         Lure = GameObject.Find("Lure").transform;//ルアーの位置を取得
         LureRange = GameObject.Find("LureRange").GetComponent<Lurerange>();//ルアーの当たり判定を取得
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
-
-
+        isCatch = false;
+        NumFish = 0;
     }
 
 
@@ -25,19 +27,24 @@ public class FishMove : MonoBehaviour
     void Update()
     {
         speed = Random.Range(0f, 1f);
-        if (LureRange.LureMove == true)//ルアーが近づいたときの処理
+        if (LureRange.LureMove == true )//ルアーが近づいたときの処理
         {
             GetComponent<BoxCollider2D>().enabled = false;//ルアーに近づいたときは当たり判定を消す
             float distance = Vector2.Distance(transform.position,Lure.position);
 
-            if (distance < 1f)//&& NumFish <= MaxNumFish.MaxNumFish
+            if (distance < 1f&& NumFish < MaxNumFish.MaxNumFish)
             {
                 transform.position = Lure.position;//距離が近いときはルアーの位置に移動
+                if (isCatch == false)
+                {
+                    isCatch = true;
+                    NumFish++;
+                    Debug.Log("NumFish" + NumFish);
+                }
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position,Lure.position,speed * Time.deltaTime//移動先に向かって移動
-                );
+                transform.position = Vector2.MoveTowards(transform.position,Lure.position,speed * Time.deltaTime);
             }
         }
         else
