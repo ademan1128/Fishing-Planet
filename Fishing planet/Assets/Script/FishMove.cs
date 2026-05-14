@@ -11,15 +11,17 @@ public class FishMove : MonoBehaviour
     Fishing MaxNumFish;
     bool isCatch;
     public static int NumFish;
-
+    public bool Eating;
     void Start()
     {
         movePosition = moveRandomPosition();
-        Lure = GameObject.Find("Lure").transform;//ルアーの位置を取得
-        LureRange = GameObject.Find("LureRange").GetComponent<Lurerange>();//ルアーの当たり判定を取得
+        Lure = GameObject.Find("Lure").transform;
+        LureRange = GameObject.Find("LureRange").GetComponent<Lurerange>();
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
         isCatch = false;
+        Eating = false;
         NumFish = 0;
+        MaxNumFish.MaxNumFish = 3;
     }
 
 
@@ -27,25 +29,32 @@ public class FishMove : MonoBehaviour
     void Update()
     {
         speed = Random.Range(0f, 1f);
-        if (LureRange.LureMove == true )//ルアーが近づいたときの処理
+        if (LureRange.targetFish.Contains(this)&& NumFish < MaxNumFish.MaxNumFish)//この魚がルアーに反応しているか
+                                                                                  //この時のthisは当たった魚のスクリプトを指す
         {
-            GetComponent<BoxCollider2D>().enabled = false;//ルアーに近づいたときは当たり判定を消す
-            float distance = Vector2.Distance(transform.position,Lure.position);
+            float distance = Vector2.Distance(transform.position, Lure.position);//
 
-            if (distance < 1f&& NumFish < MaxNumFish.MaxNumFish)
+            if (distance < 2f && NumFish < MaxNumFish.MaxNumFish)
             {
                 transform.position = Lure.position;//距離が近いときはルアーの位置に移動
+                GetComponent<BoxCollider2D>().enabled = false;
                 if (isCatch == false)
                 {
                     isCatch = true;
+                    Eating = true;
                     NumFish++;
                     Debug.Log("NumFish" + NumFish);
+                    //GetComponent<BoxCollider2D>().enabled = false;
                 }
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position,Lure.position,speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed * Time.deltaTime);//ここでルアーに近づいているときはルアーの位置に向かって移動
             }
+        }
+        else if (Eating == true)
+        {
+                transform.position = Lure.position;//食べているときはルアーの位置に移動
         }
         else
         {
@@ -53,7 +62,7 @@ public class FishMove : MonoBehaviour
             {
                 movePosition = moveRandomPosition();
             }
-            transform.position = Vector2.MoveTowards(transform.position,movePosition,speed * Time.deltaTime);//移動先に向かって移動
+            transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//移動先に向かって移動
         }
     }
 
@@ -67,7 +76,5 @@ public class FishMove : MonoBehaviour
             }
     return Vector2.zero;
     }
-
-
 
 }
