@@ -26,7 +26,7 @@ public class Fishing : MonoBehaviour
     private float Retimer = 0f;         //現在の時間を追跡する変数
     private bool isInWater = false;     //ルアーが水に入っているかどうかを示すフラグ
     private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
-    public int MaxNumFish = 1;            //釣れる魚の最大数
+    public int MaxNumFish = 3;            //釣れる魚の最大数
 
 
     void Start()
