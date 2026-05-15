@@ -829,10 +829,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79bfb13e9fc50d4ba05808f439cb039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishMove
-  Minspeed: 0.3
-  Maxspeed: 1
-  Mindistance: 1
-  Maxdistance: 8
+  Lure: {fileID: 0}
+  area: 0
+  Eating: 0
 --- !u!50 &538053812
 Rigidbody2D:
   serializedVersion: 5
@@ -1102,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sea
-  Lure: {fileID: 104605121}
+  Lure: {fileID: 0}
 --- !u!61 &1057897512
 BoxCollider2D:
   m_ObjectHideFlags: 0
