@@ -252,8 +252,8 @@ Transform:
   m_GameObject: {fileID: 160984141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -2.5777, z: 0}
-  m_LocalScale: {x: 18.562206, y: 5.432376, z: 1}
+  m_LocalPosition: {x: 8.6871, y: -2.5777, z: 0}
+  m_LocalScale: {x: 19.187752, y: 5.432376, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8604f708508b240a6d432169866b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lurerange
-  LureMove: 0
+  targetFish: []
   GetFish: 0
 --- !u!1 &1133167752
 GameObject:
