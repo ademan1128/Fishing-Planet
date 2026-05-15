@@ -7,13 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main game.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/HARUAKI.unity
-    guid: 9b276c1458684d4408a5357348e37518
+    guid: bf3459b29e32a634c8541b39995ddf45
   - enabled: 1
     path: Assets/Scenes/Skill Tree Scene.unity
     guid: ed89e0b81e6100541a3d706741b0e447
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 44925d44b57a31f4fb6cdbf70e81be45
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
