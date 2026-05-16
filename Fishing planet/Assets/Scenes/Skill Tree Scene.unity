@@ -2258,7 +2258,7 @@ MonoBehaviour:
   spendMoney: 5
   skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF11"
   skillInformation: "\u8DDD\u96E2UP"
-  text: {fileID: 121162557}
+  text: {fileID: 1479389645}
 --- !u!114 &813682623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3783,7 +3783,7 @@ MonoBehaviour:
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
-  text: {fileID: 121162557}
+  text: {fileID: 1479389645}
 --- !u!114 &1673962868
 MonoBehaviour:
   m_ObjectHideFlags: 0
