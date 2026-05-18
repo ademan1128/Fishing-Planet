@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Sea1 : MonoBehaviour
 {   int rnd;
     List<string> Sea1List = new List<string>();
-    Lurerange Lurerange;
     Fishing MaxNumFish;
     bool onsea;
     [SerializeField] Transform Lure;
@@ -15,7 +14,6 @@ public class Sea1 : MonoBehaviour
             Sea1List.Add("イワシ");
             Sea1List.Add("サバ");
             Sea1List.Add("アジ");
-        Lurerange = GameObject.Find("LureRange").GetComponent<Lurerange>();
         onsea = false;
         Lure = GameObject.Find("Lure").transform;
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
@@ -49,18 +47,6 @@ public class Sea1 : MonoBehaviour
             }
             Debug.Log("area: " + area);
             Debug.Log("Lureが海から出た");
-            if (Lurerange.targetFish.Count > 0)
-            {
-                for (int i = 0; i < Lurerange.targetFish.Count; i++)
-                {
-                    rnd = GetRandomIndex(weights);
-                    Debug.Log(Sea1List[rnd] + "が釣れた");
-                }
-
-            }else
-            {
-                Debug.Log("何も釣れなかった");
-            }
         }
     }
     int GetRandomIndex(List<float> weights)

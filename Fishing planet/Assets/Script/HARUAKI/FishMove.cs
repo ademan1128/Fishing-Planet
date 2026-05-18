@@ -7,20 +7,21 @@ public class FishMove : MonoBehaviour
     public int area;
     Vector2 movePosition;
     float speed;
-    Lurerange LureRange;
     Fishing MaxNumFish;
     bool isCatch;
     public static int NumFish;
     public bool Eating;
+    public float SearchDistance = 1f;
+    SearchFish searchFish;
     void Start()
     {
         movePosition = moveRandomPosition();
         Lure = GameObject.Find("Lure").transform;
-        LureRange = GameObject.Find("LureRange").GetComponent<Lurerange>();
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
+        searchFish =GameObject.Find("Lure").GetComponent<SearchFish>();
         isCatch = false;
         Eating = false;
-        NumFish = 0;
+        //NumFish = 0;
         MaxNumFish.MaxNumFish = 3;
     }
 
@@ -28,13 +29,11 @@ public class FishMove : MonoBehaviour
 
     void Update()
     {
-        speed = Random.Range(0f, 1f);
-        if (LureRange.targetFish.Contains(this)&& NumFish < MaxNumFish.MaxNumFish)//この魚がルアーに反応しているか
-                                                                                  //この時のthisは当たった魚のスクリプトを指す
+        speed = Random.Range(0.5f, 1f);
+        if (searchFish.nearestFishList.Contains(gameObject)&& MaxNumFish.CanFishGet && MaxNumFish.CanFishGet==true)
         {
-            float distance = Vector2.Distance(transform.position, Lure.position);//
-
-            if (distance < 2f && NumFish < MaxNumFish.MaxNumFish)
+            float distance = Vector2.Distance(transform.position, Lure.position);//ここで魚とルアーの距離を測る
+            if (distance < 0.5f)
             {
                 transform.position = Lure.position;//距離が近いときはルアーの位置に移動
                 GetComponent<BoxCollider2D>().enabled = false;
@@ -44,17 +43,12 @@ public class FishMove : MonoBehaviour
                     Eating = true;
                     NumFish++;
                     Debug.Log("NumFish" + NumFish);
-                    //GetComponent<BoxCollider2D>().enabled = false;
                 }
             }
             else
             {
                 transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed * Time.deltaTime);//ここでルアーに近づいているときはルアーの位置に向かって移動
             }
-        }
-        else if (Eating == true)
-        {
-                transform.position = Lure.position;//食べているときはルアーの位置に移動
         }
         else
         {
