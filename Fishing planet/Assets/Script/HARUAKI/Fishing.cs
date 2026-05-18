@@ -27,10 +27,12 @@ public class Fishing : MonoBehaviour
     private bool isInWater = false;     //ルアーが水に入っているかどうかを示すフラグ
     private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
     public int MaxNumFish = 3;            //釣れる魚の最大数
+    public bool CanFishGet;                 //魚を釣れるかどうか
 
 
     void Start()
     {
+        CanFishGet = false;
         if (Lure != null)//Lureがnullでない場合、Rigidbody2Dコンポーネントを取得
         {
             LureRigidbody = Lure.GetComponent<Rigidbody2D>();
@@ -76,6 +78,7 @@ public class Fishing : MonoBehaviour
             LureRigidbody.linearVelocity = Vector2.zero;  // 一応、ルアーの速度をリセット。
                                                           // LinearVelocityはRigidbody2Dの速度を表すプロパティで、Vector2.zeroは(0, 0)のベクトルを意味する。これにより、ルアーが投げられる前に静止状態になる。
             LureRigidbody.simulated = true;               // ルアーの物理挙動をONにする
+            CanFishGet = true;
             LureRigidbody.AddForce(throwDirection.normalized * isThrowpower, ForceMode2D.Impulse);// ルアーに力を加える。normalizedで方向ベクトルを正規化して、isthrowpowerで力の大きさを調整。Impulseは瞬間的な力を加えるモード
 
 
@@ -97,8 +100,9 @@ public class Fishing : MonoBehaviour
                 isReeling = false;                            // 巻き取り終了
                 LureRigidbody.simulated = false;              // ルアーの物理挙動をOFFにする
                 isInWater = false;                             // 水から出たとみなす
-                isMove = false;
+                isMove = false;                               // ルアーが動いていない状態に戻す
                 isThrowpower = 1f;
+                CanFishGet = false;
             }
         }
         DrawDynamicLine();
