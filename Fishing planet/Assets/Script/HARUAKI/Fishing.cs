@@ -28,10 +28,11 @@ public class Fishing : MonoBehaviour
     private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
     public int MaxNumFish = 3;            //釣れる魚の最大数
     public bool CanFishGet;                 //魚を釣れるかどうか
-
+    public bool GotFish;                    //魚を釣ったかどうか
 
     void Start()
     {
+        GotFish = false;
         CanFishGet = false;
         if (Lure != null)//Lureがnullでない場合、Rigidbody2Dコンポーネントを取得
         {
@@ -74,6 +75,7 @@ public class Fishing : MonoBehaviour
             //Debug.Log(isThrowpower);
             isMove = true;
             Retimer = 0f;
+            GotFish = false;
             Lure.transform.position = Rodtip.position;    // ルアーを竿先の位置に移動
             LureRigidbody.linearVelocity = Vector2.zero;  // 一応、ルアーの速度をリセット。
                                                           // LinearVelocityはRigidbody2Dの速度を表すプロパティで、Vector2.zeroは(0, 0)のベクトルを意味する。これにより、ルアーが投げられる前に静止状態になる。
@@ -96,6 +98,8 @@ public class Fishing : MonoBehaviour
 
             if (Vector2.Distance(Lure.transform.position, Rodtip.position) < 0.5f)
             {
+                GotFish = true;
+                Debug.Log("GotFish" + GotFish);
                 Lure.transform.position = Rodtip.position;    // ルアーが竿先に近づいたら位置を完全に合わせる
                 isReeling = false;                            // 巻き取り終了
                 LureRigidbody.simulated = false;              // ルアーの物理挙動をOFFにする

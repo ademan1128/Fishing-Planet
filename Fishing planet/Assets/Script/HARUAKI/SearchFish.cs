@@ -8,7 +8,7 @@ public class SearchFish : MonoBehaviour
     public List<GameObject> nearestFishList =new List<GameObject>();//検索範囲内の魚を保存するリスト
     GameObject[] fishObject;
     List<GameObject> fishList = new List<GameObject>();//検索範囲内の魚を一時的に保存するリスト
-    int MaxFish;
+    public int MaxFish;
     void Start()
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
@@ -44,3 +44,5 @@ public class SearchFish : MonoBehaviour
         }
     }
 }
+
+//このスクリプトのnearestFishListには1匹しか入らないエラーが起きてる
