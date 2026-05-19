@@ -8,12 +8,14 @@ public class FishClone : MonoBehaviour
     GameObject obj;
     public int area;
     List<GameObject> fishCloneList = new List<GameObject>();
+    public static  int ALLFish  = 5;
 
     void Start()
     {
-        CreateObject();
-        CreateObject();
-        CreateObject();
+        for (int a = 0; a < ALLFish; a++)
+        {
+            CreateObject();
+        }
     }
 
     void CreateObject()

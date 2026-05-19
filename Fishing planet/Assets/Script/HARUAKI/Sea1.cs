@@ -8,6 +8,7 @@ public class Sea1 : MonoBehaviour
     List<string> Sea1List = new List<string>();
     Fishing MaxNumFish;
     bool onsea;
+    Fishing Fishing;
     [SerializeField] Transform Lure;
     void Start()
     {
@@ -17,6 +18,7 @@ public class Sea1 : MonoBehaviour
         onsea = false;
         Lure = GameObject.Find("Lure").transform;
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
+        Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
     }
 
 
@@ -27,26 +29,31 @@ public class Sea1 : MonoBehaviour
             Debug.Log("LureÇ™äCÇ…ì¸Ç¡ÇΩ");
         }
     }
-    void OnTriggerExit2D(Collider2D other)
+    void Update()
     {
-        if (other.CompareTag("Lure"))
+        if (Fishing.GotFish == true)
         {
-            List<float> weights = new List<float> { 50, 30, 20 };
-            int area = Mathf.FloorToInt(Lure.position.x / 10f);
-            if (area == 0)
+
+            foreach (int area in FishMove.GetFishArea)
             {
-                weights = new List<float> { 70, 20, 0 };
+                List<float> weights = new List<float> { 50, 30, 20 };
+                //int area = Mathf.FloorToInt(Lure.position.x / 10f); Ç¢Ç¬Ç©égÇ§
+                    if (area == 0)
+                    {
+                        weights = new List<float> { 70, 20, 0 };
+                    }
+                    else if (area == 1)
+                    {
+                        weights = new List<float> { 10, 60, 20 };
+                    }
+                    else if (area == 2)
+                    {
+                        weights = new List<float> { 0, 20, 60 };
+                    }
+                    rnd = GetRandomIndex(weights);
+                    Debug.Log("íﬁÇÍÇΩãõÅF" + Sea1List[rnd]);
             }
-            else if (area == 1)
-            {
-                weights = new List<float> { 10, 60, 20 };
-            }
-            else if (area == 2)
-            {
-                weights = new List<float> { 0, 20, 60 };
-            }
-            Debug.Log("area: " + area);
-            Debug.Log("LureÇ™äCÇ©ÇÁèoÇΩ");
+            FishMove.GetFishArea.Clear();
         }
     }
     int GetRandomIndex(List<float> weights)
