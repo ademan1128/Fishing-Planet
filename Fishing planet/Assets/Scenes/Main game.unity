@@ -1199,8 +1199,9 @@ MonoBehaviour:
   parabolaMaxDistance: 6
   isThrowpower: 3
   previewLine: {fileID: 0}
-  MaxNumFish: 1
+  MaxNumFish: 3
   CanFishGet: 0
+  GotFish: 0
 --- !u!50 &1832570101
 Rigidbody2D:
   serializedVersion: 5
@@ -1362,6 +1363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SearchFish
   SearchDistance: 2
   nearestFishList: []
+  MaxFish: 0
 --- !u!1 &1843478103
 GameObject:
   m_ObjectHideFlags: 0

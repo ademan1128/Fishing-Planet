@@ -20,18 +20,25 @@ public class FishMove : MonoBehaviour
     float distance;
     float Roddistance;
     Fishing Fishing;
-    void Start()
+
+    private void Awake()
     {
-        movePosition = moveRandomPosition();
+        // MaxNumFish.MaxNumFish = 3;
+//         movePosition = moveRandomPosition();
         Lure = GameObject.Find("Lure").transform;
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
-        searchFish =GameObject.Find("Lure").GetComponent<SearchFish>();
+        searchFish = GameObject.Find("Lure").GetComponent<SearchFish>();
         Rodtip = GameObject.Find("Rot tip").transform;
         isCatch = false;
         Eating = false;
-        //NumFish = 0;
         MaxNumFish.MaxNumFish = 3;
+        //NumFish = 0;
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
+    }
+
+    void Start()
+    {
+        movePosition = moveRandomPosition();
     }
 
 
@@ -84,12 +91,12 @@ public class FishMove : MonoBehaviour
     Vector2 moveRandomPosition()//à⁄ìÆêÊÇÉâÉìÉ_ÉÄÇ…åàÇﬂÇÈ
     {
         if (area == 1)
-            {
-                int rndX = Random.Range(0, 10);
-                int rndY = Random.Range(-5, 0);
-                return new Vector2(rndX, rndY);
-            }
-    return Vector2.zero;
+        {
+            int rndX = Random.Range(0, 10);
+            int rndY = Random.Range(-5, 0);
+            return new Vector2(rndX, rndY);
+        }
+        return Vector2.zero;
     }
 
 }
