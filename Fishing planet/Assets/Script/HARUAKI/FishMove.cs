@@ -23,8 +23,6 @@ public class FishMove : MonoBehaviour
 
     private void Awake()
     {
-        // MaxNumFish.MaxNumFish = 3;
-//         movePosition = moveRandomPosition();
         Lure = GameObject.Find("Lure").transform;
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
         searchFish = GameObject.Find("Lure").GetComponent<SearchFish>();
@@ -50,6 +48,15 @@ public class FishMove : MonoBehaviour
         {
             distance = Vector2.Distance(transform.position, Lure.position);//‚±‚±‚Å‹›‚Æƒ‹ƒA[‚Ì‹——£‚ğ‘ª‚é
             Roddistance = Vector2.Distance(transform.position, Rodtip.position);
+
+            if (Eating == true && Fishing.GotFish == true)
+            {
+                if (searchFish.nearestFishList.Count > 0)
+                {
+                    GameObject firstFish = searchFish.nearestFishList[0];
+                }
+            }
+            else
             if (Eating == true && Fishing.GotFish == true)
             {
                 transform.position = Rodtip.position;
@@ -85,7 +92,6 @@ public class FishMove : MonoBehaviour
             }
             transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//ˆÚ“®æ‚ÉŒü‚©‚Á‚ÄˆÚ“®
         }
-
     }
 
     Vector2 moveRandomPosition()//ˆÚ“®æ‚ğƒ‰ƒ“ƒ_ƒ€‚ÉŒˆ‚ß‚é
