@@ -86,7 +86,8 @@ public class SkillSystem : MonoBehaviour
         else if (type == SkilltypeEnum.StrengthenStore)
         {
             return skills[(int)SkilltypeEnum.Cooltime1]&& skills[(int)SkilltypeEnum.Cooltime2] 
-                && skills[(int)SkilltypeEnum.Pier1] && skills[(int)SkilltypeEnum.Pier2] && skills[(int)SkilltypeEnum.Fishinghook1]
+                && skills[(int)SkilltypeEnum.Pier1] && skills[(int)SkilltypeEnum.Pier2] 
+                && skills[(int)SkilltypeEnum.Fishinghook1]
                 && skills[(int)SkilltypeEnum.Fishinghook2];
         }
         return true;

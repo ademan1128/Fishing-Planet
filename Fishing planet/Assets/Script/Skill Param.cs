@@ -44,7 +44,7 @@ public class SkillParam : MonoBehaviour {
             //　スキルを覚えさせる
             skillSystem.LearnSkill(type, spendMoney);
 
-            ChangeButtonColor(new Color(0f, 0f, 1f, 1f));
+            ChangeButtonColor(new Color(0f, 0f, 1f, 0.8f));
 
             text.text = skillTitle + "を覚えた";
         }
@@ -60,8 +60,8 @@ public class SkillParam : MonoBehaviour {
         //　スキルを覚えられるかどうかチェック
         if (!skillSystem.CanLearnSkill(type))
         {
-            ChangeButtonColor(new Color(0.8f, 0.8f, 0.8f, 0.8f));
             //　スキルをまだ覚えていない
+            ChangeButtonColor(new Color(0.0f, 0.0f, 0.0f, 0.8f));
         }
         else if (!skillSystem.IsSkill(type))
         {
