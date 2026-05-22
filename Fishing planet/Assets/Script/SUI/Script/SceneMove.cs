@@ -18,7 +18,7 @@ public class SceneMove : MonoBehaviour
             limitTimer = 0;
 
             // ƒV[ƒ“‘JˆÚ
-            SceneManager.LoadScene("Skill Tree Scene");
+            SceneManager.LoadScene("Result");
         }
 
         timerText.text = limitTimer.ToString("F0");
