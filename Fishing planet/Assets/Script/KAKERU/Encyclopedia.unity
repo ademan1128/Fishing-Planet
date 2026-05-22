@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -511,13 +511,14 @@ GameObject:
   - component: {fileID: 293298970}
   - component: {fileID: 293298972}
   - component: {fileID: 293298971}
+  - component: {fileID: 293298973}
   m_Layer: 5
   m_Name: RootPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &293298970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -581,6 +582,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293298969}
   m_CullTransparentMesh: 1
+--- !u!114 &293298973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293298969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14e91592f19b5b4b97058458dd567b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragScrollWithLimit
+  scrollSpeed: 1
+  reverse: 1
+  minX: -10
+  maxX: 10
 --- !u!1 &432977989
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,11 +867,12 @@ RectTransform:
   - {fileID: 750393144}
   - {fileID: 780736761}
   - {fileID: 1110520732}
+  - {fileID: 1987667518}
   m_Father: {fileID: 713495420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.9976196, y: 269.69}
+  m_AnchoredPosition: {x: -0.0026855469, y: 269.69}
   m_SizeDelta: {x: -0.0053711, y: 254.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505203647
@@ -871,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -980,7 +998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14e91592f19b5b4b97058458dd567b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  scrollSpeed: 10
+  scrollSpeed: 1
+  reverse: 1
+  minX: -10
+  maxX: 10
 --- !u!1 &593379659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2098,7 +2119,6 @@ RectTransform:
   - {fileID: 969701060}
   - {fileID: 593379660}
   - {fileID: 1698250203}
-  - {fileID: 1987667518}
   m_Father: {fileID: 505203646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4237,7 +4257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4408,7 +4428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5082,11 +5102,11 @@ RectTransform:
   - {fileID: 1156054070}
   - {fileID: 231926601}
   - {fileID: 837741032}
-  m_Father: {fileID: 1110520732}
+  m_Father: {fileID: 505203646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 312, y: 141.91}
+  m_AnchoredPosition: {x: 109, y: 0}
   m_SizeDelta: {x: 109.5998, y: 113.2884}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1987667519

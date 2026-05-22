@@ -1,33 +1,44 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MouseController : MonoBehaviour
+public class DragScrollWithLimit : MonoBehaviour
 {
-    // カメラ移動用
-    public float scrollSpeed = 10f;
+    public float scrollSpeed = 1.5f;
+    public bool reverse = false;
+    public float minX = -10f;
+    public float maxX = 10f;
 
-    // クリック判定用（左クリック）
+    private bool isDragging = false; // ドラッグ可能かどうかのフラグ
+
     void Update()
     {
-        // 1. 左クリックした瞬間 (押したとき)
+        // 左クリックした瞬間
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0; // Z軸をリセット
-            Debug.Log("左クリックした座標: " + mousePos);
+            // UIの上でなければドラッグ開始を許可
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                isDragging = true;
+            }
         }
 
-        // 2. 左クリックしている間 (押し続けている間)
-        if (Input.GetMouseButton(0))
+        // 左クリックを離したらドラッグ終了
+        if (Input.GetMouseButtonUp(0))
         {
-            // ここに連打やホールド時の処理
+            isDragging = false;
         }
 
-        // 3. マウスホイールでのスクロール操作 (上下移動)
-        float scrollY = Input.GetAxis("Mouse ScrollWheel");
-        if (Mathf.Abs(scrollY) > 0.01f)
+        // ドラッグ許可状態のときだけ動かす
+        if (isDragging && Input.GetMouseButton(0))
         {
-            transform.Translate(Vector3.up * scrollY * scrollSpeed * Time.deltaTime);
+            float mouseX = Input.GetAxis("Mouse X");
+            float direction = reverse ? -1f : 1f;
+            float move = mouseX * scrollSpeed * direction;
+
+            float targetX = transform.position.x + move;
+            targetX = Mathf.Clamp(targetX, minX, maxX);
+
+            transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
         }
     }
 }
-
