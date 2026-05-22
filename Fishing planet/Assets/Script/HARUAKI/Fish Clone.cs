@@ -8,7 +8,7 @@ public class FishClone : MonoBehaviour
     GameObject obj;
     public int area;
     List<GameObject> fishCloneList = new List<GameObject>();
-    public static  int ALLFish  = 5;
+    public static int ALLFish = 5;
 
     void Start()
     {
@@ -33,8 +33,7 @@ public class FishClone : MonoBehaviour
 
         }
 
-        FishMove fishMove =
-        obj.GetComponent<FishMove>();
+        FishMove fishMove = obj.GetComponent<FishMove>();
 
         fishMove.area = area;
 

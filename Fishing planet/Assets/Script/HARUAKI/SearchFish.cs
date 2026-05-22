@@ -13,6 +13,7 @@ public class SearchFish : MonoBehaviour
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         MaxFish = Fishing.MaxNumFish;
+        Debug.Log(MaxFish);
     }
     void Update()
     {
@@ -44,5 +45,3 @@ public class SearchFish : MonoBehaviour
         }
     }
 }
-
-//このスクリプトのnearestFishListには1匹しか入らないエラーが起きてる
