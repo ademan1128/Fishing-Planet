@@ -1,16 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class result : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // íﬁÇÍÇΩãõÇï€ë∂
+    public static List<string> ResultFish = new List<string>();
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (string fish in ResultFish)
+        {
+            Debug.Log("åãâ ÅF" + fish);
+        }
     }
 }
