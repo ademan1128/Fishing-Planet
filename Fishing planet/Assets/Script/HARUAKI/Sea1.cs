@@ -53,7 +53,7 @@ public class Sea1 : MonoBehaviour
                     rnd = GetRandomIndex(weights);
                     string catchFish = Sea1List[rnd];
                     Debug.Log("íﬁÇÍÇΩãõÅF" + catchFish);
-                    result.ResultFish.Add(catchFish);
+                    Result.ResultFish.Add(catchFish);
             }
             FishMove.GetFishArea.Clear();
         }
