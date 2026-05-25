@@ -9,7 +9,7 @@ public class Fishing : MonoBehaviour
     public Vector2 throwDirection = new Vector2(1f, 1f);
     //どの角度で投げるか
     public float reelSpeed = 5f;         // 巻き取りの速度
-    private bool isReeling = false;      // 巻き取り中かどうかを示すフラグ
+    public bool isReeling = false;      // 巻き取り中かどうかを示すフラグ
 
     // 放物線設定
     public int segmentCount = 20;        //放物線のセグメント数。これが多いほど滑らかになる
@@ -26,7 +26,7 @@ public class Fishing : MonoBehaviour
     private float Retimer = 0f;         //現在の時間を追跡する変数
     private bool isInWater = false;     //ルアーが水に入っているかどうかを示すフラグ
     private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
-    public int MaxNumFish;            //釣れる魚の最大数
+    public int MaxNumFish = 3;            //釣れる魚の最大数
     public bool CanFishGet;                 //魚を釣れるかどうか
     public bool GotFish;                    //魚を釣ったかどうか
 
@@ -53,7 +53,6 @@ public class Fishing : MonoBehaviour
 
         if (Lure == null || Rodtip == null || LureRigidbody == null) return;
         // Lure、Rodtip、LureRigidbodyのいずれかがnullの場合は処理を中断
-        //↑これできる男がやるやつ
 
         if (Input.GetMouseButton(0) && isReeling == false && isMove == false)
         {

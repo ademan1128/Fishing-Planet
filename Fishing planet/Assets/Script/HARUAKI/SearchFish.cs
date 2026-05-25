@@ -13,35 +13,39 @@ public class SearchFish : MonoBehaviour
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         MaxFish = Fishing.MaxNumFish;
-        Debug.Log(MaxFish);
+
     }
     void Update()
     {
-        fishObject = GameObject.FindGameObjectsWithTag("Fish");
-        nearestFishList.Clear();
-        fishList.Clear();
-        foreach (GameObject fish in fishObject)
+        if (Fishing.CanFishGet)
         {
-            if (fish != null)
+            fishObject = GameObject.FindGameObjectsWithTag("Fish");
+            nearestFishList.Clear();
+            fishList.Clear();
+            foreach (GameObject fish in fishObject)
             {
-                float distance =
-                    Vector2.Distance(transform.position,fish.transform.position);
-                if (distance <= SearchDistance)
+                if (fish != null)
                 {
-                    fishList.Add(fish);
+                    float distance =
+                        Vector2.Distance(transform.position, fish.transform.position);
+                    if (distance <= SearchDistance)
+                    {
+                        fishList.Add(fish);
+                    }
                 }
             }
-        }
-        fishList.Sort((a, b) =>
-        {
-            float distanceA =Vector2.Distance(transform.position,a.transform.position);
-            float distanceB =Vector2.Distance(transform.position,b.transform.position);
-            return distanceA.CompareTo(distanceB);
-        });
+            fishList.Sort((a, b) =>
+            {
+                float distanceA = Vector2.Distance(transform.position, a.transform.position);
+                float distanceB = Vector2.Distance(transform.position, b.transform.position);
+                return distanceA.CompareTo(distanceB);
+            });
 
-        for (int i = 0;i < Mathf.Min(MaxFish, fishList.Count);i++)
-        {
-            nearestFishList.Add(fishList[i]);
+            for (int i = 0; i < Mathf.Min(MaxFish, fishList.Count); i++)
+            {
+                nearestFishList.Add(fishList[i]);
+                Debug.Log(MaxFish);
+            }
         }
     }
 }
