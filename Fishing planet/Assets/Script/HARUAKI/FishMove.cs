@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class FishMove : MonoBehaviour
 {
@@ -13,25 +13,36 @@ public class FishMove : MonoBehaviour
     Fishing MaxNumFish;
     bool isCatch;
     public static int NumFish;
-    public bool Eating;
+    public bool isEating;
     public float SearchDistance = 1f;
     SearchFish searchFish;
     public static List<int> GetFishArea = new List<int>();
     float distance;
     float Roddistance;
     Fishing Fishing;
+    Fishing isReeling;
+
+    public enum FishState
+    {
+        Swimming,
+        Tracking,
+        Eating,
+        Reeling,
+        GetFish
+    }
+
+    public FishState State = FishState.Swimming;//初期状態はswimming
 
     private void Awake()
     {
+        Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         Lure = GameObject.Find("Lure").transform;
-        MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
         searchFish = GameObject.Find("Lure").GetComponent<SearchFish>();
         Rodtip = GameObject.Find("Rot tip").transform;
         isCatch = false;
-        Eating = false;
-        MaxNumFish.MaxNumFish = 3;
+        isEating = false;
         //NumFish = 0;
-        Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
+
     }
 
     void Start()
@@ -43,57 +54,106 @@ public class FishMove : MonoBehaviour
 
     void Update()
     {
+        switch (State)
+        {
+            case FishState.Swimming:Swimming();
+                break;
+
+            case FishState.Tracking:Tracking();
+                break;
+
+            case FishState.Eating:Eating();
+                break;
+
+            case FishState.Reeling:Reeling();
+                break;
+            case FishState.GetFish: GetFish();
+                break;
+        }
+
+    }
+
+    void Swimming()
+    {
         speed = Random.Range(0.5f, 1f);
+
+        if (Vector2.Distance(transform.position, movePosition) < 0.1f)//ここで移動先に近づいたら新しい移動先を決める
+        {
+            movePosition = moveRandomPosition();
+        }
+        transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//移動先に向かって移動
+
         if (searchFish.nearestFishList.Contains(gameObject))
         {
-            distance = Vector2.Distance(transform.position, Lure.position);//ここで魚とルアーの距離を測る
-            Roddistance = Vector2.Distance(transform.position, Rodtip.position);
-
-            if (Eating == true && Fishing.GotFish == true)
-            {
-                if (searchFish.nearestFishList.Count > 0)
-                {
-                    GameObject firstFish = searchFish.nearestFishList[0];
-                }
-            }
-            else
-            if (Eating == true && Fishing.GotFish == true)
-            {
-                transform.position = Rodtip.position;
-                if (Roddistance < 1f)
-                {
-                    GetFishArea.Add(area);
-                    Destroy(gameObject);
-                }
-            } 
-            else
-            if(distance < 0.5f)
-            {
-                transform.position = Lure.position;//距離が近いときはルアーの位置に移動
-                if (isCatch == false)
-                {
-                    isCatch = true;
-                    NumFish++;
-                    Debug.Log("NumFish" + NumFish);
-                    Eating = true;
-                }
-            }
-            else
-            {
-                if ( MaxNumFish.CanFishGet == true)
-                transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed * Time.deltaTime);//ここでルアーに近づいているときはルアーの位置に向かって移動
-            }
-
-        } else
-        {
-            if (Vector2.Distance(transform.position, movePosition) < 0.1f)//ここで移動先に近づいたら新しい移動先を決める
-            {
-                movePosition = moveRandomPosition();
-            }
-            transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//移動先に向かって移動
+            State = FishState.Tracking;
         }
     }
 
+    void Tracking()
+    {
+        distance = Vector2.Distance(transform.position, Lure.position);//ここで魚とルアーの距離を測る
+
+        if (Fishing.CanFishGet == true)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed * Time.deltaTime);
+        }
+        if (Fishing.isReeling && isEating == false)
+        {
+            State = FishState.Swimming;
+        }
+        else if (distance < 0.5f&& searchFish.nearestFishList.Contains(gameObject))
+        {
+            transform.position = Lure.position;//距離が近いときはルアーの位置に移動
+            isEating = true;
+            State = FishState.Eating;
+
+        }
+
+    }
+
+    void Eating()
+    {
+        if (isEating == true)
+        {
+            transform.position = Lure.position;
+            if (Fishing.isReeling)
+            {
+                State = FishState.Reeling;
+            }
+        }
+    }
+
+    void Reeling()
+    {
+        Roddistance = Vector2.Distance(transform.position, Rodtip.position);
+        for (int i = 0; i < searchFish.nearestFishList.Count; i++)
+        {
+            float interval = 1f; 
+            if (searchFish.nearestFishList[i] == null)continue;
+            Vector3 dir = (Rodtip.position - searchFish.nearestFishList[i].transform.position).normalized;
+            searchFish.nearestFishList[i].transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+            searchFish.nearestFishList[i].transform.position = Lure.position - transform.up * (interval * i);
+            if (Roddistance < 1f)
+            {
+                Debug.Log("GetFish");
+                searchFish.nearestFishList[i].transform.rotation = Quaternion.identity;
+                State = FishState.GetFish;
+            }
+        }
+    }
+
+    void GetFish()
+    {
+        if (isEating == true && Fishing.GotFish == true)
+        {
+            transform.position = Rodtip.position;
+            if (Roddistance < 1f)
+            {
+                GetFishArea.Add(area);
+                Destroy(gameObject);
+            }
+        }
+    }
     Vector2 moveRandomPosition()//移動先をランダムに決める
     {
         if (area == 1)
