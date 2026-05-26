@@ -963,7 +963,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.480011, y: -0.52000046}
+  m_AnchoredPosition: {x: 0.36, y: -0.52000046}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235015510
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 271083039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69daceaf643eb53418ba8fd6cd8cdf19, type: 3}
+  m_Script: {fileID: 11500000, guid: 2215c02745b941848801196cd4848441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSystem
   skillMoney: 200
@@ -1169,11 +1169,11 @@ MonoBehaviour:
   skillParams:
   - {fileID: 1095334735}
   - {fileID: 1669983949}
-  - {fileID: 1028927052}
-  - {fileID: 1920139257}
-  - {fileID: 2026172634}
   - {fileID: 1764325144}
+  - {fileID: 2026172634}
   - {fileID: 518621011}
+  - {fileID: 1920139257}
+  - {fileID: 1028927052}
   MoneyText: {fileID: 128621066}
 --- !u!224 &271083044
 RectTransform:
