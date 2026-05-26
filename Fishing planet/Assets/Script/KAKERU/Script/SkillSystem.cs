@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public enum SkilltypeEnum
 {
@@ -28,6 +29,13 @@ public class SkillSystem : MonoBehaviour
     {
         //スキル数分の配列を確保
         skills = new bool[skillParams.Length];
+        for (int i = 0; i < skills.Length; i++)
+        {
+            SkilltypeEnum type = (SkilltypeEnum)i;
+            int s = PlayerPrefs.GetInt("SkillType" + type);
+            bool b = Convert.ToBoolean(s);
+            skills[i] = b;
+        }
         SetText();
     }
     
@@ -38,6 +46,8 @@ public class SkillSystem : MonoBehaviour
         SetSkillMoney(money);
         SetText();
         CheckOnOff();
+        PlayerPrefs.SetInt("SkillType"+type, 1);
+        PlayerPrefs.Save();
     }
 
     //スキルを覚えているかチェック
