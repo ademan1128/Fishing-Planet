@@ -24,7 +24,7 @@ public class Result : MonoBehaviour
 
             FishSlot fishSlot = slot.GetComponent<FishSlot>();
 
-            fishSlot.Setup(sprite);
+            //fishSlot.Setup(sprite);
         }
     }
 }
