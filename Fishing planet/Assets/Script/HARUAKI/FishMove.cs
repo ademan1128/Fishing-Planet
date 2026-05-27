@@ -106,6 +106,7 @@ public class FishMove : MonoBehaviour
             transform.position = Lure.position;//距離が近いときはルアーの位置に移動
             isEating = true;
             State = FishState.Eating;
+            Debug.Log("食べました");
 
         }
 
@@ -128,6 +129,7 @@ public class FishMove : MonoBehaviour
         Roddistance = Vector2.Distance(transform.position, Rodtip.position);
         for (int i = 0; i < searchFish.nearestFishList.Count; i++)
         {
+            Debug.Log(searchFish.nearestFishList[i]);
             float interval = 1f; 
             if (searchFish.nearestFishList[i] == null)continue;
             Vector3 dir = (Rodtip.position - searchFish.nearestFishList[i].transform.position).normalized;

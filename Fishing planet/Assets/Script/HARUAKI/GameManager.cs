@@ -3,34 +3,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Sea1 : MonoBehaviour
+public class GameManager : MonoBehaviour
 {   int rnd;
-    List<string> Sea1List = new List<string>();
+    List<Sprite> Sea1List = new List<Sprite>();
     Fishing MaxNumFish;
-    bool onsea;
     Fishing Fishing;
     [SerializeField] Transform Lure;
+    public List<GameObject> fishCloneList = new List<GameObject>();
     void Start()
     {
-            Sea1List.Add("イワシ");
-            Sea1List.Add("サバ");
-            Sea1List.Add("アジ");
-        onsea = false;
+            //Sea1List.Add();
+            //Sea1List.Add();
+            //Sea1List.Add();
         Lure = GameObject.Find("Lure").transform;
         MaxNumFish = GameObject.Find("Lure").GetComponent<Fishing>();
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
+
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Lure"))
-        {
-            Debug.Log("Lureが海に入った");
-        }
-    }
     void Update()
     {
+
+
         if (Fishing.GotFish == true)
         {
 
@@ -51,9 +46,8 @@ public class Sea1 : MonoBehaviour
                         weights = new List<float> { 0, 20, 60 };
                     }
                     rnd = GetRandomIndex(weights);
-                    string catchFish = Sea1List[rnd];
+                    Sprite catchFish = Sea1List[rnd];
                     Debug.Log("釣れた魚：" + catchFish);
-                    Result.ResultFish.Add(catchFish);
             }
             FishMove.GetFishArea.Clear();
         }

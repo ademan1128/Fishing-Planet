@@ -7,17 +7,21 @@ public class FishClone : MonoBehaviour
     int i = 0;
     GameObject obj;
     public int area;
-    List<GameObject> fishCloneList = new List<GameObject>();
     public static int ALLFish = 5;
-
+    GameManager gameManager;
+    public Sprite sprite;
     void Start()
     {
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         for (int a = 0; a < ALLFish; a++)
         {
             CreateObject();
         }
+        SpliteChange();
     }
 
+    //魚の生成＆生成した魚をGMに渡している
     void CreateObject()
     {
         obj = Instantiate(prefabObj, Vector2.zero, Quaternion.identity);
@@ -37,6 +41,18 @@ public class FishClone : MonoBehaviour
 
         fishMove.area = area;
 
-        fishCloneList.Add(obj);
+        gameManager.fishCloneList.Add(obj);
+        
+    }
+
+    //ここで生成した魚のスプライト変更
+    void SpliteChange()
+    {
+        SpriteRenderer fish;
+        for(int i = 0; i< gameManager.fishCloneList.Count; i++)
+        {
+            fish = gameManager.fishCloneList[i].GetComponent<SpriteRenderer>();
+            fish.sprite = sprite;
+        }
     }
 }
