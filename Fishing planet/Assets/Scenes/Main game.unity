@@ -265,7 +265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160984141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
   m_Name: 
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   Lure: {fileID: 1832570104}
   fishCloneList:
-  - {fileID: 650130239559905306, guid: 8e423f74144006d4abec7e25fb412f52, type: 3}
+  - {fileID: 3021654585832361479, guid: d96335a63ed590d48bdbb85bf953a89f, type: 3}
 --- !u!4 &1333404015
 Transform:
   m_ObjectHideFlags: 0

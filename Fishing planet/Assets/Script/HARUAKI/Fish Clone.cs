@@ -7,7 +7,6 @@ public class FishClone : MonoBehaviour
     int i = 0;
     GameObject obj;
     public int area;
-    List<GameObject> fishCloneList = new List<GameObject>();
     public static int ALLFish = 5;
     GameManager gameManager;
     public Sprite sprite;
@@ -19,7 +18,7 @@ public class FishClone : MonoBehaviour
         {
             CreateObject();
         }
-        SpliteChange();
+        SpriteChange();
     }
 
     void CreateObject()
@@ -43,7 +42,7 @@ public class FishClone : MonoBehaviour
         gameManager.fishCloneList.Add(obj);
     }
 
-    void SpliteChange()
+    void SpriteChange()
     {
         SpriteRenderer fish;
         for (int i = 0; i < gameManager.fishCloneList.Count; i++)

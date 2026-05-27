@@ -123,36 +123,67 @@ public class FishMove : MonoBehaviour
         }
     }
 
+    public static List<Vector3> pathPoints = new List<Vector3>();
+
     void Reeling()
     {
-        Roddistance = Vector2.Distance(transform.position, Rodtip.position);
-        for (int i = 0; i < searchFish.nearestFishList.Count; i++)
+        if (!searchFish.nearestFishList.Contains(gameObject))
+            return;
+        float reelSpeed = 5f;
+        int spacing = 50;
+
+        if (searchFish.nearestFishList.Count == 0)return;
+
+        GameObject firstFish = searchFish.nearestFishList[0];
+
+        // 先頭魚だけ移動と軌跡更新
+        if (gameObject == firstFish)
         {
-            float interval = 1f; 
-            if (searchFish.nearestFishList[i] == null)continue;
-            Vector3 dir = (Rodtip.position - searchFish.nearestFishList[i].transform.position).normalized;
-            searchFish.nearestFishList[i].transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            searchFish.nearestFishList[i].transform.position = Lure.position - transform.up * (interval * i);
-            if (Roddistance < 1f)
+            transform.position =Vector2.MoveTowards(transform.position,Rodtip.position,reelSpeed * Time.deltaTime);
+
+            pathPoints.Insert(0,transform.position);
+
+
+            //長い時
+            //if (pathPoints.Count > 500)
+            //{
+            //    pathPoints.RemoveAt(pathPoints.Count - 1);
+            //}
+
+            float firstDistance =Vector2.Distance(transform.position,Rodtip.position);
+
+            if (firstDistance < 1f)
             {
-                Debug.Log("GetFish");
-                searchFish.nearestFishList[i].transform.rotation = Quaternion.identity;
-                State = FishState.GetFish;
+                for (int i = 0; i < searchFish.nearestFishList.Count; i++)
+                {
+                    if (searchFish.nearestFishList[i] == null)continue;
+                    FishMove fishMove =searchFish.nearestFishList[i].GetComponent<FishMove>();
+                    fishMove.State = FishState.GetFish;
+                }
             }
+        }
+
+        for (int i = 1; i < searchFish.nearestFishList.Count; i++)
+        {
+            GameObject fishObj =　searchFish.nearestFishList[i];
+            if (fishObj == null)continue;
+            int index = i * spacing;
+            if (index >= pathPoints.Count)continue;
+
+            fishObj.transform.position =Vector2.MoveTowards( fishObj.transform.position,pathPoints[index],reelSpeed * Time.deltaTime);
+
+            Vector2 dir =(pathPoints[index] - fishObj.transform.position).normalized;
+
+            fishObj.transform.rotation =Quaternion.FromToRotation(Vector3.up,dir);
         }
     }
 
     void GetFish()
     {
-        if (isEating == true && Fishing.GotFish == true)
-        {
-            transform.position = Rodtip.position;
-            if (Roddistance < 1f)
-            {
-                GetFishArea.Add(area);
-                Destroy(gameObject);
-            }
-        }
+        transform.position = Rodtip.position;
+        Debug.Log("GetFish");
+        GetFishArea.Add(area);
+        Destroy(gameObject);
     }
     Vector2 moveRandomPosition()//移動先をランダムに決める
     {
