@@ -17,7 +17,7 @@ public class SearchFish : MonoBehaviour
     }
     void Update()
     {
-        if (Fishing.CanFishGet)
+        if (Fishing.CanFishGet && !Fishing.isReeling)
         {
             fishObject = GameObject.FindGameObjectsWithTag("Fish");
             nearestFishList.Clear();

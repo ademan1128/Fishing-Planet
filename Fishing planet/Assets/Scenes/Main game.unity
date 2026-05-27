@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sea
   Lure: {fileID: 1832570104}
+  fishCloneList: []
 --- !u!1 &235015505
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +817,53 @@ Transform:
   - {fileID: 1832570104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1333404013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1333404015}
+  - component: {fileID: 1333404014}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1333404014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333404013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  Lure: {fileID: 1832570104}
+  fishCloneList:
+  - {fileID: 650130239559905306, guid: 8e423f74144006d4abec7e25fb412f52, type: 3}
+--- !u!4 &1333404015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333404013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11065, y: 1.74097, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566477883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1241,7 @@ MonoBehaviour:
   line: {fileID: 2060953141}
   throwDirection: {x: 1, y: 1}
   reelSpeed: 5
+  isReeling: 0
   segmentCount: 20
   curveHeight: 2
   parabolaThreshold: 2
@@ -1545,6 +1594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishClone
   prefabObj: {fileID: 3021654585832361479, guid: d96335a63ed590d48bdbb85bf953a89f, type: 3}
   area: 0
+  sprite: {fileID: -6777037786477500705, guid: bf887124ea6873f4081262eb4b135c5d, type: 3}
 --- !u!1 &2060953140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,3 +1846,4 @@ SceneRoots:
   - {fileID: 1843478107}
   - {fileID: 1133167756}
   - {fileID: 1744160647}
+  - {fileID: 1333404015}

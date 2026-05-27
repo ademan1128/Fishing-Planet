@@ -9,13 +9,17 @@ public class FishClone : MonoBehaviour
     public int area;
     List<GameObject> fishCloneList = new List<GameObject>();
     public static int ALLFish = 5;
-
+    GameManager gameManager;
+    public Sprite sprite;
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         for (int a = 0; a < ALLFish; a++)
         {
             CreateObject();
         }
+        SpliteChange();
     }
 
     void CreateObject()
@@ -36,7 +40,16 @@ public class FishClone : MonoBehaviour
         FishMove fishMove = obj.GetComponent<FishMove>();
 
         fishMove.area = area;
+        gameManager.fishCloneList.Add(obj);
+    }
 
-        fishCloneList.Add(obj);
+    void SpliteChange()
+    {
+        SpriteRenderer fish;
+        for (int i = 0; i < gameManager.fishCloneList.Count; i++)
+        {
+            fish = gameManager.fishCloneList[i].GetComponent<SpriteRenderer>();
+            fish.sprite = sprite;
+        }
     }
 }
