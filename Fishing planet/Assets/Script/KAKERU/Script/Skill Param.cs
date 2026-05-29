@@ -25,13 +25,20 @@ public class SkillParam : MonoBehaviour {
     //初期化にはこれを使用
     void  Start()
     {
-        //スキルを覚えられる状態で無ければボタンを無効化
+        Debug.Log(type + "Start called");
+       Invoke("DelayCheck",0.5f);
+    }
+
+    void DelayCheck()
+    {
         CheckButtonOnOff();
     }
 
     //　スキルボタンを押した時に実行するメソッド
     public void OnClick()
     {
+        Debug.Log("skillMoney =" + skillSystem.GetSkillMoney());
+        Debug.Log("CanLearn = " + skillSystem.CanLearnSkill(type,spendMoney));
         Debug.Log("押された");
         //　スキルを覚えていたら何もせずreturn
         if (skillSystem.IsSkill(type))
@@ -57,6 +64,7 @@ public class SkillParam : MonoBehaviour {
     //　他のスキルを習得した後の自身のボタンの処理
     public void CheckButtonOnOff()
     {
+        Debug.Log(type + "CheckButtonOnOff called");
         //　スキルを覚えられるかどうかチェック
         if (!skillSystem.CanLearnSkill(type))
         {
