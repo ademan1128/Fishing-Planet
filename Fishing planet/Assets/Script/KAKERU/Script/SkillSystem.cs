@@ -5,21 +5,28 @@ using System;
 
 public enum SkilltypeEnum
 {
-    Cooltime1,Cooltime2,Cooltime3,Cooltime4,Cooltime5,
+    Cooltime1,Cooltime2,Cooltime3,Cooltime4,Cooltime5,Cooltime6,Cooltime7,Cooltime8,Cooltime9,Cooltime10,Cooltime11,
+    Cooltime12,Cooltime13,Cooltime14,Cooltime15,Cooltime16,Cooltime17,Cooltime18,Cooltime19,Cooltime20,Cooltime21,
 
     Pier1,Pier2,Pier3,Pier4,Pier5,
 
-    Fishinghook1,Fishinghook2,Fishinghook3,
-    Fishinghook4,Fishinghook5,
+    Fishinghook1,Fishinghook2,Fishinghook3,Fishinghook4,Fishinghook5,Fishinghook6,
+    Fishinghook7,Fishinghook8,Fishinghook9,Fishinghook10,Fishinghook11,Fishinghook12,
+    Fishinghook13,Fishinghook14,Fishinghook15,Fishinghook16,Fishinghook17,Fishinghook18,
+    Fishinghook19,Fishinghook20,Fishinghook21,Fishinghook22,Fishinghook23,Fishinghook24,
 
-    StrengthenStore1,StrengthenStore2,StrengthenStore3,
-    StrengthenStore4,StrengthenStore5,
+    StrengthenStore1,StrengthenStore2,StrengthenStore3,StrengthenStore4,StrengthenStore5,StrengthenStore6,
+    StrengthenStore7,StrengthenStore8,StrengthenStore9,StrengthenStore10,StrengthenStore11,StrengthenStore12,
+    StrengthenStore13,StrengthenStore14,StrengthenStore15,StrengthenStore16,StrengthenStore17,StrengthenStore18,
 
-    feed1,feed2,feed3,feed4,feed5,
+    feed1,feed2,feed3,feed4,feed5,feed6,feed7,feed8,feed9,feed10,feed11,feed12,feed13,feed14,feed15,feed16,feed17,
+    feed18,feed19,feed20,feed21,feed22,feed23,feed24,
 
-    Repop1,Repop2,Repop3,Repop4,Repop5,
+    Repop1,Repop2,Repop3,Repop4,Repop5,Repop6,Repop7,Repop8,Repop9,Repop10,Repop11,Repop12,Repop13,Repop14,Repop15,
+    Repop16,Repop17,Repop18,Repop19,Repop20,Repop21,Repop22,Repop23,Repop24,
 
-    Addtime1,Addtime2,Addtime3,Addtime4,Addtime5,
+    Addtime1,Addtime2,Addtime3,Addtime4,Addtime5,Addtime6,Addtime7,Addtime8,Addtime9,Addtime10,Addtime11,Addtime12,
+    Addtime13,Addtime14,Addtime15,Addtime16,Addtime17,Addtime18,Addtime19,Addtime20,Addtime21,Addtime22,Addtime23,Addtime24,
 };
 
 
@@ -181,6 +188,14 @@ public class SkillSystem : MonoBehaviour
         else if (type == SkilltypeEnum.Addtime3)
         {
             return skills[(int)SkilltypeEnum.Addtime2];
+        }
+        //桟橋2はどれか一列のスキルを覚えていなければダメ
+        else if (type == SkilltypeEnum.Pier2)
+        {
+            bool feed = skills[(int)SkilltypeEnum.feed1] && skills[(int)SkilltypeEnum.feed2]&&skills[(int)SkilltypeEnum.feed3];
+            bool Repop = skills[(int)SkilltypeEnum.Repop1] && skills[(int)SkilltypeEnum.Repop2] && skills[(int)SkilltypeEnum.Repop3];
+            bool AddTime = skills[(int)SkilltypeEnum.Addtime1]&&skills[(int)SkilltypeEnum.Addtime2]&skills[(int)SkilltypeEnum.Addtime3];
+            return feed || Repop || AddTime;
         }
 
         return true;
