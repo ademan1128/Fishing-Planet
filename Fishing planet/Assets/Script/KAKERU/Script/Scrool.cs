@@ -40,7 +40,7 @@ public class DragScrollClean : MonoBehaviour
             // マウスが動いている時だけ処理
             if (Mathf.Abs(mouseX) > 0)
             {
-                float direction = reverse ? -1f : 1f;
+                float direction = reverse ? 1f : -1f;
                 // 移動量を計算
                 float move = mouseX * scrollSpeed * direction;
 
