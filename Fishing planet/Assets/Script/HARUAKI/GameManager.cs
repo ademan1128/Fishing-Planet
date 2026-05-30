@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject prefabObj;
     [SerializeField] Sprite fishSprite;
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();
-    public static int ALLFish = 5;
+    public static int ALLFish = 10;
     void Start()
     {
         Lure = GameObject.Find("Lure").transform;
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
                 foreach (FishDataSO fish in fishDataList)//fishDataList‚É‚ ‚éFishDataSO‚Ì’†‚É“ü‚Á‚Ä‚é‹›‚ğd‚İ‚Å’Š‘I‚µ‚Ä‚é‚æ‘½•ª
                 {
-
+                    weights.Add(fish.areafishWeight[area-1]);
                     if (area == 1)
                     {
                         weights.Add(fish.area1fishWeight);

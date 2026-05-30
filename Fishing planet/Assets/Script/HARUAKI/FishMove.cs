@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 using static UnityEngine.Rendering.DebugUI.Table;
@@ -101,12 +102,12 @@ public class FishMove : MonoBehaviour
         {
             State = FishState.Swimming;
         }
-        else if (distance < 0.5f&& searchFish.nearestFishList.Contains(gameObject))
+        else if (distance < 0.25f&& searchFish.nearestFishList.Contains(gameObject))
         {
             transform.position = Lure.position;//‹——£‚ª‹ß‚¢‚Æ‚«‚Íƒ‹ƒA[‚ÌˆÊ’u‚ÉˆÚ“®
             isEating = true;
             State = FishState.Eating;
-
+            searchFish.nearestFishList.Remove(searchFish.fishObject[]);
         }
 
     }
@@ -130,7 +131,7 @@ public class FishMove : MonoBehaviour
         if (!searchFish.nearestFishList.Contains(gameObject))
             return;
         float reelSpeed = 5f;
-        int spacing = 50;
+        int spacing = 10;
 
         if (searchFish.nearestFishList.Count == 0)return;
 

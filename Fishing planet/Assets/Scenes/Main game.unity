@@ -1417,8 +1417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c031ce9c3c42242ad5f72f1e7cf1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SearchFish
-  SearchDistance: 2
+  SearchDistance: 1
   nearestFishList: []
+  fishObject: []
   MaxFish: 0
 --- !u!1 &1843478103
 GameObject:
@@ -1439,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1843478104
 Rigidbody2D:
   serializedVersion: 5
@@ -1599,12 +1600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e998b2bdd99b54db44795fb77985af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishClone
-  prefabObj: {fileID: 3021654585832361479, guid: d96335a63ed590d48bdbb85bf953a89f, type: 3}
-  i: 0
-  obj: {fileID: 0}
-  area: 0
-  gameManager: {fileID: 0}
-  sprite: {fileID: -6777037786477500705, guid: bf887124ea6873f4081262eb4b135c5d, type: 3}
 --- !u!1 &2060953140
 GameObject:
   m_ObjectHideFlags: 0
