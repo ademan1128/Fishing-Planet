@@ -364,7 +364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &67668974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 70
+  skill: {fileID: 11400000, guid: ffd8b9a7558c27f4b992689fc59d42c7, type: 2}
   spendMoney: 5
   skillTitle: "\u990C\uFF11"
   skillInformation: "\u9B5A\u5F71\u5897\u52A0"
@@ -948,7 +948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1151.8812, y: 269.69}
+  m_AnchoredPosition: {x: 1150, y: 269.69}
   m_SizeDelta: {x: 2303.75, y: 254.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109852945
@@ -1384,8 +1384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 53
-  spendMoney: 10
+  skill: {fileID: 11400000, guid: d4ff0c0371a02ca4eb7a99ff77ae853e, type: 2}
+  spendMoney: 1000
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -2069,7 +2069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 92
+  skill: {fileID: 11400000, guid: 9d87816f7ef04454eb38a26672bec112, type: 2}
   spendMoney: 10
   skillTitle: "\u518D\u51FA\u73FE\uFF11"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 29
+  skill: {fileID: 11400000, guid: acae66b0e5b7684429aee9dedde65168, type: 2}
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
@@ -2603,7 +2603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.6, y: -0.4}
+  m_AnchoredPosition: {x: 0.19, y: -0.34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235015510
@@ -2732,22 +2732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillSystem
   skillMoney: 200
-  skills: 
-  skillParams:
-  - {fileID: 518621011}
-  - {fileID: 454108787}
-  - {fileID: 1311717996}
-  - {fileID: 2071567861}
-  - {fileID: 1028927052}
-  - {fileID: 1920139257}
-  - {fileID: 636267874}
-  - {fileID: 934375678}
-  - {fileID: 2026172634}
-  - {fileID: 1764325144}
-  - {fileID: 1095334735}
-  - {fileID: 1669983949}
-  - {fileID: 1837697754}
-  - {fileID: 175463343}
   MoneyText: {fileID: 128621066}
 --- !u!224 &271083044
 RectTransform:
@@ -2769,8 +2753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0047006607, y: -0.4538498}
-  m_SizeDelta: {x: 1392.488, y: 599.99994}
+  m_AnchoredPosition: {x: 0.239, y: -0.4538498}
+  m_SizeDelta: {x: 1407.1084, y: 599.9999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &275121773
 GameObject:
@@ -3138,7 +3122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1151.22, y: 40.838104}
+  m_AnchoredPosition: {x: 1149.3387, y: 40.838104}
   m_SizeDelta: {x: 2304.45, y: -202.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332141930
@@ -3809,8 +3793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 51
-  spendMoney: 20
+  skill: {fileID: 11400000, guid: 462c6a7aa6a0d0341adfcea420640aa4, type: 2}
+  spendMoney: 10
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -4463,8 +4447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 50
-  spendMoney: 10
+  skill: {fileID: 11400000, guid: 04114eceaf8011149b07c9a8fcef97ba, type: 2}
+  spendMoney: 5
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -4888,7 +4872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 31
+  skill: {fileID: 11400000, guid: 747f1b18954f9034984ff61d4283cee1, type: 2}
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
@@ -5507,7 +5491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 30
+  skill: {fileID: 11400000, guid: 51e8c79212534664a9a89d8598ecc244, type: 2}
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
@@ -5972,7 +5956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 28
+  skill: {fileID: 11400000, guid: 8e0b2e7339983854e899869d22563689, type: 2}
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
@@ -6204,7 +6188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 118
+  skill: {fileID: 11400000, guid: fc2b388360f27834b93d312928c23bdf, type: 2}
   spendMoney: 10
   skillTitle: "\u6642\u9593\u5897\u52A0\uFF11"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
@@ -6590,8 +6574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 55
-  spendMoney: 10
+  skill: {fileID: 11400000, guid: 41899e7a70b29be4999a181f5af0c79d, type: 2}
+  spendMoney: 3000
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -7134,7 +7118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 94
+  skill: {fileID: 11400000, guid: 4efd7beb6bd31d64d945767c9e6eef0a, type: 2}
   spendMoney: 10
   skillTitle: "\u518D\u51FA\u73FE\uFF11"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -8033,7 +8017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 3
+  skill: {fileID: 11400000, guid: f9cc38e5597fe7f409393cc8840d5d08, type: 2}
   spendMoney: 10
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -8265,7 +8249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 68
+  skill: {fileID: 11400000, guid: dc179e823ffb6ef47a7d681f65756589, type: 2}
   spendMoney: 5
   skillTitle: "\u990C\uFF11"
   skillInformation: "\u9B5A\u5F71\u5897\u52A0"
@@ -9111,7 +9095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 26
+  skill: {fileID: 11400000, guid: afc270961d07a6347bd05fc62c235c6b, type: 2}
   spendMoney: 5
   skillTitle: "\u7372\u5F97\u91CFUP"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF11"
@@ -9652,7 +9636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 23
+  skill: {fileID: 11400000, guid: 15b654f9d3e017440a4e823d25c09674, type: 2}
   spendMoney: 10
   skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF12"
   skillInformation: "\u8DDD\u96E2UP"
@@ -9899,7 +9883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 0
+  skill: {fileID: 11400000, guid: 9d4b877f1dc119049be599425c9080b8, type: 2}
   spendMoney: 5
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down1"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\uFF15\uFF05\u6E1B"
@@ -10275,7 +10259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 117
+  skill: {fileID: 11400000, guid: 381f15a9217d10f4398ab99e18f3dfb6, type: 2}
   spendMoney: 10
   skillTitle: "\u6642\u9593\u5897\u52A0\uFF11"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
@@ -10815,8 +10799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 54
-  spendMoney: 10
+  skill: {fileID: 11400000, guid: 67068989e9e228642854cd73900856f8, type: 2}
+  spendMoney: 1500
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -11965,8 +11949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 52
-  spendMoney: 10
+  skill: {fileID: 11400000, guid: f6803f5c2e84adf47bc2328f45595e32, type: 2}
+  spendMoney: 15
   skillTitle: "\u5E97\u8217\u5F37\u5316"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
   text: {fileID: 1277208472}
@@ -12955,7 +12939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 69
+  skill: {fileID: 11400000, guid: 776b8defcb3822f4ba597306fa938ad9, type: 2}
   spendMoney: 5
   skillTitle: "\u990C\uFF11"
   skillInformation: "\u9B5A\u5F71\u5897\u52A0"
@@ -14023,7 +14007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 1
+  skill: {fileID: 11400000, guid: 5a1ae15eb6a98024e9d89dd2b895e341, type: 2}
   spendMoney: 10
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -14567,7 +14551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 22
+  skill: {fileID: 11400000, guid: 968f69aa900c8494391ea351fd946949, type: 2}
   spendMoney: 10
   skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF12"
   skillInformation: "\u8DDD\u96E2UP"
@@ -14943,7 +14927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 4
+  skill: {fileID: 11400000, guid: 94038d4852d459a48a74ef61a44fa873, type: 2}
   spendMoney: 10
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -15329,7 +15313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 2
+  skill: {fileID: 11400000, guid: 287ca2305b3fc6b468031143ea7df8ad, type: 2}
   spendMoney: 10
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -15862,7 +15846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 27
+  skill: {fileID: 11400000, guid: 7e8360a8f83d7e74ea590dc3b8e66958, type: 2}
   spendMoney: 10
   skillTitle: "\u7372\u5F97\u91CFUP\uFF12"
   skillInformation: "\u7372\u5F97\u91CF\uFF0B\uFF12"
@@ -16248,7 +16232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 5
+  skill: {fileID: 11400000, guid: e5c648e0011385944a2b8778fc53b8a9, type: 2}
   spendMoney: 10
   skillTitle: "\u30AD\u30E3\u30B9\u30C8\u9593\u9694Down2"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
@@ -16928,7 +16912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 21
+  skill: {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
   spendMoney: 5
   skillTitle: "\u685F\u6A4B\u3000\uFF0B\uFF11"
   skillInformation: "\u8DDD\u96E2UP"
@@ -17003,7 +16987,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u30B2\u30FC\u30E0\u3078\n"
 --- !u!222 &2034930116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17318,7 +17302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 116
+  skill: {fileID: 11400000, guid: 0261bfd265932c4408f214bab7e23d16, type: 2}
   spendMoney: 10
   skillTitle: "\u6642\u9593\u5897\u52A0\uFF11"
   skillInformation: "\u9B5A\u306E\u4FA1\u5024\uFF15\uFF05UP"
@@ -17550,7 +17534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillParam
   skillSystem: {fileID: 271083043}
-  type: 93
+  skill: {fileID: 11400000, guid: fc8c44c6cbfff3e4c8cd838c85b5b1c7, type: 2}
   spendMoney: 10
   skillTitle: "\u518D\u51FA\u73FE\uFF11"
   skillInformation: "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E08\uFF05\u6E1B"
