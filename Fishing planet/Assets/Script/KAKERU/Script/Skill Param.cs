@@ -9,7 +9,7 @@ public class SkillParam : MonoBehaviour {
     private SkillSystem skillSystem;
     //このスキルの種類
     [SerializeField]
-    private SkilltypeEnum type;
+    private SkillData skill;
     //このスキルを覚えるために必用な金額
     [SerializeField]
     private int spendMoney;
@@ -25,7 +25,6 @@ public class SkillParam : MonoBehaviour {
     //初期化にはこれを使用
     void  Start()
     {
-        Debug.Log(type + "Start called");
        Invoke("DelayCheck",0.5f);
     }
 
@@ -37,22 +36,16 @@ public class SkillParam : MonoBehaviour {
     //　スキルボタンを押した時に実行するメソッド
     public void OnClick()
     {
-        Debug.Log("skillMoney =" + skillSystem.GetSkillMoney());
-        Debug.Log("CanLearn = " + skillSystem.CanLearnSkill(type,spendMoney));
+        // GetSkillMoneyの行は削除
+        Debug.Log("CanLearn = " + skillSystem.CanLearnSkill(skill));
         Debug.Log("押された");
-        //　スキルを覚えていたら何もせずreturn
-        if (skillSystem.IsSkill(type))
-        {
-            return;
-        }
-        //　スキルを覚えられるかどうかチェック
-        if (skillSystem.CanLearnSkill(type, spendMoney))
-        {
-            //　スキルを覚えさせる
-            skillSystem.LearnSkill(type, spendMoney);
 
+        if (skillSystem.IsSkill(skill)) return;
+
+        if (skillSystem.CanLearnSkill(skill))
+        {
+            skillSystem.LearnSkill(skill);  // spendMoneyを消す
             ChangeButtonColor(new Color(0f, 0f, 1f, 0.8f));
-
             text.text = skillTitle + "を覚えた";
         }
         else
@@ -64,14 +57,14 @@ public class SkillParam : MonoBehaviour {
     //　他のスキルを習得した後の自身のボタンの処理
     public void CheckButtonOnOff()
     {
-        Debug.Log(type + "CheckButtonOnOff called");
+        Debug.Log(skill + "CheckButtonOnOff called");
         //　スキルを覚えられるかどうかチェック
-        if (!skillSystem.CanLearnSkill(type))
+        if (!skillSystem.CanLearnSkill(skill))
         {
             //　スキルをまだ覚えていない
             ChangeButtonColor(new Color(0.0f, 0.0f, 0.0f, 0.8f));
         }
-        else if (!skillSystem.IsSkill(type))
+        else if (!skillSystem.IsSkill(skill))
         {
             ChangeButtonColor(new Color(1f, 1f, 1f, 1f));
         }

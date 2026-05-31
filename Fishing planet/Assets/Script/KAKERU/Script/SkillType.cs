@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class SkillType
 {
-    public SkilltypeEnum skilltype;
+    //public SkilltypeEnum skilltype;
 }
