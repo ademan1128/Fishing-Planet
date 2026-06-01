@@ -36,9 +36,6 @@ public class SkillParam : MonoBehaviour {
     //　スキルボタンを押した時に実行するメソッド
     public void OnClick()
     {
-        // GetSkillMoneyの行は削除
-        Debug.Log("CanLearn = " + skillSystem.CanLearnSkill(skill));
-        Debug.Log("押された");
 
         if (skillSystem.IsSkill(skill)) return;
 
@@ -57,8 +54,7 @@ public class SkillParam : MonoBehaviour {
     //　他のスキルを習得した後の自身のボタンの処理
     public void CheckButtonOnOff()
     {
-        Debug.Log(skill + "CheckButtonOnOff called");
-        Debug.Log($"{skill.name} - IsSkill:{skillSystem.IsSkill(skill)}, CanLearn:{skillSystem.CanLearnSkill(skill)}");
+       
         //　スキルを覚えられるかどうかチェック
         if (skillSystem.IsSkill(skill))
         {

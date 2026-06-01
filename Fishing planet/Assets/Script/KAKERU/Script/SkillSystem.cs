@@ -271,6 +271,7 @@ public class SkillSystem : MonoBehaviour
 
     public bool CanLearnSkill(SkillData skill)
     {
+        if (skill == null) return false;
         if (skillMoney < skill.cost) return false;
 
         // AND条件：全部習得済みかチェック
