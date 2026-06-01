@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class Fishing : MonoBehaviour
 {
     public GameObject Lure;
@@ -24,9 +25,9 @@ public class Fishing : MonoBehaviour
     private Rigidbody2D LureRigidbody;  //ルアーのRigidbody2Dコンポーネントを格納する変数
     private float RestraightLine = 4f;  //直線に戻る時間
     private float Retimer = 0f;         //現在の時間を追跡する変数
-    private bool isInWater = false;     //ルアーが水に入っているかどうかを示すフラグ
+
     private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
-    public int MaxNumFish = 3;            //釣れる魚の最大数
+    public int MaxNumFish = 5;            //釣れる魚の最大数
     public bool CanFishGet;                 //魚を釣れるかどうか
     public bool GotFish;                    //魚を釣ったかどうか
 
@@ -84,7 +85,7 @@ public class Fishing : MonoBehaviour
 
 
         }
-        if (Input.GetMouseButtonDown(1) && isInWater == true)
+        if (Input.GetMouseButtonDown(1))//右クリックで巻き取り開始
         {
             isReeling = true;               // 巻き取り開始
             LureRigidbody.simulated = false;// 巻き取り中は物理挙動をOFFにする
@@ -102,7 +103,6 @@ public class Fishing : MonoBehaviour
                 Lure.transform.position = Rodtip.position;    // ルアーが竿先に近づいたら位置を完全に合わせる
                 isReeling = false;                            // 巻き取り終了
                 LureRigidbody.simulated = false;              // ルアーの物理挙動をOFFにする
-                isInWater = false;                             // 水から出たとみなす
                 isMove = false;                               // ルアーが動いていない状態に戻す
                 isThrowpower = 1f;
                 CanFishGet = false;
@@ -156,22 +156,16 @@ public class Fishing : MonoBehaviour
                 line.SetPosition(i, point);
             }
         }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Sea"))
+        if (Lure.transform.position.y < 0)
         {
-            isInWater = true;
-            LureRigidbody.linearDamping = 5f;  // 海に入ったらルアーの動きを減速させる
-            LureRigidbody.angularDamping = 5f; // 海に入ったらルアーの回転も減速させる
+            LureRigidbody.linearDamping = 10f;  // 海に入ったらルアーの動きを減速させる
+            LureRigidbody.angularDamping = 10f; // 海に入ったらルアーの回転も減速させる
         }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Sea"))
+        else
         {
             LureRigidbody.linearDamping = 0f;  // 海から出たらルアーの動きを元に戻す
             LureRigidbody.angularDamping = 0f; // 海から出たらルアーの回転も元に戻す
         }
     }
+
 }

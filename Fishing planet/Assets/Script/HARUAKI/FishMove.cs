@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 using static UnityEngine.Rendering.DebugUI.Table;
@@ -21,7 +22,8 @@ public class FishMove : MonoBehaviour
     float Roddistance;
     Fishing Fishing;
     Fishing isReeling;
-
+    private bool Changeform = false;
+    GameManager gameManager;
     public enum FishState
     {
         Swimming,
@@ -34,14 +36,14 @@ public class FishMove : MonoBehaviour
     public FishState State = FishState.Swimming;//初期状態はswimming
 
     private void Awake()
-    {
+    {        
+        gameManager = FindFirstObjectByType<GameManager>();
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         Lure = GameObject.Find("Lure").transform;
         searchFish = GameObject.Find("Lure").GetComponent<SearchFish>();
         Rodtip = GameObject.Find("Rot tip").transform;
         isCatch = false;
         isEating = false;
-        //NumFish = 0;
 
     }
 
@@ -101,12 +103,12 @@ public class FishMove : MonoBehaviour
         {
             State = FishState.Swimming;
         }
-        else if (distance < 0.5f&& searchFish.nearestFishList.Contains(gameObject))
+        else if (distance < 0.25f&& searchFish.nearestFishList.Contains(gameObject))
         {
             transform.position = Lure.position;//距離が近いときはルアーの位置に移動
             isEating = true;
             State = FishState.Eating;
-
+            //searchFish.nearestFishList.Remove(searchFish.fishObject[]);
         }
 
     }
@@ -129,8 +131,16 @@ public class FishMove : MonoBehaviour
     {
         if (!searchFish.nearestFishList.Contains(gameObject))
             return;
+        if(!Changeform)
+        {
+            if (Object.FindFirstObjectByType<GameManager>() is GameManager gameManager)
+            {
+                gameManager.ChangeformFish(this);
+            }
+            Changeform = true;
+        }
         float reelSpeed = 5f;
-        int spacing = 50;
+        int spacing = 10;
 
         if (searchFish.nearestFishList.Count == 0)return;
 
@@ -182,18 +192,14 @@ public class FishMove : MonoBehaviour
     {
         transform.position = Rodtip.position;
         Debug.Log("GetFish");
-        GetFishArea.Add(area);
         Destroy(gameObject);
     }
     Vector2 moveRandomPosition()//移動先をランダムに決める
     {
-        if (area == 1)
-        {
-            int rndX = Random.Range(0, 10);
-            int rndY = Random.Range(-5, 0);
-            return new Vector2(rndX, rndY);
-        }
-        return Vector2.zero;
+        int index = area - 1;//indexは配列の要素数
+        float rndX = Random.Range(gameManager.areaMin[index].x, gameManager.areaMax[index].x);
+        float rndY = Random.Range(-5, 0);
+        return new Vector2(rndX, rndY);
     }
 
 }
