@@ -221,6 +221,9 @@ public class SkillSystem : MonoBehaviour
 
     [SerializeField] private int skillMoney;
     public Text MoneyText;
+    [SerializeField] private SkillParam[] skillParams;
+    [SerializeField] private SkillData[] allSkills;
+    [SerializeField] private int gachaCost;
 
     // 習得済みスキルのセット
     private HashSet<SkillData> learnedSkills = new HashSet<SkillData>();
@@ -233,6 +236,31 @@ public class SkillSystem : MonoBehaviour
         learnedSkills.Add(skill);
         skillMoney -= skill.cost;
         SetText();
+        CheckOnOff();
+    }
+   
+    public SkillData DrawGacha()
+    {
+        if(skillMoney < gachaCost) return null;
+
+        //未習得スキルを対象にする
+        List<SkillData> candidates = new List<SkillData>();
+        foreach (var skill in allSkills)
+        {
+            if(!IsSkill(skill)) candidates.Add(skill);
+        }
+
+        if(candidates.Count == 0) return null;
+
+        //完全ランダムで１つ選ぶ
+        int index = UnityEngine.Random.Range(0,candidates.Count);
+        SkillData result = candidates[index];
+
+        learnedSkills.Add(result);
+        skillMoney -= gachaCost;
+        SetText();
+        CheckOnOff();
+        return result;
     }
 
     // 習得済みかチェック
@@ -243,6 +271,7 @@ public class SkillSystem : MonoBehaviour
 
     public bool CanLearnSkill(SkillData skill)
     {
+        if (skill == null) return false;
         if (skillMoney < skill.cost) return false;
 
         // AND条件：全部習得済みかチェック
@@ -277,5 +306,23 @@ public class SkillSystem : MonoBehaviour
     void SetText()
     {
         MoneyText.text = "金額：" + skillMoney;
+    }
+
+    public int GetSkillMoney()
+    {
+        return skillMoney;
+    }
+
+    public int GetGachaCost()
+    {
+        return gachaCost;
+    }
+
+    void CheckOnOff()
+    {
+        foreach (var skillParam in skillParams)
+        {
+            skillParam.CheckButtonOnOff();
+        }
     }
 }
