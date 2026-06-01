@@ -128,9 +128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160984145}
-  - component: {fileID: 160984144}
   - component: {fileID: 160984143}
-  - component: {fileID: 160984146}
+  - component: {fileID: 160984144}
   m_Layer: 0
   m_Name: sea
   m_TagString: Sea
@@ -258,23 +257,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &160984146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160984141}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a923c507b343b49b763cbba8f374a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sea
-  fishCloneList: []
-  Lure: {fileID: 1832570104}
-  prefabObj: {fileID: 0}
-  fishSprite: {fileID: 0}
-  fishDataList: []
 --- !u!1 &235015505
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +838,14 @@ MonoBehaviour:
   fishSprite: {fileID: -6777037786477500705, guid: bf887124ea6873f4081262eb4b135c5d, type: 3}
   fishDataList:
   - {fileID: 11400000, guid: d7c46a95c521ce84bbf9339df49393b5, type: 2}
+  - {fileID: 11400000, guid: af22ccc3cb57d3f428f3797e44bfb83b, type: 2}
+  GetFishList: []
+  areaMin:
+  - {x: 0, y: 0}
+  - {x: 5, y: 0}
+  areaMax:
+  - {x: 5, y: -5}
+  - {x: 10, y: -5}
 --- !u!4 &1333404015
 Transform:
   m_ObjectHideFlags: 0
@@ -1419,7 +1409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SearchFish
   SearchDistance: 2
   nearestFishList: []
-  MaxFish: 0
+  fishObject: []
 --- !u!1 &1843478103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1420,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1843478107}
   - component: {fileID: 1843478106}
-  - component: {fileID: 1843478105}
   - component: {fileID: 1843478104}
   - component: {fileID: 1843478109}
   m_Layer: 0
@@ -1467,52 +1456,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1843478105
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843478103}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &1843478106
 SpriteRenderer:
   serializedVersion: 2
@@ -1581,7 +1524,7 @@ Transform:
   m_GameObject: {fileID: 1843478103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.1047, y: -2.77, z: 0}
+  m_LocalPosition: {x: 26.06, y: 6.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1599,12 +1542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e998b2bdd99b54db44795fb77985af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishClone
-  prefabObj: {fileID: 3021654585832361479, guid: d96335a63ed590d48bdbb85bf953a89f, type: 3}
-  i: 0
-  obj: {fileID: 0}
-  area: 0
-  gameManager: {fileID: 0}
-  sprite: {fileID: -6777037786477500705, guid: bf887124ea6873f4081262eb4b135c5d, type: 3}
 --- !u!1 &2060953140
 GameObject:
   m_ObjectHideFlags: 0

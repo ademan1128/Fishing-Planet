@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,66 +8,64 @@ public class GameManager : MonoBehaviour
 {
     int rnd;
     //public List<Sprite> Sea1List = new List<Sprite>();
-    public List<GameObject> fishCloneList = new List<GameObject>();
+    public List<GameObject> fishCloneList = new List<GameObject>();//生成した魚を保存するリスト
     [SerializeField] Transform Lure;
     Fishing fishing;
     [SerializeField] GameObject prefabObj;
     [SerializeField] Sprite fishSprite;
-    [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();
-    public static int ALLFish = 5;
+    [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
+    public List<FishDataSO> GetFishList = new List<FishDataSO>();
+    public Vector2[] areaMin;
+    public Vector2[] areaMax;
+    public static int ALLFish = 10;
+    int area = 1;
     void Start()
     {
         Lure = GameObject.Find("Lure").transform;
         fishing = Lure.GetComponent<Fishing>();
         for (int i = 0; i < ALLFish; i++)
         {
-            CreateFish(i);
+            if (i >= 5)
+            {
+                area = 2;
+            }
+            CreateFish(i, area);
         }
     }
     void Update()
     {
         if (fishing.GotFish)
         {
-            foreach (int area in FishMove.GetFishArea)
-            {
-                List<float> weights = new List<float>();//重みを入れるリストを作成してるよ
+            //foreach (int area in FishMove.GetFishArea)
+            //{
+            //    List<float> weights = new List<float>();//重みを入れるリストを作成してるよ
 
-                foreach (FishDataSO fish in fishDataList)//fishDataListにあるFishDataSOの中に入ってる魚を重みで抽選してるよ多分
-                {
-
-                    if (area == 1)
-                    {
-                        weights.Add(fish.area1fishWeight);
-                    }
-                    else if (area == 2)
-                    {
-                        weights.Add(fish.area2fishWeight);
-
-                    }
-                    else if (area == 3)
-                    {
-                        weights.Add(fish.area3fishWeight);
-                    }
-                    //Sprite catchFish = Sea1List[rnd];
-                }
-                rnd = GetRandomIndex(weights);
-                FishDataSO catchFish = fishDataList[rnd];//ここで重みで抽選した魚を取得してる
-                                                         //画像のデータを読みこめる
-                                                         //でもどうやってここの魚に画像を反映させる？
-                Debug.Log("釣れた魚：" + catchFish.fishName);
-            }
+            //    foreach (FishDataSO fish in fishDataList)//fishDataListにあるFishDataSOの中に入ってる魚を重みで抽選してるよ多分
+            //    {
+            //        weights.Add(fish.areafishWeight[area-1]);
+            //        //Sprite catchFish = Sea1List[rnd];
+            //    }
+            //    rnd = GetRandomIndex(weights);
+            //    FishDataSO catchFish = fishDataList[rnd];//ここで重みで抽選した魚を取得してる
+               
+            //    if (sr != null && catchFish.fishSprite != null) // ※SOにfishSpriteがあると仮定
+            //    {
+            //        sr.sprite = catchFish.fishSprite;
+            //    }
+            //    Debug.Log("釣れた魚：" + catchFish.fishName);
+            //}
             FishMove.GetFishArea.Clear();
             fishing.GotFish = false;
         }
     }
 
-    void CreateFish(int index)
+    void CreateFish(int index,int area)
     {
         GameObject obj = Instantiate(prefabObj);
         obj.name = "Fish" + (index + 1);
-        int area = 1;
-        int rndX = Random.Range(0, 10);
-        int rndY = Random.Range(-5, 0);
+        int areaindex = area - 1;//indexは配列の要素数
+        float rndX = Random.Range(areaMin[areaindex].x, areaMax[areaindex].x);
+        float rndY = Random.Range(-5, 0);
         obj.transform.position = new Vector2(rndX, rndY);
         FishMove fishMove = obj.GetComponent<FishMove>();
         fishMove.area = area;
@@ -93,6 +92,25 @@ public class GameManager : MonoBehaviour
             }
         }
         return weights.Count - 1;
+    }
+
+    public void ChangeformFish(FishMove caughtFish)
+    {
+        if (caughtFish == null) return;
+        int area = caughtFish.area;
+        List<float> weights = new List<float>();
+        foreach (FishDataSO fish in fishDataList)
+        {
+            weights.Add(fish.areafishWeight[area - 1]);
+        }
+        rnd = GetRandomIndex(weights);
+        FishDataSO catchFish = fishDataList[rnd];
+        SpriteRenderer sr = caughtFish.GetComponent<SpriteRenderer>();
+        if (sr != null && catchFish.fishSprite != null)
+        {
+            sr.sprite = catchFish.fishSprite;
+            GetFishList.Add(catchFish);
+        }
     }
 }
 

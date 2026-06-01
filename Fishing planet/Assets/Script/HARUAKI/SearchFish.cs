@@ -6,13 +6,13 @@ public class SearchFish : MonoBehaviour
     Fishing Fishing;
     public float SearchDistance = 10f;
     public List<GameObject> nearestFishList =new List<GameObject>();//検索範囲内の魚を保存するリスト
-    GameObject[] fishObject;
+    public GameObject[] fishObject;
     List<GameObject> fishList = new List<GameObject>();//検索範囲内の魚を一時的に保存するリスト
-    public int MaxFish;
+    int MaxNumFish;
     void Start()
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
-        MaxFish = Fishing.MaxNumFish;
+        MaxNumFish = Fishing.MaxNumFish;
 
     }
     void Update()
@@ -22,15 +22,19 @@ public class SearchFish : MonoBehaviour
             fishObject = GameObject.FindGameObjectsWithTag("Fish");
             nearestFishList.Clear();
             fishList.Clear();
-            foreach (GameObject fish in fishObject)
+            for (int i = 0; i < fishObject.Length; i++)
             {
-                if (fish != null)
+                if (fishObject[i] != null)
                 {
                     float distance =
-                        Vector2.Distance(transform.position, fish.transform.position);
+                        Vector2.Distance(transform.position, fishObject[i].transform.position);
                     if (distance <= SearchDistance)
                     {
-                        fishList.Add(fish);
+                        fishList.Add(fishObject[i]);
+                    }
+                    else
+                    {
+                        fishList.Remove(fishObject[i]);
                     }
                 }
             }
@@ -41,11 +45,13 @@ public class SearchFish : MonoBehaviour
                 return distanceA.CompareTo(distanceB);
             });
 
-            for (int i = 0; i < Mathf.Min(MaxFish, fishList.Count); i++)
+            for (int i = 0; i < Mathf.Min(MaxNumFish, fishList.Count); i++)
             {
                 nearestFishList.Add(fishList[i]);
-                Debug.Log(MaxFish);
+                //Debug.Log(MaxNumFish);
             }
+
+
         }
     }
 }
