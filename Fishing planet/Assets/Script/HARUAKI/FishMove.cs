@@ -24,6 +24,9 @@ public class FishMove : MonoBehaviour
     Fishing isReeling;
     private bool Changeform = false;
     GameManager gameManager;
+
+    public FishSize fishSize;
+    public FishDataSO currentFishData;
     public enum FishState
     {
         Swimming,
@@ -149,9 +152,9 @@ public class FishMove : MonoBehaviour
         // 先頭魚だけ移動と軌跡更新
         if (gameObject == firstFish)
         {
-            transform.position =Vector2.MoveTowards(transform.position,Rodtip.position,reelSpeed * Time.deltaTime);
+            transform.position =Vector2.MoveTowards(transform.position,Rodtip.position,reelSpeed * Time.deltaTime);//先頭の魚はロッドの先端に向かって移動
 
-            pathPoints.Insert(0,transform.position);
+            pathPoints.Insert(0,transform.position);//先頭に現在位置を追加
 
 
             //長い時
@@ -160,9 +163,9 @@ public class FishMove : MonoBehaviour
             //    pathPoints.RemoveAt(pathPoints.Count - 1);
             //}
 
-            float firstDistance =Vector2.Distance(transform.position,Rodtip.position);
+            float firstDistance =Vector2.Distance(transform.position,Rodtip.position);//先頭の魚とロッドの先端の距離を測る
 
-            if (firstDistance < 1f)
+            if (firstDistance < 1f)//最初の魚がロッドの先端に近づいたら次の魚も移動開始
             {
                 for (int i = 0; i < searchFish.nearestFishList.Count; i++)
                 {
@@ -173,7 +176,7 @@ public class FishMove : MonoBehaviour
             }
         }
 
-        for (int i = 1; i < searchFish.nearestFishList.Count; i++)
+        for (int i = 1; i < searchFish.nearestFishList.Count; i++)//2匹目以降の魚は先頭の魚の軌跡に沿って移動
         {
             GameObject fishObj =　searchFish.nearestFishList[i];
             if (fishObj == null)continue;
@@ -190,8 +193,14 @@ public class FishMove : MonoBehaviour
 
     void GetFish()
     {
-        transform.position = Rodtip.position;
-        Debug.Log("GetFish");
+        if (currentFishData == null)
+        {
+            gameManager.ChangeformFish(this);
+        }
+
+        gameManager.GetFishList.Add(currentFishData);
+        gameManager.AddMoney(currentFishData.fishPrice);
+
         Destroy(gameObject);
     }
     Vector2 moveRandomPosition()//移動先をランダムに決める

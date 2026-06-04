@@ -14,11 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject prefabObj;
     [SerializeField] Sprite fishSprite;
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
-    public List<FishDataSO> GetFishList = new List<FishDataSO>();
+    public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
     public Vector2[] areaMin;
     public Vector2[] areaMax;
     public static int ALLFish = 10;
     int area = 1;
+    int PlayerMoney;
+    public int PlayerArea;
+
     void Start()
     {
         Lure = GameObject.Find("Lure").transform;
@@ -69,6 +72,18 @@ public class GameManager : MonoBehaviour
         obj.transform.position = new Vector2(rndX, rndY);
         FishMove fishMove = obj.GetComponent<FishMove>();
         fishMove.area = area;
+        if (PlayerArea <= 5)//先に魚にサイズだけ決める
+        {
+            fishMove.fishSize = FishSize.Small;
+        }
+        else if (PlayerArea <= 10)
+        {
+            fishMove.fishSize = FishSize.Medium;
+        }
+        else
+        {
+            fishMove.fishSize = FishSize.Large;
+        }
         SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
         sr.sprite = fishSprite;
         fishCloneList.Add(obj);
@@ -98,19 +113,36 @@ public class GameManager : MonoBehaviour
     {
         if (caughtFish == null) return;
         int area = caughtFish.area;
-        List<float> weights = new List<float>();
+        List<FishDataSO> targetFish = new List<FishDataSO>();
         foreach (FishDataSO fish in fishDataList)
+        {
+            if (fish.fishSize == caughtFish.fishSize)
+            {
+                targetFish.Add(fish);
+            }
+        }
+
+        List<float> weights = new List<float>();
+        foreach (FishDataSO fish in targetFish)
         {
             weights.Add(fish.areafishWeight[area - 1]);
         }
         rnd = GetRandomIndex(weights);
-        FishDataSO catchFish = fishDataList[rnd];
+        FishDataSO catchFish = targetFish[rnd];
+        caughtFish.currentFishData = catchFish;//釣れた魚のデータをFishMoveに保存
         SpriteRenderer sr = caughtFish.GetComponent<SpriteRenderer>();
         if (sr != null && catchFish.fishSprite != null)
         {
             sr.sprite = catchFish.fishSprite;
-            GetFishList.Add(catchFish);
+            //GetFishList.Add(catchFish);
+            Debug.Log("釣れた");
         }
+    }
+
+    public void AddMoney(int FishMoney)
+    {
+        PlayerMoney += FishMoney;
+        Debug.Log("現在の所持金：" + PlayerMoney);
     }
 }
 
