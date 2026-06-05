@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11501ffeeacd8a746b2d1006800de8e3, type: 3}
   m_Name: New Fish Data SO
   m_EditorClassIdentifier: Assembly-CSharp::FishDataSO
-  fishName: saba
+  fishSize: 0
+  fishName: TYOUTYOUUO
   fishSprite: {fileID: 6634773349720209840, guid: 6face3f470262194ea5aa462d123bc6c, type: 3}
-  fishPrice: 100
+  fishPrice: 1000
   areafishWeight:
   - 80
-  - 70
+  - 60

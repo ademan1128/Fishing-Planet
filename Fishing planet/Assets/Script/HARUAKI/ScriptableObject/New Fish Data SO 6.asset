@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11501ffeeacd8a746b2d1006800de8e3, type: 3}
-  m_Name: New Fish Data SO 1
+  m_Name: New Fish Data SO 6
   m_EditorClassIdentifier: Assembly-CSharp::FishDataSO
-  fishSize: 0
-  fishName: TAI
+  fishSize: 1
+  fishName: KAJIKIMAGURO
   fishSprite: {fileID: 6634773349720209840, guid: 6face3f470262194ea5aa462d123bc6c, type: 3}
-  fishPrice: 1000
+  fishPrice: 5000
   areafishWeight:
+  - 0
   - 80
-  - 60
+  - 80
