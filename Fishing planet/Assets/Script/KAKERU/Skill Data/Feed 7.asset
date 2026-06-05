@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
+  m_Name: Feed 7
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  cost: 3
+  required:
+  - {fileID: 11400000, guid: f53bba0486407e641ae3c29ced6185a2, type: 2}
+  requiredGroups:
+  - skills:
+    - {fileID: 11400000, guid: eca1f679a61ab4e4da9e7c6ab0f37179, type: 2}
+    - {fileID: 11400000, guid: 2d6cd967b39f6844ba8e54381572629e, type: 2}
+    - {fileID: 11400000, guid: 0a84b73863534134e8b35fe861e20272, type: 2}

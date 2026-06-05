@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
+  m_Name: AddTime 10
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  cost: 3
+  required:
+  - {fileID: 11400000, guid: 9124b98ddc098c44da3eff320d1b38c1, type: 2}
+  requiredGroups:
+  - skills:
+    - {fileID: 11400000, guid: e3854243a4fdbae47af7e53f8ebd2b09, type: 2}
+    - {fileID: 11400000, guid: fd8db52054f16dd4fa2bca42dffc53fc, type: 2}
+    - {fileID: 11400000, guid: ae4016a6cbf58054a8229f1267f0b8db, type: 2}
