@@ -13,14 +13,21 @@ public class FishSlot : MonoBehaviour
     }
     public void Setup(Sprite[] sprite, SpriteRenderer[] spriteRenderer)
     {
-        
-        for(int i = 0; i< sprite.Length; i++)
+        for (int i = 0; i< sprite.Length; i++)
         {
-            if (sprite[i].name.Contains("Normal"))
+            if (sprite[i].name.Contains("Small"))
             {
                 
             }
-                spriteRenderer[i].sprite = sprite[i];
+            if (sprite[i].name.Contains("Medium"))
+            {
+
+            }
+            if (sprite[i].name.Contains("Large"))
+            {
+
+            }
+            spriteRenderer[i].sprite = sprite[i];
         }
         
     }
