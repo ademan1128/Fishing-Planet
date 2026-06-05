@@ -7,6 +7,7 @@ public class GachaButton : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] 
     private string skillInformation;
+    [SerializeField] private SkillData[] gachaSkills;
 
     //ƒ{ƒ^ƒ“‚ÌOnclick()‚É“o˜^
     public void OnClick()

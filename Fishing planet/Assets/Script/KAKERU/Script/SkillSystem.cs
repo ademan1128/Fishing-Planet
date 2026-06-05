@@ -115,4 +115,25 @@ public class SkillSystem : MonoBehaviour
             skillParam.CheckButtonOnOff();
         }
     }
+
+    public SkillData DrawGachaFromList(SkillData[] targetSkills)
+    {
+        if (skillMoney < gachaCost) return null;
+
+        List<SkillData> candidates = new List<SkillData>();
+        foreach (var skill in targetSkills)
+        {
+            if (!IsSkill(skill)) candidates.Add(skill);
+        }
+
+        if (candidates.Count == 0) return null;
+
+        int index = UnityEngine.Random.Range(0, candidates.Count);
+        SkillData result = candidates[index];
+        learnedSkills.Add(result);
+        skillMoney -= gachaCost;
+        SetText();
+        CheckOnOff();
+        return result;
+    }
 }
