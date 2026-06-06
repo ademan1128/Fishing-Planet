@@ -9,10 +9,21 @@ public class SkillData : ScriptableObject
     public SkillData[] required;
     // どれか一つのグループが全部揃えばOK（OR条件）
     public SkillGroup[] requiredGroups;
+
+    private void OnEnable()
+    {
+        if (required == null) required = new SkillData[0];
+        if (requiredGroups == null) requiredGroups = new SkillGroup[0];
+    }
 }
 
 [System.Serializable]
 public class SkillGroup
 {
     public SkillData[] skills;
+
+    public SkillGroup()
+    {
+        skills = new SkillData[0];
+    }
 }

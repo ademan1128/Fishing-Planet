@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 6
   required:
-  - {fileID: 11400000, guid: d4ff0c0371a02ca4eb7a99ff77ae853e, type: 2}
+  - {fileID: 11400000, guid: 67068989e9e228642854cd73900856f8, type: 2}
+  requiredGroups: []
