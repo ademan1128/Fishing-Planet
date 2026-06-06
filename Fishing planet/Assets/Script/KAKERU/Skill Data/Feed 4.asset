@@ -15,4 +15,8 @@ MonoBehaviour:
   cost: 3
   required:
   - {fileID: 11400000, guid: 15b654f9d3e017440a4e823d25c09674, type: 2}
-  requiredGroups: []
+  requiredGroups:
+  - skills:
+    - {fileID: 11400000, guid: acae66b0e5b7684429aee9dedde65168, type: 2}
+    - {fileID: 11400000, guid: 51e8c79212534664a9a89d8598ecc244, type: 2}
+    - {fileID: 11400000, guid: 747f1b18954f9034984ff61d4283cee1, type: 2}

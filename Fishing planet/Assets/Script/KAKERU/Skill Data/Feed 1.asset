@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Feed 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 1
-  required: []
+  required:
+  - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
   requiredGroups:
   - skills:
-    - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
+    - {fileID: 11400000, guid: afc270961d07a6347bd05fc62c235c6b, type: 2}
+    - {fileID: 11400000, guid: 7e8360a8f83d7e74ea590dc3b8e66958, type: 2}
+    - {fileID: 11400000, guid: 8e0b2e7339983854e899869d22563689, type: 2}
   - skills:
     - {fileID: 11400000, guid: afc270961d07a6347bd05fc62c235c6b, type: 2}
     - {fileID: 11400000, guid: 7e8360a8f83d7e74ea590dc3b8e66958, type: 2}
