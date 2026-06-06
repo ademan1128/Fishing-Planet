@@ -1,27 +1,36 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SkillManager : MonoBehaviour
 {
-    //スキルを覚えているかどうかのフラグ(保持したいデータ）
-    [SerializeField] private bool[] skills;
-
-    //シングルトンのインスタンス
     public static SkillManager Instance { get; private set; }
+
+    // シーンをまたいで保持する習得済みスキルセット
+    private HashSet<SkillData> learnedSkills = new HashSet<SkillData>();
 
     private void Awake()
     {
-        //すでにインスタンスが存在する場合は自信を破棄し、重複を防ぐ
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-        //シーン遷移時にこのオブジェクトを破壊しない
         DontDestroyOnLoad(gameObject);
     }
 
-    //他のスクリプトからスキル配列を取得・変更するためのプロパティ
-    public bool[] Skills => skills;
+    public bool IsLearned(SkillData skill)
+    {
+        return learnedSkills.Contains(skill);
+    }
+
+    public void AddSkill(SkillData skill)
+    {
+        learnedSkills.Add(skill);
+    }
+
+    public HashSet<SkillData> GetLearnedSkills()
+    {
+        return learnedSkills;
+    }
 }
