@@ -16,7 +16,17 @@ public class SkillSystem : MonoBehaviour
     [SerializeField] private int gachaCost;
 
     // 習得済みスキルのセット
-    private HashSet<SkillData> learnedSkills = new HashSet<SkillData>();
+    private HashSet<SkillData> learnedSkills => SkillManager.Instance.GetLearnedSkills();
+
+    private void Start()
+    {
+        if(SkillManager.Instance == null)
+        {
+            Debug.LogError("SkillManagerがsceneに存在しません");
+        }
+        SetText();
+        CheckOnOff();
+    }
 
     // スキルを覚える
     public void LearnSkill(SkillData skill)
