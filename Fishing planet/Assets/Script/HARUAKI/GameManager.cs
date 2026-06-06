@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
     int rnd;
     //public List<Sprite> Sea1List = new List<Sprite>();
     public List<GameObject> fishCloneList = new List<GameObject>();//生成した魚を保存するリスト
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject prefabObj;
     [SerializeField] Sprite fishSprite;
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
+    public List<GameObject> fishtracked = new List<GameObject>();//釣り上げるために追跡している魚を保存するリスト
     public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
     public Vector2[] areaMin;
     public Vector2[] areaMax;
@@ -22,6 +24,18 @@ public class GameManager : MonoBehaviour
     int PlayerMoney;
     public int PlayerArea;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         Lure = GameObject.Find("Lure").transform;
@@ -35,6 +49,27 @@ public class GameManager : MonoBehaviour
             CreateFish(i, area);
         }
     }
+//    public class AreaSizeRate { 大きさ入れる }
+
+//    private List<AreaSizeRate> areaSizeRates
+
+//FishSize GetRandomFishSize(int area)
+
+//    {
+//        AreaSizeRate rate = areaSizeRates[area - 1];
+//        List<float> weights = new List<float>
+//    {
+//        rate.small,
+//        rate.medium,
+//        rate.large
+//    };
+
+//        int index = GetRandomIndex(weights);
+
+//        return (FishSize)index;
+
+//    }
+
     void Update()
     {
         if (fishing.GotFish)
@@ -121,7 +156,6 @@ public class GameManager : MonoBehaviour
                 targetFish.Add(fish);
             }
         }
-
         List<float> weights = new List<float>();
         foreach (FishDataSO fish in targetFish)
         {

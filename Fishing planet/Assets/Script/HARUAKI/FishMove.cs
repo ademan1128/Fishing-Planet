@@ -111,6 +111,7 @@ public class FishMove : MonoBehaviour
             transform.position = Lure.position;//‹——£‚ª‹ß‚¢‚Æ‚«‚Íƒ‹ƒA[‚ÌˆÊ’u‚ÉˆÚ“®
             isEating = true;
             State = FishState.Eating;
+            gameManager.fishtracked.Add (gameObject);
             //searchFish.nearestFishList.Remove(searchFish.fishObject[]);
         }
 
@@ -132,7 +133,7 @@ public class FishMove : MonoBehaviour
 
     void Reeling()
     {
-        if (!searchFish.nearestFishList.Contains(gameObject))
+        if (!gameManager.fishtracked.Contains(gameObject))
             return;
         if(!Changeform)
         {

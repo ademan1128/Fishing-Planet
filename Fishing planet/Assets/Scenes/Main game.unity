@@ -388,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 235015505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -0.4538498, z: -10}
+  m_LocalPosition: {x: 7.5, y: -0.4538498, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5901,6 +5901,7 @@ MonoBehaviour:
   fishDataList:
   - {fileID: 11400000, guid: d7c46a95c521ce84bbf9339df49393b5, type: 2}
   - {fileID: 11400000, guid: af22ccc3cb57d3f428f3797e44bfb83b, type: 2}
+  fishtracked: []
   GetFishList: []
   areaMin:
   - {x: 0, y: 0}
@@ -11111,7 +11112,7 @@ MonoBehaviour:
   parabolaMaxDistance: 6
   isThrowpower: 3
   previewLine: {fileID: 0}
-  MaxNumFish: 3
+  MaxNumFish: 10
   CanFishGet: 0
   GotFish: 0
 --- !u!50 &1832570101
