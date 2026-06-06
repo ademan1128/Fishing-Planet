@@ -3846,7 +3846,6 @@ RectTransform:
   - {fileID: 1987570482}
   - {fileID: 149835457}
   - {fileID: 1064242931}
-  - {fileID: 332141929}
   m_Father: {fileID: 342900144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3868,8 +3867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   scrollSpeed: 1
   reverse: 1
-  minX: -300
-  maxX: 208
+  minX: -50
+  maxX: 38.5
 --- !u!50 &109852946
 Rigidbody2D:
   serializedVersion: 5
@@ -8990,6 +8989,7 @@ RectTransform:
   m_Children:
   - {fileID: 485206406}
   - {fileID: 342900144}
+  - {fileID: 332141929}
   - {fileID: 67668974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10638,12 +10638,12 @@ RectTransform:
   - {fileID: 1333068711}
   - {fileID: 105384330}
   - {fileID: 12223226}
-  m_Father: {fileID: 109852944}
+  m_Father: {fileID: 271083044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5091.155, y: 0.006500244}
-  m_SizeDelta: {x: -10180.28, y: -0.0032958984}
+  m_AnchoredPosition: {x: 1149.3387, y: 40.838104}
+  m_SizeDelta: {x: 2304.45, y: -202.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332141930
 MonoBehaviour:
@@ -10652,15 +10652,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332141928}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e14e91592f19b5b4b97058458dd567b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragScrollWithLimit
   scrollSpeed: 1
   reverse: 1
-  minX: -300
-  maxX: 208
+  minX: -50
+  maxX: 38.5
 --- !u!114 &332141931
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: Repop 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 1
-  required:
-  - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
+  required: []
   requiredGroups:
   - skills:
-    - {fileID: 11400000, guid: 04114eceaf8011149b07c9a8fcef97ba, type: 2}
-    - {fileID: 11400000, guid: 462c6a7aa6a0d0341adfcea420640aa4, type: 2}
-    - {fileID: 11400000, guid: f6803f5c2e84adf47bc2328f45595e32, type: 2}
+    - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
   - skills:
     - {fileID: 11400000, guid: 9d4b877f1dc119049be599425c9080b8, type: 2}
     - {fileID: 11400000, guid: 5a1ae15eb6a98024e9d89dd2b895e341, type: 2}
