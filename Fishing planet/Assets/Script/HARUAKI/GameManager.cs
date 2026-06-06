@@ -23,7 +23,14 @@ public class GameManager : MonoBehaviour
     int area = 1;
     int PlayerMoney;
     public int PlayerArea;
+    public class AreaSizeRate 
+    {
+        public float small;
+        public float medium;
+        public float large;
+    }
 
+    private List<AreaSizeRate> areaSizeRates;
     void Awake()
     {
         if (instance == null)
@@ -38,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+
         Lure = GameObject.Find("Lure").transform;
         fishing = Lure.GetComponent<Fishing>();
         for (int i = 0; i < ALLFish; i++)
@@ -49,26 +57,34 @@ public class GameManager : MonoBehaviour
             CreateFish(i, area);
         }
     }
-//    public class AreaSizeRate { ‘å‚«‚³“ü‚ê‚é }
 
-//    private List<AreaSizeRate> areaSizeRates
+    public void Reset()
+    {
+        GetFishList.Clear();
+    }
 
-//FishSize GetRandomFishSize(int area)
+    public void AllReset()
+    {
+        GetFishList.Clear();
+        PlayerMoney = 0;
+        PlayerArea = 1;
+    }
+    //FishSize GetRandomFishSize(int area)
 
-//    {
-//        AreaSizeRate rate = areaSizeRates[area - 1];
-//        List<float> weights = new List<float>
-//    {
-//        rate.small,
-//        rate.medium,
-//        rate.large
-//    };
+    //    {
+    //        AreaSizeRate rate = areaSizeRates[area - 1];
+    //        List<float> weights = new List<float>
+    //    {
+    //        rate.small,
+    //        rate.medium,
+    //        rate.large
+    //    };
 
-//        int index = GetRandomIndex(weights);
+    //        int index = GetRandomIndex(weights);
 
-//        return (FishSize)index;
+    //        return (FishSize)index;
 
-//    }
+    //    }
 
     void Update()
     {
