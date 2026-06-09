@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public Vector2[] areaMax;
     public static int ALLFish = 10;
     int area = 1;
-    int PlayerMoney;
+    public int PlayerMoney;
     public int PlayerArea;
     public class AreaSizeRate 
     {
