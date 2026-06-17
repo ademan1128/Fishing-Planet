@@ -76,6 +76,7 @@ public class Fishing : MonoBehaviour
             isMove = true;
             Retimer = 0f;
             GotFish = false;
+            FishMove.pathPoints.Clear();
             Lure.transform.position = Rodtip.position;    // ルアーを竿先の位置に移動
             LureRigidbody.linearVelocity = Vector2.zero;  // 一応、ルアーの速度をリセット。
                                                           // LinearVelocityはRigidbody2Dの速度を表すプロパティで、Vector2.zeroは(0, 0)のベクトルを意味する。これにより、ルアーが投げられる前に静止状態になる。
