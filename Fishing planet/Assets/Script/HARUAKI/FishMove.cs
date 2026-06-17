@@ -146,51 +146,68 @@ public class FishMove : MonoBehaviour
         float reelSpeed = 5f;
         int spacing = 10;
 
-        if (searchFish.nearestFishList.Count == 0)return;
+        int myIndex = gameManager.fishtracked.IndexOf(gameObject);
+        if (myIndex == -1) return;
 
-        GameObject firstFish = searchFish.nearestFishList[0];
-
-        // 先頭魚だけ移動と軌跡更新
-        if (gameObject == firstFish)
+        // 【先頭の魚（0番目）の処理】
+        if (myIndex == 0)
         {
-            transform.position =Vector2.MoveTowards(transform.position,Rodtip.position,reelSpeed * Time.deltaTime);//先頭の魚はロッドの先端に向かって移動
+            // ロッドの先端に向かって移動
+            transform.position = Vector2.MoveTowards(transform.position, Rodtip.position, reelSpeed * Time.deltaTime);
 
-            pathPoints.Insert(0,transform.position);//先頭に現在位置を追加
+            // 自分の現在位置を軌跡（パス）の先頭に追加
+            pathPoints.Insert(0, transform.position);
 
-
-            //長い時
-            //if (pathPoints.Count > 500)
-            //{
-            //    pathPoints.RemoveAt(pathPoints.Count - 1);
-            //}
-
-            float firstDistance =Vector2.Distance(transform.position,Rodtip.position);//先頭の魚とロッドの先端の距離を測る
-
-            if (firstDistance < 1f)//最初の魚がロッドの先端に近づいたら次の魚も移動開始
+            // 軌跡データが溜まりすぎないように制限（1000件まで）
+            if (pathPoints.Count > 1000)
             {
-                for (int i = 0; i < searchFish.nearestFishList.Count; i++)
+                pathPoints.RemoveAt(pathPoints.Count - 1);
+            }
+
+            // ロッドの先端に近づいたら、釣られた確定リストの全員をGetFish状態にする
+            float firstDistance = Vector2.Distance(transform.position, Rodtip.position);
+            if (firstDistance < 1f)
+            {
+                for (int i = 0; i < gameManager.fishtracked.Count; i++)
                 {
-                    if (searchFish.nearestFishList[i] == null)continue;
-                    FishMove fishMove =searchFish.nearestFishList[i].GetComponent<FishMove>();
-                    fishMove.State = FishState.GetFish;
+                    GameObject fishObj = gameManager.fishtracked[i];
+                    if (fishObj != null)
+                    {
+                        fishObj.GetComponent<FishMove>().State = FishState.GetFish;
+                    }
                 }
             }
         }
-
-        for (int i = 1; i < searchFish.nearestFishList.Count; i++)//2匹目以降の魚は先頭の魚の軌跡に沿って移動
+        // 【2匹目以降の魚の処理】
+        else
         {
-            GameObject fishObj =　searchFish.nearestFishList[i];
-            if (fishObj == null)continue;
-            int index = i * spacing;
-            if (index >= pathPoints.Count)continue;
+            // 自分の順番に応じた軌跡の番号を計算
+            int targetPathIndex = myIndex * spacing;
 
-            fishObj.transform.position =Vector2.MoveTowards( fishObj.transform.position,pathPoints[index],reelSpeed * Time.deltaTime);
+            // 軌跡データがそこまで記録されていれば、その位置を追いかける
+            if (targetPathIndex < pathPoints.Count)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, pathPoints[targetPathIndex], reelSpeed * Time.deltaTime);
 
-            Vector2 dir =(pathPoints[index] - fishObj.transform.position).normalized;
-
-            fishObj.transform.rotation =Quaternion.FromToRotation(Vector3.up,dir);
+                // 進む方向を向く
+                Vector2 dir = ((Vector2)pathPoints[targetPathIndex] - (Vector2)transform.position).normalized;
+                if (dir != Vector2.zero)
+                {
+                    transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+                }
+            }
+            else
+            {
+                // まだ軌跡が足りない場合は、とりあえず1つ前の魚をそのまま追いかける
+                GameObject frontFish = gameManager.fishtracked[myIndex - 1];
+                if (frontFish != null)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, frontFish.transform.position, reelSpeed * Time.deltaTime);
+                }
+            }
         }
     }
+
 
     void GetFish()
     {
@@ -202,6 +219,10 @@ public class FishMove : MonoBehaviour
         gameManager.GetFishList.Add(currentFishData);
         gameManager.AddMoney(currentFishData.fishPrice);
 
+        if (gameManager.fishtracked.Contains(gameObject))
+        {
+            gameManager.fishtracked.Remove(gameObject);
+        }
         Destroy(gameObject);
     }
     Vector2 moveRandomPosition()//移動先をランダムに決める

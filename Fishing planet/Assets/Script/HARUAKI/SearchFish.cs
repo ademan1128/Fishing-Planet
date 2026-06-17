@@ -26,15 +26,19 @@ public class SearchFish : MonoBehaviour
             {
                 if (fishObject[i] != null)
                 {
-                    float distance =
-                        Vector2.Distance(transform.position, fishObject[i].transform.position);
-                    if (distance <= SearchDistance)
+                    if (fishObject[i] != null)
                     {
-                        fishList.Add(fishObject[i]);
-                    }
-                    else
-                    {
-                        fishList.Remove(fishObject[i]);
+                        FishMove fishMove = fishObject[i].GetComponent<FishMove>();
+                        if (fishMove != null && (fishMove.State == FishMove.FishState.Eating || fishMove.State == FishMove.FishState.Reeling))
+                        {
+                            continue; // すでに食いついている魚はスルーして次の魚の計算へ
+                        }
+
+                        float distance = Vector2.Distance(transform.position, fishObject[i].transform.position);
+                        if (distance <= SearchDistance)
+                        {
+                            fishList.Add(fishObject[i]);
+                        }
                     }
                 }
             }
