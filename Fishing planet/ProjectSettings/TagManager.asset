@@ -45,7 +45,25 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: background
+    uniqueID: 905466495
+    locked: 0
+  - name: ground
+    uniqueID: 1573420797
+    locked: 0
+  - name: wave sprite1
+    uniqueID: 448690731
+    locked: 0
+  - name: wave sprite2
+    uniqueID: 379294225
+    locked: 0
+  - name: wave
+    uniqueID: 3209539875
+    locked: 0
+  - name: fishing tool
+    uniqueID: 497802877
+    locked: 0
+  - name: player
     uniqueID: 2914406323
     locked: 0
   m_RenderingLayers:

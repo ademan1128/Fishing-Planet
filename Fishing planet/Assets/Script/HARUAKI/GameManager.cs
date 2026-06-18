@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> fishCloneList = new List<GameObject>();//生成した魚を保存するリスト
     [SerializeField] Transform Lure;
     Fishing fishing;
+    [SerializeField] private MoneyUI moneyUI;
     [SerializeField] GameObject prefabObj;
     [SerializeField] Sprite fishSprite;
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-
+        moneyUI.UpdateMoney(PlayerMoney);
         Lure = GameObject.Find("Lure").transform;
         fishing = Lure.GetComponent<Fishing>();
         for (int i = 0; i < ALLFish; i++)
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         GetFishList.Clear();
         PlayerMoney = 0;
-        PlayerArea = 1;
+        PlayerArea = 2;
     }
     //FishSize GetRandomFishSize(int area)
 
@@ -192,6 +193,7 @@ public class GameManager : MonoBehaviour
     public void AddMoney(int FishMoney)
     {
         PlayerMoney += FishMoney;
+        moneyUI.UpdateMoney(PlayerMoney);
         Debug.Log("現在の所持金：" + PlayerMoney);
     }
 }
