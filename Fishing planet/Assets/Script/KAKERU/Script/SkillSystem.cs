@@ -170,4 +170,9 @@ public class SkillSystem : MonoBehaviour
         CheckOnOff();
         return result;
     }
+
+    public bool CanRebirth()
+    {
+        return CurrentMoney >= rebirthCost;
+    }
 }
