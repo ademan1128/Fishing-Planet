@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820fbf030715152419ea5276b9d1f10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainButton
+  fishSlot: {fileID: 2141791295}
 --- !u!1001 &123908726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2002,6 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b1375e48879a24dbcbaf2c9cd834f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillButton
+  fishSlot: {fileID: 2141791295}
 --- !u!1 &1757213829
 GameObject:
   m_ObjectHideFlags: 0
