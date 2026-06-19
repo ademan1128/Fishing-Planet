@@ -9,6 +9,8 @@ public class SkillSystem : MonoBehaviour
     [SerializeField] private SkillParam[] skillParams;
     [SerializeField] private SkillData[] allSkills;
     [SerializeField] private int gachaCost;
+    [SerializeField] private int rebirthCost;
+    [SerializeField] private float rebirthBonusRate;
 
     // 変更前：GameManager.Instance.PlayerMoney を見に行っていた処理
     // 変更後：相手のコードにInstanceができるまでの「臨時の代役」にする
@@ -169,5 +171,10 @@ public class SkillSystem : MonoBehaviour
         SetText();
         CheckOnOff();
         return result;
+    }
+
+    public bool CanRebirth()
+    {
+        return CurrentMoney >= rebirthCost;
     }
 }

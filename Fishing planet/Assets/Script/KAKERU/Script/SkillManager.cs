@@ -66,6 +66,11 @@ public class SkillManager : MonoBehaviour
         }
         return multiplier;
     }
+
+    public void ClearAllSkills()
+    {
+        learnedSkills.Clear();
+    }
 }
 
 public enum SkillEffectType

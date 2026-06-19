@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Result.unity
     guid: ff2edf16702048a448824984de2036a7
+  - enabled: 1
+    path: Assets/Script/KAKERU/Scene/Reincarnation.unity
+    guid: c240eae77b4a9b840862010f58c15c95
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
