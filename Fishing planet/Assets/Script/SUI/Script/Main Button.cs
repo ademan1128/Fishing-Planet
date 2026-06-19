@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MainButton : MonoBehaviour
 {
-    // ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
+    public FishSlot fishSlot;
+    //public GameManager gameManager;
+
     public void OnClickStartButton()
     {
+        GameManager.instance.Reset();
         SceneManager.LoadScene("Main game");
     }
 }
