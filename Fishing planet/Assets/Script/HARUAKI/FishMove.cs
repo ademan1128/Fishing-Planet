@@ -80,7 +80,7 @@ public class FishMove : MonoBehaviour
 
     void Swimming()
     {
-        speed = Random.Range(0.5f, 1f);
+        speed = Random.Range(1f, 2f);
 
         if (Vector2.Distance(transform.position, movePosition) < 0.1f)//‚±‚±‚ÅˆÚ“®æ‚É‹ß‚Ã‚¢‚½‚çV‚µ‚¢ˆÚ“®æ‚ðŒˆ‚ß‚é
         {
@@ -100,7 +100,7 @@ public class FishMove : MonoBehaviour
 
         if (Fishing.CanFishGet == true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed* 1.5f * Time.deltaTime);
         }
         if (Fishing.isReeling && isEating == false)
         {
@@ -149,7 +149,7 @@ public class FishMove : MonoBehaviour
         int myIndex = gameManager.fishtracked.IndexOf(gameObject);
         if (myIndex == -1) return;
 
-        // yæ“ª‚Ì‹›i0”Ô–Új‚Ìˆ—z
+
         if (myIndex == 0)
         {
             // ƒƒbƒh‚Ìæ’[‚ÉŒü‚©‚Á‚ÄˆÚ“®
@@ -178,7 +178,7 @@ public class FishMove : MonoBehaviour
                 }
             }
         }
-        // y2•C–ÚˆÈ~‚Ì‹›‚Ìˆ—z
+
         else
         {
             // Ž©•ª‚Ì‡”Ô‚É‰ž‚¶‚½‹OÕ‚Ì”Ô†‚ðŒvŽZ
