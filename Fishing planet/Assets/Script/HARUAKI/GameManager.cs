@@ -46,18 +46,34 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        // イベントにイベントハンドラーを追加
+        SceneManager.sceneLoaded += SceneLoaded;
+        // シーンの読み込み
+        SceneManager.LoadScene("Main game");
         moneyUI.UpdateMoney(PlayerMoney);
         Lure = GameObject.Find("Lure").transform;
         fishing = Lure.GetComponent<Fishing>();
-        for (int i = 0; i < ALLFish; i++)
+
+    }
+
+    void SceneLoaded(Scene nextScene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "Main game")
         {
-            if (i >= 5)
+            for (int i = 0; i < ALLFish; i++)
             {
-                area = 2;
+                if (i >= 5)
+                {
+                    area = 2;
+                }
+                CreateFish(i, area);
             }
-            CreateFish(i, area);
+            Debug.Log(nextScene.name);
+            Debug.Log(mode);
         }
     }
+
+
 
     public void Reset()
     {
