@@ -48,6 +48,12 @@ TagManager:
   - name: background
     uniqueID: 905466495
     locked: 0
+  - name: Cloud
+    uniqueID: 4040907301
+    locked: 0
+  - name: Yacht
+    uniqueID: 1203948015
+    locked: 0
   - name: ground
     uniqueID: 1573420797
     locked: 0

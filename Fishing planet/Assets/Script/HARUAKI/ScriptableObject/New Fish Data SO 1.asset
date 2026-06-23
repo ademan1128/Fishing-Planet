@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishDataSO
   fishSize: 0
   fishName: TAI
-  fishSprite: {fileID: 6634773349720209840, guid: 6face3f470262194ea5aa462d123bc6c, type: 3}
+  fishSprite: {fileID: -6777037786477500705, guid: bf887124ea6873f4081262eb4b135c5d, type: 3}
   fishPrice: 1000
   areafishWeight:
   - 80

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishDataSO
   fishSize: 0
   fishName: ISHIDAI
-  fishSprite: {fileID: 6634773349720209840, guid: 6face3f470262194ea5aa462d123bc6c, type: 3}
+  fishSprite: {fileID: 8825831941107426252, guid: 81e2811aaac159f4385ac70b15096e6a, type: 3}
   fishPrice: 1000
   areafishWeight:
   - 80
