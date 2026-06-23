@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Burst.Intrinsics.Arm;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,16 +15,23 @@ public class GameManager : MonoBehaviour
     Fishing fishing;
     [SerializeField] private MoneyUI moneyUI;
     [SerializeField] GameObject prefabObj;
-    [SerializeField] Sprite fishSprite;
+    [SerializeField] Sprite[] fishSprite;
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
     public List<GameObject> fishtracked = new List<GameObject>();//釣り上げるために追跡している魚を保存するリスト
     public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
     public Vector2[] areaMin;
     public Vector2[] areaMax;
-    public static int ALLFish = 10;
+    public  int ALLFish = 10;
     int area = 1;
     public int PlayerMoney;
     public int PlayerArea;
+    public enum StageTime
+    {
+        Noon,
+        Evening,
+        Night
+    }
+    public StageTime stageTime;
     public class AreaSizeRate 
     {
         public float small;
@@ -58,15 +66,33 @@ public class GameManager : MonoBehaviour
 
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
     {
+        if (PlayerArea == 1 ||PlayerArea == 2)
+        {
+            stageTime = StageTime.Noon;
+        }
+        else if (PlayerArea == 3 ||PlayerArea == 4)
+        {
+            stageTime = StageTime.Evening;
+        }
+        else if (PlayerArea == 5 || PlayerArea == 6)
+        {
+            stageTime = StageTime.Night;
+        }
         if (SceneManager.GetActiveScene().name == "Main game")
         {
+            moneyUI = FindFirstObjectByType<MoneyUI>();
+            moneyUI.UpdateMoney(PlayerMoney);
+
             for (int i = 0; i < ALLFish; i++)
             {
-                if (i >= 5)
+                if (i >= ALLFish/2)
                 {
-                    area = 2;
+                    CreateFish(i, area+1);
                 }
-                CreateFish(i, area);
+                else
+                {
+                    CreateFish(i, area);
+                }
             }
             Debug.Log(nextScene.name);
             Debug.Log(mode);
@@ -78,53 +104,22 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         GetFishList.Clear();
+        fishtracked.Clear();
+
     }
 
     public void AllReset()
     {
         GetFishList.Clear();
         PlayerMoney = 0;
-        PlayerArea = 2;
+        PlayerArea = 1;
     }
-    //FishSize GetRandomFishSize(int area)
 
-    //    {
-    //        AreaSizeRate rate = areaSizeRates[area - 1];
-    //        List<float> weights = new List<float>
-    //    {
-    //        rate.small,
-    //        rate.medium,
-    //        rate.large
-    //    };
-
-    //        int index = GetRandomIndex(weights);
-
-    //        return (FishSize)index;
-
-    //    }
 
     void Update()
     {
         if (fishing.GotFish)
         {
-            //foreach (int area in FishMove.GetFishArea)
-            //{
-            //    List<float> weights = new List<float>();//重みを入れるリストを作成してるよ
-
-            //    foreach (FishDataSO fish in fishDataList)//fishDataListにあるFishDataSOの中に入ってる魚を重みで抽選してるよ多分
-            //    {
-            //        weights.Add(fish.areafishWeight[area-1]);
-            //        //Sprite catchFish = Sea1List[rnd];
-            //    }
-            //    rnd = GetRandomIndex(weights);
-            //    FishDataSO catchFish = fishDataList[rnd];//ここで重みで抽選した魚を取得してる
-               
-            //    if (sr != null && catchFish.fishSprite != null) // ※SOにfishSpriteがあると仮定
-            //    {
-            //        sr.sprite = catchFish.fishSprite;
-            //    }
-            //    Debug.Log("釣れた魚：" + catchFish.fishName);
-            //}
             FishMove.GetFishArea.Clear();
             fishing.GotFish = false;
         }
@@ -140,20 +135,23 @@ public class GameManager : MonoBehaviour
         obj.transform.position = new Vector2(rndX, rndY);
         FishMove fishMove = obj.GetComponent<FishMove>();
         fishMove.area = area;
-        if (PlayerArea <= 5)//先に魚にサイズだけ決める
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        if (GameManager.instance.stageTime == GameManager.StageTime.Noon)//先に魚にサイズだけ決める
         {
             fishMove.fishSize = FishSize.Small;
+            sr.sprite = fishSprite[0];
         }
-        else if (PlayerArea <= 10)
+        else if (GameManager.instance.stageTime == GameManager.StageTime.Evening)
         {
             fishMove.fishSize = FishSize.Medium;
+            sr.sprite = fishSprite[1];
         }
-        else
+        else if(GameManager.instance.stageTime == GameManager.StageTime.Night)
         {
             fishMove.fishSize = FishSize.Large;
+            sr.sprite = fishSprite[2];
         }
-        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-        sr.sprite = fishSprite;
+
         fishCloneList.Add(obj);
     }
 

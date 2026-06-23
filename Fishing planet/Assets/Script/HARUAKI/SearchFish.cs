@@ -57,5 +57,10 @@ public class SearchFish : MonoBehaviour
 
 
         }
+        else if (!Fishing.CanFishGet || Fishing.isReeling)
+        {
+            nearestFishList.Clear();
+            fishList.Clear();
+        }
     }
 }

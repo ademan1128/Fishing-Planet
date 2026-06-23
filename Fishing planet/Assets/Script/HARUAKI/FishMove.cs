@@ -12,7 +12,6 @@ public class FishMove : MonoBehaviour
     Vector2 movePosition;
     float speed;
     Fishing MaxNumFish;
-    bool isCatch;
     public static int NumFish;
     public bool isEating;
     public float SearchDistance = 1f;
@@ -45,7 +44,6 @@ public class FishMove : MonoBehaviour
         Lure = GameObject.Find("Lure").transform;
         searchFish = GameObject.Find("Lure").GetComponent<SearchFish>();
         Rodtip = GameObject.Find("Rot tip").transform;
-        isCatch = false;
         isEating = false;
 
     }
@@ -80,7 +78,7 @@ public class FishMove : MonoBehaviour
 
     void Swimming()
     {
-        speed = Random.Range(1f, 2f);
+        speed = Random.Range(0.5f, 2f);
 
         if (Vector2.Distance(transform.position, movePosition) < 0.1f)//‚±‚±‚ÅˆÚ“®æ‚É‹ß‚Ã‚¢‚½‚çV‚µ‚¢ˆÚ“®æ‚ðŒˆ‚ß‚é
         {
@@ -97,14 +95,33 @@ public class FishMove : MonoBehaviour
     void Tracking()
     {
         distance = Vector2.Distance(transform.position, Lure.position);//‚±‚±‚Å‹›‚Æƒ‹ƒA[‚Ì‹——£‚ð‘ª‚é
-
+        if (gameManager.fishtracked.Count >= Fishing.MaxNumFish)
+        {
+            State = FishState.Swimming;
+            gameManager.fishtracked.Remove(gameObject);
+            return;
+        }
+        if (Fishing.CanFishGet == false)
+        {
+            State = FishState.Swimming;
+            return;
+        }
         if (Fishing.CanFishGet == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, Lure.position, speed* 1.5f * Time.deltaTime);
+            if (Fishing.CanFishGet == false)
+            {
+                State = FishState.Swimming;
+                return;
+            }
         }
         if (Fishing.isReeling && isEating == false)
         {
             State = FishState.Swimming;
+        }
+        if (gameManager.fishtracked.Count >= Fishing.MaxNumFish)
+        {
+            return;
         }
         else if (distance < 0.25f&& searchFish.nearestFishList.Contains(gameObject))
         {

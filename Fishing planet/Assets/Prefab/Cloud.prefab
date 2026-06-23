@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3021654585832361479
+--- !u!1 &4735583937673277607
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6841541202540084587}
-  - component: {fileID: 1455083434846621147}
-  - component: {fileID: 5914804693919958793}
+  - component: {fileID: 2054855695814673775}
+  - component: {fileID: 5000189056623720439}
+  - component: {fileID: -2601964049317434546}
   m_Layer: 0
-  m_Name: Fish
-  m_TagString: Fish
+  m_Name: Cloud
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6841541202540084587
+--- !u!4 &2054855695814673775
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3021654585832361479}
+  m_GameObject: {fileID: 4735583937673277607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: 14.65, y: 4.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1455083434846621147
+--- !u!212 &5000189056623720439
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3021654585832361479}
+  m_GameObject: {fileID: 4735583937673277607}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,37 +78,43 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1380560973
-  m_SortingLayer: 8
+  m_SortingLayerID: -254059995
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1239405835257144717, guid: 1457f9903be288447bdcdf3fa8f95bc4, type: 3}
-  m_Color: {r: 0.9764151, g: 0.8217863, b: 0, a: 1}
+  m_Sprite: {fileID: 4670291143981566594, guid: 29af2d85b011f014fbf451f976e7e906, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.79, y: 2.64}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5914804693919958793
+--- !u!114 &-2601964049317434546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3021654585832361479}
+  m_GameObject: {fileID: 4735583937673277607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79bfb13e9fc50d4ba05808f439cb039, type: 3}
+  m_Script: {fileID: 11500000, guid: 137fd4ccba95aa14b8e571897fd038b2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishMove
-  Lure: {fileID: 0}
-  Rodtip: {fileID: 0}
-  area: 0
-  isEating: 0
-  SearchDistance: 5
-  fishSize: 0
-  currentFishData: {fileID: 0}
-  State: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Cloud
+  NoonClouds:
+  - {fileID: 4670291143981566594, guid: 29af2d85b011f014fbf451f976e7e906, type: 3}
+  - {fileID: -7680805627256982862, guid: adfb0b3195e73f7499e114f90d5d86b8, type: 3}
+  - {fileID: 97769801710098109, guid: fcef639b6ff9b59438228bd99aab4b95, type: 3}
+  EvenigClouds:
+  - {fileID: 4670291143981566594, guid: 29af2d85b011f014fbf451f976e7e906, type: 3}
+  - {fileID: -7680805627256982862, guid: adfb0b3195e73f7499e114f90d5d86b8, type: 3}
+  - {fileID: -1856286098306618676, guid: 2ad04d3c12d42a445b128103511d9569, type: 3}
+  NigthClouds:
+  - {fileID: 8065657536725655118, guid: c11bf6df11940b6459c0d7630a477b9f, type: 3}
+  - {fileID: 150041388468334781, guid: ac3559566313729458507a549f51816f, type: 3}
+  - {fileID: 1743238190117429823, guid: a9e1fefee9001064c92787477858c724, type: 3}
+  minSpeed: 0.05
+  maxSpeed: 0.75
