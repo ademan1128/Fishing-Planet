@@ -19,7 +19,7 @@ public class SkillManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // ※「GameScene」の部分は、実際のゲーム画面のシーン名に書き換えてください
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Skill Tree Scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
     }
 
     public bool IsLearned(SkillData skill)
