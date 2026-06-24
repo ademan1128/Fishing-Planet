@@ -21,15 +21,30 @@ public class GameManager : MonoBehaviour
     public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
     public Vector2[] areaMin;
     public Vector2[] areaMax;
-    public  int ALLFish = 10;
+
     int area = 1;
     public int PlayerMoney;
-    public int PlayerArea;
+
+
+    //スキルツリーの効果倍率などをここで設定する
+    //スキルツリーの効果範囲倍率をここで設定する
+    public float SearchDistanceMultiplier = 1f;
+
+    //桟橋追加したらここの値を直接スキルツリーで＋
+    public int PlayerArea = 1;
+
+    //海にいる魚の数を増やすなら
+    public int ALLFish = 10;
+
+
     public enum StageTime
     {
         Noon,
         Evening,
-        Night
+        Night,
+        Rain,
+        Snow,
+        Thunder,
     }
     public StageTime stageTime;
     public class AreaSizeRate 
@@ -78,6 +93,18 @@ public class GameManager : MonoBehaviour
         {
             stageTime = StageTime.Night;
         }
+        else if (PlayerArea == 7 || PlayerArea == 8)
+        {
+            stageTime = StageTime.Rain;
+        }
+        else if (PlayerArea == 9 || PlayerArea == 10)
+        {
+            stageTime = StageTime.Snow;
+        }
+        else if (PlayerArea == 11 || PlayerArea == 12)
+        {
+            stageTime = StageTime.Thunder;
+        }
         if (SceneManager.GetActiveScene().name == "Main game")
         {
             moneyUI = FindFirstObjectByType<MoneyUI>();
@@ -113,6 +140,7 @@ public class GameManager : MonoBehaviour
         GetFishList.Clear();
         PlayerMoney = 0;
         PlayerArea = 1;
+        SearchDistanceMultiplier = 1f;
     }
 
 
