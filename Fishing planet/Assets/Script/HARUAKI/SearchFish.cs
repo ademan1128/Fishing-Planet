@@ -14,7 +14,11 @@ public class SearchFish : MonoBehaviour
     public GameObject[] fishObject;
     List<GameObject> fishList = new List<GameObject>();//検索範囲内の魚を一時的に保存するリスト
     int MaxNumFish;
+<<<<<<< HEAD
     //[SerializeField]SkillEffectType skillEffectType;//スキルを保存する変数
+=======
+    [SerializeField]SkillEffectType effectValue;//スキルを保存する変数
+>>>>>>> SkillTree
     void Start()
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
@@ -26,7 +30,11 @@ public class SearchFish : MonoBehaviour
     }
     void Update()
     {
+<<<<<<< HEAD
 
+=======
+        SearchDistance = BaseSearchDistance * SkillManager.Instance.GetTotalMultiplier(effectValue);//スキルの効果を反映させる
+>>>>>>> SkillTree
         if (Fishing.CanFishGet && !Fishing.isReeling)
         {
             fishObject = GameObject.FindGameObjectsWithTag("Fish");

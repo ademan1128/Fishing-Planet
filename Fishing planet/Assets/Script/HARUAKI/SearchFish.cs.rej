@@ -1,0 +1,13 @@
+diff a/Fishing planet/Assets/Script/HARUAKI/SearchFish.cs b/Fishing planet/Assets/Script/HARUAKI/SearchFish.cs	(rejected hunks)
+@@ -14,7 +14,11 @@
+     public GameObject[] fishObject;
+     List<GameObject> fishList = new List<GameObject>();//�����͈͓�̋���ꎞ�I�ɕۑ����郊�X�g
+     int MaxNumFish;
++<<<<<<< HEAD
+     //[SerializeField]SkillEffectType skillEffectType;//�X�L����ۑ�����ϐ�
++=======
++    [SerializeField]SkillEffectType effectValue;//�X�L����ۑ�����ϐ�
++>>>>>>> SkillTree
+     void Start()
+     {
+         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();

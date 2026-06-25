@@ -2152,10 +2152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c031ce9c3c42242ad5f72f1e7cf1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SearchFish
-  SearchDistance: 2
+  SearchDistance: 10
   BaseSearchDistance: 10
   nearestFishList: []
   fishObject: []
+<<<<<<< HEAD
+=======
+  effectValue: 4
+>>>>>>> SkillTree
 --- !u!1 &1843478103
 GameObject:
   m_ObjectHideFlags: 0
