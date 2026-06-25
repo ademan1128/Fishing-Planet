@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SkillManager : MonoBehaviour
 {
@@ -17,9 +18,28 @@ public class SkillManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
-        // ※「GameScene」の部分は、実際のゲーム画面のシーン名に書き換えてください
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // シーンがロードされたときに、必要に応じてスキルの状態を更新する処理をここに追加できます
+        // 例: UIの更新、スキル効果の適用など
+        if(scene.name == "Main game")
+        {
+            // ここでスキルの状態をUIに反映させるなどの処理を行うことができます
+            Debug.Log("Main gameシーンがロードされました。習得済みスキルの数: " + learnedSkills.Count);
+            Instance = this;
+        }
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main game");
     }
 
     public bool IsLearned(SkillData skill)

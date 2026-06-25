@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AddTime 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 1
+  effectType: 2
+  effectValue: 1
   required: []
   requiredGroups:
   - skills:
