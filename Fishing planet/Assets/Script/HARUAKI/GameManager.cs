@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     int area = 1;
     public int PlayerMoney;
     //Ç±ÇÍÇ±ÇÍéVã¥
-    public int PlayerArea;
+    public int PlayerArea ;
     //Ç±ÇÍÇ™î{ó¶ïœçXÇÃÇ‚Ç¬
     public float magni =1;
 
@@ -34,7 +34,11 @@ public class GameManager : MonoBehaviour
     {
         Noon,
         Evening,
-        Night
+        Night,
+        Rain,
+        Snow,
+        Thunder
+
     }
     public StageTime stageTime;
     public class AreaSizeRate 
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
         moneyUI.UpdateMoney(PlayerMoney);
         Lure = GameObject.Find("Lure").transform;
         fishing = Lure.GetComponent<Fishing>();
-
+        PlayerArea =1;
     }
 
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
@@ -83,6 +87,23 @@ public class GameManager : MonoBehaviour
         {
             stageTime = StageTime.Night;
         }
+        else if (PlayerArea == 7 || PlayerArea == 8)
+        {
+            stageTime = StageTime.Rain;
+        }
+        else if (PlayerArea == 9 || PlayerArea == 10)
+        {
+            stageTime = StageTime.Snow;
+        }
+        else if (PlayerArea == 11 || PlayerArea == 12)
+        {
+            stageTime = StageTime.Thunder;
+        }
+        else if (PlayerArea == 13)
+        {
+            stageTime = StageTime.Noon;
+        }
+
         if (SceneManager.GetActiveScene().name == "Main game")
         {
             moneyUI = FindFirstObjectByType<MoneyUI>();
