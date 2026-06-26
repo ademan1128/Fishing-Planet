@@ -31,6 +31,8 @@ public class Fishing : MonoBehaviour
     public bool CanFishGet;                 //魚を釣れるかどうか
     public bool GotFish;                    //魚を釣ったかどうか
 
+    public bool Underwater = false;                     //ルアーが水中にあるかどうかを示すフラグ
+
     void Start()
     {
         GotFish = false;
@@ -51,9 +53,17 @@ public class Fishing : MonoBehaviour
     void Update()
     {
         Retimer += Time.deltaTime;//RestraightLineのタイマー
+        if (Lure.transform.position.y < -1)
+        {
+            Underwater = true;
 
+        }
+        else
+        {
+            Underwater = false;
+        }
         if (Lure == null || Rodtip == null || LureRigidbody == null) return;
-        // Lure、Rodtip、LureRigidbodyのいずれかがnullの場合は処理を中断
+
 
         if (Input.GetMouseButton(0) && isReeling == false && isMove == false)
         {
@@ -84,12 +94,12 @@ public class Fishing : MonoBehaviour
             CanFishGet = true;
             LureRigidbody.AddForce(throwDirection.normalized * isThrowpower, ForceMode2D.Impulse);// ルアーに力を加える。normalizedで方向ベクトルを正規化して、isthrowpowerで力の大きさを調整。Impulseは瞬間的な力を加えるモード
 
-
         }
         if (Input.GetMouseButtonDown(1))//右クリックで巻き取り開始
         {
             isReeling = true;               // 巻き取り開始
             LureRigidbody.simulated = false;// 巻き取り中は物理挙動をOFFにする
+
         }
         if (isReeling)
         {

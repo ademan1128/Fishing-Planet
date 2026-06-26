@@ -16,7 +16,7 @@ public class Props : MonoBehaviour
     {
         if (GameManager.instance.stageTime == GameManager.StageTime.Noon)
         {
-            
+            gameObject.SetActive(false);
         }
         else if (GameManager.instance.stageTime == GameManager.StageTime.Evening)
         {
