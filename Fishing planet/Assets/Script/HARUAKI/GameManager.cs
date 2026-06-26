@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     int area = 1;
     public int PlayerMoney;
     //‚±‚ê‚±‚êV‹´
-    public int PlayerAreaw;
+    public int PlayerArea;
     //‚±‚ê‚ª”{—¦•ÏX‚Ì‚â‚Â
     public float magni =1;
 
