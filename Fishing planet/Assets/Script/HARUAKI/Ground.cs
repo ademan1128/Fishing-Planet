@@ -16,8 +16,17 @@ public class Ground : MonoBehaviour
             transform.position = new Vector3(1, -2.5f, 0);
             transform.localScale = new Vector3(1.2f, 1.2f, 1);
             sr.sprite = TetrablockSprite;
-        }
-        if (GameManager.instance.stageTime == GameManager.StageTime.Night)
+            Debug.Log("ok");
+        }else
+        if (GameManager.instance.PlayerArea == 2)
+        {
+
+            transform.position = new Vector3(-2.5f, -2.25f, 0);
+            transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            sr.sprite = PierSprite;
+
+        }else
+        if (GameManager.instance.stageTime == GameManager.StageTime.Night || GameManager.instance.stageTime == GameManager.StageTime.Rain)
         {
             transform.position = new Vector3(-2.5f, -2.25f, 0);
             transform.localScale = new Vector3(1.2f, 1.2f, 1);
