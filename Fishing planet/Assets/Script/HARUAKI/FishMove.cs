@@ -86,7 +86,7 @@ public class FishMove : MonoBehaviour
         }
         transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//ˆÚ“®æ‚ÉŒü‚©‚Á‚ÄˆÚ“®
 
-        if (Fishing.Underwater && searchFish.nearestFishList.Contains(gameObject))
+        if (searchFish.nearestFishList.Contains(gameObject))
         {
             State = FishState.Tracking;
         }
@@ -94,11 +94,6 @@ public class FishMove : MonoBehaviour
 
     void Tracking()
     {
-        if (!Fishing.Underwater)
-        {
-            State = FishState.Swimming;
-            return;
-        }
         distance = Vector2.Distance(transform.position, Lure.position);//‚±‚±‚Å‹›‚Æƒ‹ƒA[‚Ì‹——£‚ð‘ª‚é
         if (gameManager.fishtracked.Count >= Fishing.MaxNumFish)
         {

@@ -25,15 +25,7 @@ public class BackGround : MonoBehaviour
         {
             sr.sprite = Night;
         }
-        else if(GameManager.instance.stageTime == GameManager.StageTime.Rain)
-        {
-            sr.sprite = Night;
-        }
-        else if (GameManager.instance.stageTime == GameManager.StageTime.Snow)
-        {
-            sr.sprite = Noon;
-        }
-        else if (GameManager.instance.stageTime == GameManager.StageTime.Thunder)
+        else
         {
             sr.sprite = Night;
         }
