@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class SearchFish : MonoBehaviour
 {
     Fishing Fishing;
-    public float SearchDistance = 10f;
+    public float SearchDistance;
     public float BaseSearchDistance = 10f;//スキルの効果を反映させる前の基本的な検索距離
     public List<GameObject> nearestFishList =new List<GameObject>();//検索範囲内の魚を保存するリスト
     public GameObject[] fishObject;
@@ -19,7 +19,8 @@ public class SearchFish : MonoBehaviour
     }
     void Update()
     {
-        SearchDistance = BaseSearchDistance * SkillManager.Instance.GetTotalMultiplier(effectValue);//スキルの効果を反映させる
+        //SearchDistance = BaseSearchDistance * SkillManager.Instance.GetTotalMultiplier(effectValue);//スキルの効果を反映させる
+        SearchDistance = BaseSearchDistance * GameManager.instance.magni;
         if (Fishing.CanFishGet && !Fishing.isReeling)
         {
             fishObject = GameObject.FindGameObjectsWithTag("Fish");

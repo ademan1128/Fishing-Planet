@@ -21,10 +21,15 @@ public class GameManager : MonoBehaviour
     public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
     public Vector2[] areaMin;
     public Vector2[] areaMax;
+    //海の中の魚母数増やす
     public  int ALLFish = 10;
     int area = 1;
     public int PlayerMoney;
-    public int PlayerArea;
+    //これこれ桟橋
+    public int PlayerAreaw;
+    //これが倍率変更のやつ
+    public float magni =1;
+
     public enum StageTime
     {
         Noon,
