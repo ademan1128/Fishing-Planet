@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7680805627256982862, guid: 223eddb7569f269428e42c7575e7155b, type: 3}
+  m_Sprite: {fileID: -7680805627256982862, guid: adfb0b3195e73f7499e114f90d5d86b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -295,7 +295,7 @@ SpriteRenderer:
   m_Size: {x: 3.75, y: 1.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &233979816
 Transform:
@@ -423,7 +423,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 97769801710098109, guid: 8949b66ba3f3c2745b587d1257bc9590, type: 3}
+  m_Sprite: {fileID: 97769801710098109, guid: fcef639b6ff9b59438228bd99aab4b95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -431,7 +431,7 @@ SpriteRenderer:
   m_Size: {x: 5.5, y: 1.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &434428620
 Transform:
@@ -763,7 +763,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5468127357030766906, guid: a4aacac9c6126194381251a25d33d18c, type: 3}
+  m_Sprite: {fileID: 5468127357030766906, guid: 97955e9b20b1381469f5921f5d1e99ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -771,7 +771,7 @@ SpriteRenderer:
   m_Size: {x: 5.02, y: 2.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &810494195
 Transform:
@@ -854,7 +854,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4670291143981566594, guid: 937293ca5cabfe345a8c299fb0a40b4c, type: 3}
+  m_Sprite: {fileID: 4670291143981566594, guid: 29af2d85b011f014fbf451f976e7e906, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -862,7 +862,7 @@ SpriteRenderer:
   m_Size: {x: 13.36, y: 2.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!4 &826993665
 Transform:
