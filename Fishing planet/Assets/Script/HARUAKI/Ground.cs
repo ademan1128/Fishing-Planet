@@ -4,13 +4,16 @@ using UnityEngine.UIElements;
 
 public class Ground : MonoBehaviour
 {
+
     [SerializeField] private Sprite TetrablockSprite;
     [SerializeField] private Sprite PierSprite;
     [SerializeField] private Sprite NightPierSprite;
     [SerializeField] private SpriteRenderer sr;
     GameManager PlayerArea;
+
     void Start()
     {
+
         if (GameManager.instance.PlayerArea == 1)
         {
             transform.position = new Vector3(1, -2.5f, 0);
