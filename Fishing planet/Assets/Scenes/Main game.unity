@@ -1357,6 +1357,7 @@ MonoBehaviour:
   minPos: {x: 3, y: 0}
   maxPos: {x: 15, y: 0}
   GuidelightPos: {x: 10, y: -1, z: 0}
+  sr: {fileID: 1316224246}
   props: 0
 --- !u!1 &1319708159
 GameObject:
@@ -2255,7 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Particle
   rainParticle: {fileID: 8860269833009395206, guid: cb122d7e2aa951841a1659b75bcd97bb, type: 3}
-  snowParticle: {fileID: 8860269833009395206, guid: cb122d7e2aa951841a1659b75bcd97bb, type: 3}
+  snowParticle: {fileID: 3922712518025318136, guid: 9731df0214ebb624188df9c0aec603ec, type: 3}
   thunderParticle: {fileID: 8860269833009395206, guid: cb122d7e2aa951841a1659b75bcd97bb, type: 3}
 --- !u!4 &1903356073
 Transform:
