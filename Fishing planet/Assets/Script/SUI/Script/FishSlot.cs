@@ -1,51 +1,56 @@
 using System.Collections.Generic;
-
 using UnityEngine;
-
-using UnityEngine.UI;
+using TMPro;
 
 public class FishSlot : MonoBehaviour
 {
-
-
     GameManager gameManager;
 
-    //public Image fishImage;
-
-    public Sprite[] sprite;
-
+    [Header("UI")]
     public SpriteRenderer[] spriteRenderer;
+    public TextMeshProUGUI[] countText;
 
     private void Start()
     {
         gameManager = GameManager.instance;
-        Setup(sprite, spriteRenderer);
-
-        for (int i = 0; i < gameManager.GetFishList.Count; i++)
-        {
-            spriteRenderer[i].sprite = gameManager.GetFishList[i].fishSprite;
-        }
+        RefreshUI();
     }
 
-    public void Setup(Sprite[] sprite, SpriteRenderer[] spriteRenderer)
+    public void RefreshUI()
     {
-        for (int i = 0; i < sprite.Length; i++)
+        // 魚のカウントを作る
+        Dictionary<Sprite, int> fishCount = new Dictionary<Sprite, int>();
+
+        foreach (var fish in gameManager.GetFishList)
         {
-            if (sprite[i].name.Contains("Small"))
-            {
+            if (fishCount.ContainsKey(fish.fishSprite))
+                fishCount[fish.fishSprite]++;
+            else
+                fishCount.Add(fish.fishSprite, 1);
+        }
 
-            }
+        // いったんUIをリセット
+        for (int i = 0; i < spriteRenderer.Length; i++)
+        {
+            spriteRenderer[i].sprite = null;
+            if (countText != null && i < countText.Length)
+                countText[i].text = "";
+        }
 
-            if (sprite[i].name.Contains("Medium"))
-            {
+        // 表示
+        int index = 0;
 
-            }
+        foreach (var pair in fishCount)
+        {
+            if (index >= spriteRenderer.Length)
+                break;
 
-            if (sprite[i].name.Contains("Large"))
-            {
+            spriteRenderer[index].sprite = pair.Key;
 
-            }
-            spriteRenderer[i].sprite = sprite[i];
+            if (countText != null && index < countText.Length)
+                countText[index].text = "×" + pair.Value;
+
+            index++;
         }
     }
 }
