@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+using UnityEngine.Scripting;
 
 public class FishSlot : MonoBehaviour
 {
@@ -9,9 +11,11 @@ public class FishSlot : MonoBehaviour
     [Header("UI")]
     public SpriteRenderer[] spriteRenderer;
     public TextMeshProUGUI[] countText;
+    int i = 5;
 
     private void Start()
     {
+
         gameManager = GameManager.instance;
         RefreshUI();
     }
@@ -28,6 +32,9 @@ public class FishSlot : MonoBehaviour
             else
                 fishCount.Add(fish.fishSprite, 1);
         }
+        Array.Resize(ref spriteRenderer, fishCount.Count);
+
+        Array.Resize(ref countText, fishCount.Count);
 
         // いったんUIをリセット
         for (int i = 0; i < spriteRenderer.Length; i++)
@@ -37,9 +44,10 @@ public class FishSlot : MonoBehaviour
                 countText[i].text = "";
         }
 
+        
+
         // 表示
         int index = 0;
-
         foreach (var pair in fishCount)
         {
             if (index >= spriteRenderer.Length)
