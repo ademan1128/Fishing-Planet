@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Fishing Hook 9
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 6
-  required: []
+  cost: 46000
+  effectType: 3
+  effectValue: 2.8
+  required:
+  - {fileID: 11400000, guid: 45d4c9ce3f3a86f40b51f1ad6ecbef5c, type: 2}
+  requiredGroups: []

@@ -38,17 +38,26 @@ public class SkillParam : MonoBehaviour {
     {
 
         if (skillSystem.IsSkill(skill)) return;
-
+       
         if (skillSystem.CanLearnSkill(skill))
         {
             skillSystem.LearnSkill(skill);  // spendMoneyを消す
             CheckButtonOnOff();
             text.text = skillTitle + "を覚えた";
+            if (skillTitle == "Pier")
+            {
+                GameManager.instance.PlayerArea += 1;
+            }
+            else if(skillTitle == "FishingHook")
+            {
+                GameManager.instance.MaxNumFish += 1;
+            }
         }
         else
         {
             text.text = "スキルを覚えられません。";
         }
+        
     }
 
     //　他のスキルを習得した後の自身のボタンの処理

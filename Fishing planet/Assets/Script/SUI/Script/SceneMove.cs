@@ -7,7 +7,13 @@ public class SceneMove : MonoBehaviour
     [SerializeField]
     Text timerText;
 
-    float limitTimer = 60;
+    float BaselimitTimer = 10;
+    float limitTimer;
+
+    void Start()
+    {
+        limitTimer = BaselimitTimer * GameManager.instance.AddTimemagni;
+    }
 
     void Update()
     {

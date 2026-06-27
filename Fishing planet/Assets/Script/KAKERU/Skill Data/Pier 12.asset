@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Pier 12
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 30
+  cost: 120000
+  effectType: 5
+  effectValue: 1
   required: []
+  requiredGroups: []

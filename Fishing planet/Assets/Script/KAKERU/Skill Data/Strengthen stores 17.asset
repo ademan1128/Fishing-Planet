@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Strengthen stores 17
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 6
+  effectType: 1
+  effectValue: 1
   required:
   - {fileID: 11400000, guid: d4ff0c0371a02ca4eb7a99ff77ae853e, type: 2}
+  requiredGroups: []

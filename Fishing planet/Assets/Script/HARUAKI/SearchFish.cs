@@ -20,7 +20,7 @@ public class SearchFish : MonoBehaviour
     void Update()
     {
         //SearchDistance = BaseSearchDistance * SkillManager.Instance.GetTotalMultiplier(effectValue);//ƒXƒLƒ‹‚ÌŒø‰Ê‚ð”½‰f‚³‚¹‚é
-        SearchDistance = BaseSearchDistance * GameManager.instance.magni;
+        SearchDistance = BaseSearchDistance * GameManager.instance.FishingHookmagni;
         if (Fishing.CanFishGet && !Fishing.isReeling)
         {
             fishObject = GameObject.FindGameObjectsWithTag("Fish");

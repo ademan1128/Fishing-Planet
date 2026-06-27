@@ -8,7 +8,7 @@ public class MoneyUI : MonoBehaviour
     {
         UpdateMoney(GameManager.instance.PlayerMoney);
     }
-    public void UpdateMoney(int money)
+    public void UpdateMoney(float money)
     {
         moneyText.text = "MONEY:" + money;
     }

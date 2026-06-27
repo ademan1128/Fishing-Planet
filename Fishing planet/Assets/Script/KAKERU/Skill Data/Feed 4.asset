@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Feed 4
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 3
+  cost: 33000
+  effectType: 4
+  effectValue: 1.8
   required:
   - {fileID: 11400000, guid: 15b654f9d3e017440a4e823d25c09674, type: 2}
   requiredGroups: []
