@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -35,7 +36,11 @@ public class GameManager : MonoBehaviour
     public float FishingHookmagni = 1;
     public float Piermagni = 1;
     public float Repopmagni = 1;
-
+    [Header("魚のリポップ確率(%)")]
+    [Range(0, 100)]
+    //ここで設定した確率で魚がリポップする
+    //パーセント
+    public int fishRespawnChance = 30;
     public enum StageTime
     {
         Noon,
@@ -248,9 +253,26 @@ public class GameManager : MonoBehaviour
 
     public void AddMoney(float FishMoney)
     {
+        StartCoroutine(AddMoneyCoroutine(FishMoney));
+    }
+
+    IEnumerator AddMoneyCoroutine(float FishMoney)
+    {
+        yield return new WaitUntil(() => Fishing.isReeling == false);
         PlayerMoney += Mathf.FloorToInt(FishMoney * StrengthenStoresmagni);
         moneyUI.UpdateMoney(PlayerMoney);
         Debug.Log("現在の所持金：" + PlayerMoney);
+
+        if (Random.Range(0, 100) < fishRespawnChance)
+        {
+            int index = fishCloneList.Count;
+
+            int baseArea = ((PlayerArea - 1) / 2) * 2 + 1;
+            int spawnArea = Random.Range(baseArea, baseArea + 2);
+
+            CreateFish(index, spawnArea);
+            ALLFish++;
+        }
     }
 }
 

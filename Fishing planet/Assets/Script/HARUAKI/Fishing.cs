@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Fishing : MonoBehaviour
 {
+    [SerializeField] private PlayerTex playerTex;
     public GameObject Lure;
     public Transform Rodtip;
     public LineRenderer line;
@@ -10,7 +11,7 @@ public class Fishing : MonoBehaviour
     public Vector2 throwDirection = new Vector2(1f, 1f);
     //どの角度で投げるか
     public float reelSpeed = 5f;         // 巻き取りの速度
-    public bool isReeling = false;      // 巻き取り中かどうかを示すフラグ
+    public static bool isReeling = false;      // 巻き取り中かどうかを示すフラグ
 
     // 放物線設定
     public int segmentCount = 20;        //放物線のセグメント数。これが多いほど滑らかになる
@@ -33,7 +34,7 @@ public class Fishing : MonoBehaviour
     public bool GotFish;                    //魚を釣ったかどうか
 
     public bool Underwater = false;                     //ルアーが水中にあるかどうかを示すフラグ
-
+    public bool Throwing;                    //ルアーを投げているかどうかを示すフラグ
     void Start()
     {
         GotFish = false;
@@ -47,12 +48,21 @@ public class Fishing : MonoBehaviour
         {
             line.positionCount = segmentCount; // LineRendererの頂点数を設定(竿先とルアー)
         }
-
+        Lure.transform.position = Rodtip.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerTex.State == PlayerTex.PlayerState.Idle)
+        {
+            Lure.transform.position = Rodtip.position;
+        }
+        if (playerTex.State == PlayerTex.PlayerState.Throwing)
+        {
+            Lure.transform.position = Rodtip.position;
+        }
+
         Retimer += Time.deltaTime;//RestraightLineのタイマー
         if (Lure.transform.position.y < -1)
         {
@@ -68,27 +78,28 @@ public class Fishing : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isReeling == false && isMove == false)
         {
-
-            //Debug.Log(isThrowpower);
-            if (isThrowpower > 10f)
+            Throwing = true;
+            if (isThrowpower > 7)
             {
-                isThrowpower = 10f;
+                isThrowpower = 7f;
+                Debug.Log(isThrowpower);
             }
             else
             {
                 isThrowpower += 5f * Time.deltaTime;
+                Debug.Log(isThrowpower);
             }
         }
 
         if (Input.GetMouseButtonUp(0) && isReeling == false && isMove == false)
         {
-
+            Throwing = false;
             //Debug.Log(isThrowpower);
             isMove = true;
             Retimer = 0f;
             GotFish = false;
             FishMove.pathPoints.Clear();
-            Lure.transform.position = Rodtip.position;    // ルアーを竿先の位置に移動
+            Lure.transform.position = new Vector3(1.17f, 3.46f, 0);    // ルアーを竿先の位置に移動
             LureRigidbody.linearVelocity = Vector2.zero;  // 一応、ルアーの速度をリセット。
                                                           // LinearVelocityはRigidbody2Dの速度を表すプロパティで、Vector2.zeroは(0, 0)のベクトルを意味する。これにより、ルアーが投げられる前に静止状態になる。
             LureRigidbody.simulated = true;               // ルアーの物理挙動をONにする
@@ -96,7 +107,7 @@ public class Fishing : MonoBehaviour
             LureRigidbody.AddForce(throwDirection.normalized * isThrowpower, ForceMode2D.Impulse);// ルアーに力を加える。normalizedで方向ベクトルを正規化して、isthrowpowerで力の大きさを調整。Impulseは瞬間的な力を加えるモード
 
         }
-        if (Input.GetMouseButtonDown(1))//右クリックで巻き取り開始
+        if (Input.GetMouseButtonDown(1)&& Underwater == true)//右クリックで巻き取り開始
         {
             isReeling = true;               // 巻き取り開始
             LureRigidbody.simulated = false;// 巻き取り中は物理挙動をOFFにする
