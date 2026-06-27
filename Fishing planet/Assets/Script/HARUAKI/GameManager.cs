@@ -23,12 +23,18 @@ public class GameManager : MonoBehaviour
     public Vector2[] areaMax;
     //ŠC‚Ì’†‚Ì‹›•ê”‘‚â‚·
     public  int ALLFish = 10;
+    public int MaxNumFish = 5;
     int area = 1;
-    public int PlayerMoney;
+    public float PlayerMoney;
     //‚±‚ê‚±‚êV‹´
     public int PlayerArea ;
     //‚±‚ê‚ª”{—¦•ÏX‚Ì‚â‚Â
-    public float magni =1;
+    public float Feedmagni = 1;//ƒGƒT
+    public float StrengthenStoresmagni = 1;
+    public float AddTimemagni = 1;
+    public float FishingHookmagni = 1;
+    public float Piermagni = 1;
+    public float Repopmagni = 1;
 
     public enum StageTime
     {
@@ -149,6 +155,16 @@ public class GameManager : MonoBehaviour
             FishMove.GetFishArea.Clear();
             fishing.GotFish = false;
         }
+
+        if (SkillManager.Instance != null)
+        {
+            Feedmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Feed);
+            StrengthenStoresmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.StrengthenStores);
+            AddTimemagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.AddTime);
+            FishingHookmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.FishingHook);
+            Piermagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Pier);
+            Repopmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Repop);
+        }
     }
 
     void CreateFish(int index,int area)
@@ -187,12 +203,12 @@ public class GameManager : MonoBehaviour
 
         foreach (var w in weights)
         {
-            total += w;
+            total += w * FishingHookmagni;
         }
         float r = Random.Range(0, total);
         for (int i = 0; i < weights.Count; i++)
         {
-            r -= weights[i];
+            r -= weights[i] * FishingHookmagni;
             if (r <= 0)
             {
                 return i;
@@ -230,9 +246,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddMoney(int FishMoney)
+    public void AddMoney(float FishMoney)
     {
-        PlayerMoney += FishMoney;
+        PlayerMoney += FishMoney * StrengthenStoresmagni;
         moneyUI.UpdateMoney(PlayerMoney);
         Debug.Log("Œ»İ‚ÌŠ‹àF" + PlayerMoney);
     }

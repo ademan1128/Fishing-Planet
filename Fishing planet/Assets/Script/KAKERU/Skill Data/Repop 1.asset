@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Repop 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 1
+  cost: 11000
+  effectType: 6
+  effectValue: 1.2
   required: []
   requiredGroups:
   - skills:

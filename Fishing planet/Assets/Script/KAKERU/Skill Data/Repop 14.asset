@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Repop 14
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 3
+  effectType: 6
+  effectValue: 1
   required:
   - {fileID: 11400000, guid: fc8c44c6cbfff3e4c8cd838c85b5b1c7, type: 2}
   requiredGroups: []

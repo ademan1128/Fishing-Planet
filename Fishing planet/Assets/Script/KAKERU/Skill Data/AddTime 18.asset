@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AddTime 18
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 3
+  effectType: 2
+  effectValue: 1
   required:
   - {fileID: 11400000, guid: 839bd2f834a290344aa2a63eaf8168c4, type: 2}
   requiredGroups: []

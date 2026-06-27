@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Pier 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 10
+  cost: 10000
+  effectType: 5
+  effectValue: 1
   required: []
   requiredGroups:
-  - skills:
-    - {fileID: 11400000, guid: 9d4b877f1dc119049be599425c9080b8, type: 2}
-    - {fileID: 11400000, guid: 5a1ae15eb6a98024e9d89dd2b895e341, type: 2}
-    - {fileID: 11400000, guid: 287ca2305b3fc6b468031143ea7df8ad, type: 2}
   - skills:
     - {fileID: 11400000, guid: 04114eceaf8011149b07c9a8fcef97ba, type: 2}
     - {fileID: 11400000, guid: 462c6a7aa6a0d0341adfcea420640aa4, type: 2}

@@ -14,7 +14,7 @@ public class SkillSystem : MonoBehaviour
 
     // 変更前：GameManager.Instance.PlayerMoney を見に行っていた処理
     // 変更後：相手のコードにInstanceができるまでの「臨時の代役」にする
-    private int CurrentMoney
+    private float CurrentMoney
     {
         get
         {
@@ -136,7 +136,7 @@ public class SkillSystem : MonoBehaviour
         MoneyText.text = "金額：" + CurrentMoney;
     }
 
-    public int GetSkillMoney() => CurrentMoney;
+    public float GetSkillMoney() => CurrentMoney;
     public int GetGachaCost() => gachaCost;
 
     void CheckOnOff()

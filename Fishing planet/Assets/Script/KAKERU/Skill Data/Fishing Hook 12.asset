@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Fishing Hook 12
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   cost: 6
+  effectType: 3
+  effectValue: 1
   required: []
+  requiredGroups: []
