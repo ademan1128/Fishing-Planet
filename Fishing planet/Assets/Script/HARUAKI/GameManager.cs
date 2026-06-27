@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
 
     public void AddMoney(float FishMoney)
     {
-        PlayerMoney += FishMoney * StrengthenStoresmagni;
+        PlayerMoney += Mathf.FloorToInt(FishMoney * StrengthenStoresmagni);
         moneyUI.UpdateMoney(PlayerMoney);
         Debug.Log("Œ»İ‚ÌŠ‹àF" + PlayerMoney);
     }
