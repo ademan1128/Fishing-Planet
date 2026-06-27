@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Repop 10
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 3
+  cost: 71000
   effectType: 6
-  effectValue: 1
+  effectValue: 3
   required:
-  - {fileID: 11400000, guid: fc8c44c6cbfff3e4c8cd838c85b5b1c7, type: 2}
-  requiredGroups: []
+  - {fileID: 11400000, guid: 9124b98ddc098c44da3eff320d1b38c1, type: 2}
+  requiredGroups:
+  - skills:
+    - {fileID: 11400000, guid: 6c9abbc39699264459b7d3ab81d1abea, type: 2}
+    - {fileID: 11400000, guid: 0b0c80f7014d6a0428f493f16cbe32a1, type: 2}
+    - {fileID: 11400000, guid: 3127b0cf9ae053c428c57020b6900cbf, type: 2}
