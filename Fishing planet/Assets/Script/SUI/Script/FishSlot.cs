@@ -42,6 +42,7 @@ public class FishSlot : MonoBehaviour
             spriteRenderer[i].sprite = null;
             if (countText != null && i < countText.Length)
                 countText[i].text = "";
+
         }
 
         
