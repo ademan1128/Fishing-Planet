@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     int rnd;
+    [SerializeField] private GameObject fishPricePrefab;
+    [SerializeField] private Transform canvas;
     //public List<Sprite> Sea1List = new List<Sprite>();
     public List<GameObject> fishCloneList = new List<GameObject>();//生成した魚を保存するリスト
     [SerializeField] Transform Lure;
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]List<FishDataSO> fishDataList = new List<FishDataSO>();//魚のデータを保存するリスト
     public List<GameObject> fishtracked = new List<GameObject>();//釣り上げるために追跡している魚を保存するリスト
     public List<FishDataSO> GetFishList = new List<FishDataSO>();//最終的に釣れた魚のデータを保存するリスト
+    private Queue<float> priceQueue = new Queue<float>();
+    private bool isShowing;
     public Vector2[] areaMin;
     public Vector2[] areaMax;
     //海の中の魚母数増やす
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
     //ここで設定した確率で魚がリポップする
     //パーセント
     public int fishRespawnChance = 30;
+
+    private int effectCount = 0;
+
     public enum StageTime
     {
         Noon,
@@ -246,21 +253,19 @@ public class GameManager : MonoBehaviour
         if (sr != null && catchFish.fishSprite != null)
         {
             sr.sprite = catchFish.fishSprite;
+            ShowFishPrice(catchFish.fishPrice);
             //GetFishList.Add(catchFish);
             Debug.Log("釣れた");
         }
     }
 
-    public void AddMoney(float FishMoney)
-    {
-        StartCoroutine(AddMoneyCoroutine(FishMoney));
-    }
 
-    IEnumerator AddMoneyCoroutine(float FishMoney)
+
+    void AddMoneyNow(float fishMoney)
     {
-        yield return new WaitUntil(() => Fishing.isReeling == false);
-        PlayerMoney += Mathf.FloorToInt(FishMoney * StrengthenStoresmagni);
+        PlayerMoney += Mathf.FloorToInt(fishMoney * StrengthenStoresmagni);
         moneyUI.UpdateMoney(PlayerMoney);
+
         Debug.Log("現在の所持金：" + PlayerMoney);
 
         if (Random.Range(0, 100) < fishRespawnChance)
@@ -273,6 +278,45 @@ public class GameManager : MonoBehaviour
             CreateFish(index, spawnArea);
             ALLFish++;
         }
+    }
+
+    public void ShowFishPrice(float price)
+    {
+        if (canvas == null)
+        {
+            canvas = FindFirstObjectByType<Canvas>().transform;
+        }
+        priceQueue.Enqueue(price);
+
+        if (!isShowing)
+        {
+            StartCoroutine(ShowPriceCoroutine());
+        }
+
+    }
+    IEnumerator ShowPriceCoroutine()
+    {
+        isShowing = true;
+
+        while (priceQueue.Count > 0)
+        {
+            float price = priceQueue.Dequeue();
+
+            GameObject obj = Instantiate(fishPricePrefab, canvas);
+
+            EffctMoney effect = obj.GetComponent<EffctMoney>();
+            effect.SetPrice(price);
+
+            // フェードアウトが終わるまで待つ
+            yield return new WaitUntil(() => effect == null || effect.IsFinished());
+
+            // ★ここでお金を増やす
+            AddMoneyNow(price);
+
+            Destroy(obj);
+        }
+
+        isShowing = false;
     }
 }
 

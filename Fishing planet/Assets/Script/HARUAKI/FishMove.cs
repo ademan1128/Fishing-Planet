@@ -26,6 +26,7 @@ public class FishMove : MonoBehaviour
 
     public FishSize fishSize;
     public FishDataSO currentFishData;
+
     public enum FishState
     {
         Swimming,
@@ -239,7 +240,7 @@ public class FishMove : MonoBehaviour
         }
 
         gameManager.GetFishList.Add(currentFishData);
-        gameManager.AddMoney(currentFishData.fishPrice);
+
 
         if (gameManager.fishtracked.Contains(gameObject))
         {

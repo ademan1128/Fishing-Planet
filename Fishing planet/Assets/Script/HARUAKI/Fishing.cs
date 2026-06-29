@@ -54,6 +54,9 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneMove.instance != null && !SceneMove.instance.CanPlay)
+            return;
+
         if (playerTex.State == PlayerTex.PlayerState.Idle)
         {
             Lure.transform.position = Rodtip.position;
