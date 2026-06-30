@@ -25,13 +25,10 @@ public class EffctMoney : MonoBehaviour
 
     void Update()
     {
-        // 上に移動
-        rect.anchoredPosition += Vector2.up * moveSpeed * Time.deltaTime;
-
-        // 時間
         timer += Time.deltaTime;
 
-        // フェード
+        rect.anchoredPosition += Vector2.up * moveSpeed * Time.deltaTime;
+
         color.a = Mathf.Lerp(1f, 0f, timer / lifeTime);
         priceText.color = color;
     }

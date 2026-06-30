@@ -27,7 +27,7 @@ public class Fishing : MonoBehaviour
     private float RestraightLine = 4f;  //直線に戻る時間
     private float Retimer = 0f;         //現在の時間を追跡する変数
 
-    private bool isMove = false;        //ルアーが動いているかどうかを示すフラグ  
+    public bool isMove;        //ルアーが動いているかどうかを示すフラグ  
     public int BaseMaxNumFish = 5;            //釣れる魚の最大数
     public int MaxNumFish;               //釣れる魚の最大数（スキルの効果を反映させる前の基本的な値）
     public bool CanFishGet;                 //魚を釣れるかどうか
@@ -39,6 +39,7 @@ public class Fishing : MonoBehaviour
     {
         GotFish = false;
         CanFishGet = false;
+        isMove = false;
         if (Lure != null)//Lureがnullでない場合、Rigidbody2Dコンポーネントを取得
         {
             LureRigidbody = Lure.GetComponent<Rigidbody2D>();

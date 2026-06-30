@@ -337,19 +337,21 @@ public class GameManager : MonoBehaviour
         moneyUI.UpdateMoney(PlayerMoney);
 
         Debug.Log("現在の所持金：" + PlayerMoney);
-
-        if (Random.Range(0, 100) < fishRespawnChance)
+        if (SceneManager.GetActiveScene().name == "Main game")
         {
-            int index = fishCloneList.Count;
+            if (Random.Range(0, 100) < fishRespawnChance)
+            {
+                int index = fishCloneList.Count;
 
-            int baseArea = ((PlayerArea - 1) / 2) * 2 + 1;
-            int spawnArea = Random.Range(baseArea, baseArea + 2);
+                int baseArea = ((PlayerArea - 1) / 2) * 2 + 1;
+                int spawnArea = Random.Range(baseArea, baseArea + 2);
 
-            CreateFish(index, spawnArea);
-            ALLFish++;
+                CreateFish(index, spawnArea);
+                ALLFish++;
+            }
         }
 
-        RebirthButtonController rebirthBtn = FindAnyObjectByType<RebirthButtonController>();
+            RebirthButtonController rebirthBtn = FindAnyObjectByType<RebirthButtonController>();
         if (rebirthBtn != null)
         {
             rebirthBtn.UpdateButtonInteractable();
@@ -383,10 +385,8 @@ public class GameManager : MonoBehaviour
             EffctMoney effect = obj.GetComponent<EffctMoney>();
             effect.SetPrice(price);
 
-            // フェードアウトが終わるまで待つ
             yield return new WaitUntil(() => effect == null || effect.IsFinished());
 
-            // ★ここでお金を増やす
             AddMoneyNow(price);
 
             Destroy(obj);

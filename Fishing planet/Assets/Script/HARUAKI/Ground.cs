@@ -9,7 +9,6 @@ public class Ground : MonoBehaviour
     [SerializeField] private Sprite PierSprite;
     [SerializeField] private Sprite NightPierSprite;
     [SerializeField] private SpriteRenderer sr;
-    GameManager PlayerArea;
 
     void Start()
     {

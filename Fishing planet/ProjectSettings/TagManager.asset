@@ -57,6 +57,9 @@ TagManager:
   - name: ground
     uniqueID: 1573420797
     locked: 0
+  - name: tutorial
+    uniqueID: 3027554697
+    locked: 0
   - name: suiwave
     uniqueID: 3425545443
     locked: 0
@@ -77,6 +80,9 @@ TagManager:
     locked: 0
   - name: ame
     uniqueID: 3181335657
+    locked: 0
+  - name: tyu
+    uniqueID: 3964100527
     locked: 0
   m_RenderingLayers:
   - Default
