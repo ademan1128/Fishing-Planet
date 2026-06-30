@@ -1,9 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class SessionData
 {
-    public float currency;//Š’Ê‰İ
-    List<bool> skillSessionList;//ƒXƒLƒ‹w“üó‘Ô
+    public float currency; // Œ»İ‚Ìü‰ñ‚Ì‚¨‹à
 }

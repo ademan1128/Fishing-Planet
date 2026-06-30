@@ -44,11 +44,11 @@ public class SkillParam : MonoBehaviour {
             skillSystem.LearnSkill(skill);  // spendMoneyを消す
             CheckButtonOnOff();
             text.text = skillTitle + "を覚えた";
-            if (skillTitle == "Pier")
+            if (skillTitle.StartsWith("Pier"))
             {
                 GameManager.instance.PlayerArea += 1;
             }
-            else if(skillTitle == "FishingHook")
+            else if (skillTitle.StartsWith("FishingHook"))
             {
                 GameManager.instance.MaxNumFish += 1;
             }

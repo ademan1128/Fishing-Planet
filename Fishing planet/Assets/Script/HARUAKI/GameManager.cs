@@ -113,6 +113,12 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main game")
         {
             moneyUI = FindFirstObjectByType<MoneyUI>();
+            //中鉢追加
+            if (carryOverMoneyCache > 0f)
+            {
+                PlayerMoney += carryOverMoneyCache;
+                carryOverMoneyCache = 0f;
+            }
             moneyUI.UpdateMoney(PlayerMoney);
 
             for (int i = 0; i < ALLFish; i++)
@@ -140,16 +146,75 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void AllReset()
+    //public void AllReset()
+    //{
+    //    GetFishList.Clear();
+    //    PlayerMoney = 0;
+    //    PlayerArea = 1;
+    //}
+    // GameManager.cs の該当箇所を修正
+
+    /// <summary>
+    /// 転生用のリセット処理（目標金額を差し引いた余剰金額を持ち越す）
+    /// </summary>
+    /// <param name="carryOverMoney">次の周回に持ち越すお金</param>
+    public void RebirthReset(float carryOverMoney)
     {
         GetFishList.Clear();
-        PlayerMoney = 0;
+
+        // 完全に0にするのではなく、超過分を次の周回の初期値にする
+        PlayerMoney = carryOverMoney;
         PlayerArea = 1;
+
+        // UIの表示も超過分のアカウントに更新する
+        if (moneyUI != null)
+        {
+            moneyUI.UpdateMoney(PlayerMoney);
+        }
+    }
+
+    // ここから下は中鉢が編集（Updata手前まで）
+
+    // 転生時に一時的に超過分のお金をキープしておくための変数（クラスの変数宣言欄に置いてもOK）
+    private float carryOverMoneyCache = 0f;
+
+    /// <summary>
+    /// 転生リセットの実行（RebirthManagerから呼び出される）
+    /// </summary>
+    /// <param name="excessMoney">次の周回に引き継ぐ超過金額</param>
+    public void ExecuteRebirthReset(float excessMoney)
+    {
+        // 超過分を一度キャッシュに保存しておく
+        carryOverMoneyCache = excessMoney;
+
+        // リスト等のクリア
+        GetFishList.Clear();
+        fishtracked.Clear();
+
+        // 画面内に残っている古い魚のクローンオブジェクトをすべて削除する
+        foreach (GameObject fish in fishCloneList)
+        {
+            if (fish != null)
+            {
+                // ★追加：もしオブジェクトがシーン上のクローンではなく「アセット（プレハブ）」なら削除をスキップする
+                if (UnityEditor.EditorUtility.IsPersistent(fish)) continue;
+
+                Destroy(fish);
+            }
+        }
+        fishCloneList.Clear();
+
+        // エリアを最初のステージに戻す
+        PlayerArea = 1;
+
+        // シーンを最初から読み直す
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
     }
 
 
     void Update()
     {
+
         if (fishing.GotFish)
         {
             FishMove.GetFishArea.Clear();
@@ -251,6 +316,12 @@ public class GameManager : MonoBehaviour
         PlayerMoney += Mathf.FloorToInt(FishMoney * StrengthenStoresmagni);
         moneyUI.UpdateMoney(PlayerMoney);
         Debug.Log("現在の所持金：" + PlayerMoney);
+
+        // ★安全な一元管理：余計な金額計算をGameManager側でせず、判定をRebirthManagerに一任する
+        if (RebirthManager.Instance != null)
+        {
+            RebirthManager.Instance.CheckAndGrantRebirthPoints();
+        }
     }
 }
 
