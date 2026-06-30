@@ -15,11 +15,6 @@ MonoBehaviour:
   cost: 12000
   effectType: 2
   effectValue: 1.2
-  required: []
-  requiredGroups:
-  - skills:
-    - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
-  - skills:
-    - {fileID: 11400000, guid: 04114eceaf8011149b07c9a8fcef97ba, type: 2}
-    - {fileID: 11400000, guid: 462c6a7aa6a0d0341adfcea420640aa4, type: 2}
-    - {fileID: 11400000, guid: f6803f5c2e84adf47bc2328f45595e32, type: 2}
+  required:
+  - {fileID: 11400000, guid: eaeaee2b4d5e7a349964326587f145b5, type: 2}
+  requiredGroups: []
