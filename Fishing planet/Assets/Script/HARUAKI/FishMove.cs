@@ -26,6 +26,7 @@ public class FishMove : MonoBehaviour
 
     public FishSize fishSize;
     public FishDataSO currentFishData;
+
     public enum FishState
     {
         Swimming,
@@ -180,7 +181,7 @@ public class FishMove : MonoBehaviour
             // 自分の現在位置を軌跡（パス）の先頭に追加
             pathPoints.Insert(0, transform.position);
 
-            // 軌跡データが溜まりすぎないように制限（1000件まで）
+            // 軌跡データが溜まりすぎないように制限
             if (pathPoints.Count > 1000)
             {
                 pathPoints.RemoveAt(pathPoints.Count - 1);
@@ -239,7 +240,7 @@ public class FishMove : MonoBehaviour
         }
 
         gameManager.GetFishList.Add(currentFishData);
-        gameManager.AddMoney(currentFishData.fishPrice);
+
 
         if (gameManager.fishtracked.Contains(gameObject))
         {
