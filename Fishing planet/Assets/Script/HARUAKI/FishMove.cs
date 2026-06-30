@@ -39,7 +39,9 @@ public class FishMove : MonoBehaviour
     public FishState State = FishState.Swimming;//‰Šúó‘Ô‚Íswimming
 
     private void Awake()
-    {        
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Main game") return;
+
         gameManager = FindFirstObjectByType<GameManager>();
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         Lure = GameObject.Find("Lure").transform;

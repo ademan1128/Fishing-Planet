@@ -235,12 +235,17 @@ public class GameManager : MonoBehaviour
 
         if (SkillManager.Instance != null)
         {
-            Feedmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Feed);
-            StrengthenStoresmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.StrengthenStores);
-            AddTimemagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.AddTime);
-            FishingHookmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.FishingHook);
-            Piermagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Pier);
-            Repopmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Repop);
+            float rebirthMagni = 1f;
+            if (RebirthManager.Instance != null && RebirthManager.Instance.permanent != null)
+            {
+                rebirthMagni = RebirthManager.Instance.GetRebirthMultiplier();
+            }
+            Feedmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Feed) * rebirthMagni;
+            StrengthenStoresmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.StrengthenStores) * rebirthMagni;
+            AddTimemagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.AddTime) * rebirthMagni;
+            FishingHookmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.FishingHook) * rebirthMagni;
+            Piermagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Pier) * rebirthMagni;
+            Repopmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Repop) * rebirthMagni;
         }
     }
 
@@ -343,6 +348,12 @@ public class GameManager : MonoBehaviour
             CreateFish(index, spawnArea);
             ALLFish++;
         }
+
+        RebirthButtonController rebirthBtn = FindAnyObjectByType<RebirthButtonController>();
+        if (rebirthBtn != null)
+        {
+            rebirthBtn.UpdateButtonInteractable();
+        }
     }
 
     public void ShowFishPrice(float price)
@@ -382,6 +393,47 @@ public class GameManager : MonoBehaviour
         }
 
         isShowing = false;
+    }
+
+
+   
+    /// <summary>
+    /// 転生ボタンから呼ばれる、安全なシーン再読み込み型リセット（バグを完全回避）
+    /// </summary>
+    public void InSceneRebirthReset(float carryOverMoney)
+    {
+        // 1. 超過分を一度キャッシュに退避させておく（SceneLoadedでPlayerMoneyに加算されるため）
+        carryOverMoneyCache = carryOverMoney;
+
+        // 2. リスト等のクリア
+        GetFishList.Clear();
+        fishtracked.Clear();
+
+        // 3. 画面内に残っている古い魚のクローンオブジェクトをすべて削除
+        foreach (GameObject fish in fishCloneList)
+        {
+            if (fish != null)
+            {
+#if UNITY_EDITOR
+                if (UnityEditor.EditorUtility.IsPersistent(fish)) continue;
+#endif
+
+                Destroy(fish);
+            }
+        }
+        fishCloneList.Clear();
+
+        // 4. エリアを最初のステージに戻す
+        PlayerArea = 1;
+        area = 1;
+
+        // 所持金自体は一旦0にしておく（SceneLoaded側でcarryOverMoneyCacheが足されるため）
+        PlayerMoney = 0;
+
+        Debug.Log($"[転生ロード開始] 超過金 {carryOverMoneyCache} を保持してMain gameシーンを再読み込みします。");
+
+        // 5. シーンを最初から読み直す（これによりUIやFishMove、FishSlotが完璧な順序で初期化されます）
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
     }
 }
 

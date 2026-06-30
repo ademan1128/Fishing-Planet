@@ -26,51 +26,41 @@ public class RebirthSkillParam : MonoBehaviour
         CheckButtonOnOff();
     }
 
+    // RebirthSkillParam.cs の修正が必要な部分のイメージ
+
+    /// <summary>
+    /// ボタンの見た目（白か黒か）をチェックする関数
+    /// </summary>
     public void CheckButtonOnOff()
     {
-        if (targetSkillData == null || RebirthManager.Instance == null) return;
+        if (RebirthManager.Instance == null || GameManager.instance == null) return;
 
-        bool isUnlocked = RebirthManager.Instance.IsSkillUnlocked(targetSkillData.effectType);
+        // 現在の転生回数に応じた目標金額を計算
+        int count = RebirthManager.Instance.permanent.rebirthCount;
+        float targetMoney = 10000f * Mathf.Pow(10f, count);
 
-        if (isUnlocked)
+        // ★修正：個別のスキル解放チェック（IsSkillUnlocked）ではなく、
+        // 「今のお金が目標金額に達しているか（転生できるか）」でボタンの色を変える
+        if (GameManager.instance.PlayerMoney >= targetMoney)
         {
-            if (costText != null) costText.text = "解放済み";
-            if (purchaseButton != null) purchaseButton.interactable = false;
-
-            // 取得済み ➔ 青色
-            ChangeButtonColor(new Color(0.0f, 0.0f, 1.0f, 0.8f));
+            // ボタンを白にする（クリック可能）
+            // ※お使いのコンポーネントに合わせて色やInteractableを制御してください
         }
         else
         {
-            // ★表示する際は「10 Pt」のように表示されます（必要なら .ToString("F0") で整数風に見せることも可）
-            if (costText != null) costText.text = targetSkillData.pointCost + " Pt";
-
-            // ★float同士の安全な比較
-            bool canAfford = RebirthManager.Instance.permanent.rebirthPoints >= targetSkillData.pointCost;
-
-            if (purchaseButton != null)
-            {
-                purchaseButton.interactable = canAfford;
-            }
-
-            if (canAfford)
-            {
-                // 購入可能 ➔ 白色
-                ChangeButtonColor(new Color(1.0f, 1.0f, 1.0f, 1.0f));
-            }
-            else
-            {
-                // ポイント不足 ➔ 灰色・黒色
-                ChangeButtonColor(new Color(0.0f, 0.0f, 0.0f, 1f));
-            }
+            // ボタンを黒（またはグレー）にする
         }
     }
 
+    /// <summary>
+    /// ボタンが押されたときの処理
+    /// </summary>
     private void OnButtonClicked()
     {
-        if (RebirthManager.Instance != null && targetSkillData != null)
+        // ★修正：個別スキルの購入ではなく、RebirthManagerの「転生実行関数」をそのまま呼ぶ
+        if (RebirthManager.Instance != null)
         {
-            RebirthManager.Instance.PurchaseRebirthSkill(targetSkillData);
+            RebirthManager.Instance.ExecuteRebirth();
         }
     }
 
