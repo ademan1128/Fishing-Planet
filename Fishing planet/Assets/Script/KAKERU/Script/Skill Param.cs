@@ -47,6 +47,7 @@ public class SkillParam : MonoBehaviour {
             if (skillTitle.StartsWith("Pier"))
             {
                 GameManager.instance.PlayerArea += 1;
+                Debug.Log("現在のエリア：" + GameManager.instance.PlayerArea);
             }
             else if (skillTitle.StartsWith("FishingHook"))
             {
