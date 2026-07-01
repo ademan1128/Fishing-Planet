@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     public float fishRespawnChance;
     public float BasefishRespawnChance = 30;
 
-    private int effectCount = 0;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip CoinSE;
 
     public enum StageTime
     {
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
     private List<AreaSizeRate> areaSizeRates;
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -336,6 +338,8 @@ public class GameManager : MonoBehaviour
 
     void AddMoneyNow(float fishMoney)
     {
+
+
         // 1. まずはお金の計算と加算を確定させる（UIの有無に関係なく）
         float rebirthMultiplier = (RebirthDataHandler.Instance != null) ? RebirthDataHandler.Instance.GetRebirthMultiplier() : 1f;
         Debug.Log($"計算開始: 元金={fishMoney}, 転生倍率={rebirthMultiplier}, ストア倍率={StrengthenStoresmagni}");
@@ -355,7 +359,9 @@ public class GameManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Main game")
         {
+            audioSource.PlayOneShot(CoinSE);
             if (Random.Range(0, 100) < (fishRespawnChance * Repopmagni))
+
             {
                 int index = fishCloneList.Count;
 
@@ -372,17 +378,23 @@ public class GameManager : MonoBehaviour
 
     public void ShowFishPrice(float price)
     {
+        if (SceneManager.GetActiveScene().name != "Main game")
+        {
+            AddMoneyNow(price);
+            return;
+        }
+
         if (canvas == null)
         {
             canvas = FindFirstObjectByType<Canvas>().transform;
         }
+
         priceQueue.Enqueue(price);
 
         if (!isShowing)
         {
             StartCoroutine(ShowPriceCoroutine());
         }
-
     }
     IEnumerator ShowPriceCoroutine()
     {
@@ -443,7 +455,7 @@ public class GameManager : MonoBehaviour
         PlayerMoney = 0;
 
         Debug.Log($"[転生ロード開始] 超過金 {carryOverMoneyCache} を保持してMain gameシーンを再読み込みします。");
-
+        
         // 5. シーンを最初から読み直す（これによりUIやFishMove、FishSlotが完璧な順序で初期化されます）
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
     }

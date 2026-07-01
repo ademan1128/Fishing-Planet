@@ -14,7 +14,7 @@ public class SearchFish : MonoBehaviour
     void Start()
     {
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
-        MaxNumFish = Fishing.MaxNumFish;
+        MaxNumFish = GameManager.instance.MaxNumFish;
        
     }
     void Update()
