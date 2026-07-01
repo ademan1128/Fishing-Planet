@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class Fishing : MonoBehaviour
 {
     [SerializeField] private PlayerTex playerTex;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip WaterSE;
     public GameObject Lure;
     public Transform Rodtip;
     public LineRenderer line;
@@ -28,8 +31,7 @@ public class Fishing : MonoBehaviour
     private float Retimer = 0f;         //現在の時間を追跡する変数
 
     public bool isMove;        //ルアーが動いているかどうかを示すフラグ  
-    public int BaseMaxNumFish = 5;            //釣れる魚の最大数
-    public int MaxNumFish;               //釣れる魚の最大数（スキルの効果を反映させる前の基本的な値）
+    //public int MaxNumFish;               //釣れる魚の最大数（スキルの効果を反映させる前の基本的な値）
     public bool CanFishGet;                 //魚を釣れるかどうか
     public bool GotFish;                    //魚を釣ったかどうか
 
@@ -70,8 +72,11 @@ public class Fishing : MonoBehaviour
         Retimer += Time.deltaTime;//RestraightLineのタイマー
         if (Lure.transform.position.y < -1)
         {
-            Underwater = true;
-
+            if (!Underwater)
+            {
+                Underwater = true;
+                audioSource.PlayOneShot(WaterSE);
+            }
         }
         else
         {

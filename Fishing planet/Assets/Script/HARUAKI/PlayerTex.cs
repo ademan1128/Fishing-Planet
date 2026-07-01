@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static FishMove;
 
@@ -10,6 +11,11 @@ public class PlayerTex : MonoBehaviour
     [SerializeField] private Sprite getting;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField]private Fishing Fishing;
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip SwingSE;
+    [SerializeField] private AudioClip BiteSE;
+
     public enum PlayerState
     {
         Idle,
@@ -65,6 +71,7 @@ public class PlayerTex : MonoBehaviour
         if (Fishing.Throwing == false)
         {
             State = PlayerState.Biting;
+            audioSource.PlayOneShot(SwingSE);
         }
     }
 
@@ -82,12 +89,15 @@ public class PlayerTex : MonoBehaviour
         if (Fishing.Underwater == false)
         {
             State = PlayerState.Getting;
+            audioSource.PlayOneShot(BiteSE);
         }
     }
 
     void Getting()
     {
         sr.sprite = getting;
+
+
         if (Fishing.isReeling == false)
         {
             State = PlayerState.Idle;

@@ -11,8 +11,7 @@ public class FishMove : MonoBehaviour
     public int area;
     Vector2 movePosition;
     float speed;
-    Fishing MaxNumFish;
-    public static int NumFish;
+
     public bool isEating;
     public float SearchDistance = 1f;
     SearchFish searchFish;
@@ -23,7 +22,7 @@ public class FishMove : MonoBehaviour
     Fishing isReeling;
     private bool Changeform = false;
     GameManager gameManager;
-
+    private SpriteRenderer sr;
     public FishSize fishSize;
     public FishDataSO currentFishData;
 
@@ -41,7 +40,7 @@ public class FishMove : MonoBehaviour
     private void Awake()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Main game") return;
-
+        sr = GetComponent<SpriteRenderer>();
         gameManager = FindFirstObjectByType<GameManager>();
         Fishing = GameObject.Find("Lure").GetComponent<Fishing>();
         Lure = GameObject.Find("Lure").transform;
@@ -87,6 +86,14 @@ public class FishMove : MonoBehaviour
         {
             movePosition = moveRandomPosition();
         }
+        if (movePosition.x > transform.position.x)
+        {
+            sr.flipX = true;
+        }
+        else if (movePosition.x < transform.position.x)
+        {
+            sr.flipX = false;
+        }
         transform.position = Vector2.MoveTowards(transform.position, movePosition, speed * Time.deltaTime);//移動先に向かって移動
 
         if (Fishing.Underwater && searchFish.nearestFishList.Contains(gameObject))
@@ -103,7 +110,7 @@ public class FishMove : MonoBehaviour
             return;
         }
         distance = Vector2.Distance(transform.position, Lure.position);//ここで魚とルアーの距離を測る
-        if (gameManager.fishtracked.Count >= Fishing.MaxNumFish)
+        if (gameManager.fishtracked.Count >= GameManager.instance.MaxNumFish)
         {
             State = FishState.Swimming;
             gameManager.fishtracked.Remove(gameObject);
@@ -127,7 +134,7 @@ public class FishMove : MonoBehaviour
         {
             State = FishState.Swimming;
         }
-        if (gameManager.fishtracked.Count >= Fishing.MaxNumFish)
+        if (gameManager.fishtracked.Count >= GameManager.instance.MaxNumFish)
         {
             return;
         }
@@ -177,30 +184,19 @@ public class FishMove : MonoBehaviour
 
         if (myIndex == 0)
         {
-            // ロッドの先端に向かって移動
             transform.position = Vector2.MoveTowards(transform.position, Rodtip.position, reelSpeed * Time.deltaTime);
 
-            // 自分の現在位置を軌跡（パス）の先頭に追加
             pathPoints.Insert(0, transform.position);
 
-            // 軌跡データが溜まりすぎないように制限
             if (pathPoints.Count > 1000)
             {
                 pathPoints.RemoveAt(pathPoints.Count - 1);
             }
 
-            // ロッドの先端に近づいたら、釣られた確定リストの全員をGetFish状態にする
             float firstDistance = Vector2.Distance(transform.position, Rodtip.position);
             if (firstDistance < 1f)
             {
-                for (int i = 0; i < gameManager.fishtracked.Count; i++)
-                {
-                    GameObject fishObj = gameManager.fishtracked[i];
-                    if (fishObj != null)
-                    {
-                        fishObj.GetComponent<FishMove>().State = FishState.GetFish;
-                    }
-                }
+                State = FishState.GetFish;
             }
         }
 
@@ -209,7 +205,6 @@ public class FishMove : MonoBehaviour
             // 自分の順番に応じた軌跡の番号を計算
             int targetPathIndex = myIndex * spacing;
 
-            // 軌跡データがそこまで記録されていれば、その位置を追いかける
             if (targetPathIndex < pathPoints.Count)
             {
                 transform.position = Vector2.MoveTowards(transform.position, pathPoints[targetPathIndex], reelSpeed * Time.deltaTime);

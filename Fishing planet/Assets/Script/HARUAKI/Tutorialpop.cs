@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class Tutorial : MonoBehaviour
+public class Tutorialpop : MonoBehaviour
 {
-    [SerializeField] private Sprite ê‡ñæ1;
-    [SerializeField] private Sprite ê‡ñæ2;
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] Fishing fishing;
     [SerializeField] SceneMove CanPlay;
+
     void Start()
     {
         if (GameManager.instance.PlayerArea != 1)
@@ -14,21 +12,14 @@ public class Tutorial : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        sr.sprite = ê‡ñæ1;
         sr.enabled = false;
     }
+
     void Update()
     {
         if (CanPlay.CanPlay == true)
         {
             sr.enabled = true;
-        }
-        if (fishing.isMove == true)
-        {
-            sr.sprite = ê‡ñæ2;
-        } else
-        {
-            sr.sprite = ê‡ñæ1;
         }
     }
 }

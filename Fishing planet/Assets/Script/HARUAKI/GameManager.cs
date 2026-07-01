@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
     //パーセント
     public int fishRespawnChance = 30;
 
-    private int effectCount = 0;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip CoinSE;
 
     public enum StageTime
     {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     private List<AreaSizeRate> areaSizeRates;
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -334,11 +336,14 @@ public class GameManager : MonoBehaviour
     void AddMoneyNow(float fishMoney)
     {
         PlayerMoney += Mathf.FloorToInt(fishMoney * StrengthenStoresmagni);
-        moneyUI.UpdateMoney(PlayerMoney);
-
+        if (moneyUI != null)
+        {
+            moneyUI.UpdateMoney(PlayerMoney);
+        }
         Debug.Log("現在の所持金：" + PlayerMoney);
         if (SceneManager.GetActiveScene().name == "Main game")
         {
+            audioSource.PlayOneShot(CoinSE);
             if (Random.Range(0, 100) < fishRespawnChance)
             {
                 int index = fishCloneList.Count;
@@ -360,17 +365,23 @@ public class GameManager : MonoBehaviour
 
     public void ShowFishPrice(float price)
     {
+        if (SceneManager.GetActiveScene().name != "Main game")
+        {
+            AddMoneyNow(price);
+            return;
+        }
+
         if (canvas == null)
         {
             canvas = FindFirstObjectByType<Canvas>().transform;
         }
+
         priceQueue.Enqueue(price);
 
         if (!isShowing)
         {
             StartCoroutine(ShowPriceCoroutine());
         }
-
     }
     IEnumerator ShowPriceCoroutine()
     {
