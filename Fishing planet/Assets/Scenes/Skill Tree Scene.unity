@@ -44985,7 +44985,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -45011,8 +45011,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1635586128}
-        m_TargetAssemblyTypeName: ReincarnationButton, Assembly-CSharp
-        m_MethodName: OnClickStartButton
+        m_TargetAssemblyTypeName: RebirthButtonController, Assembly-CSharp
+        m_MethodName: OnClickRebirth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45069,9 +45069,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1635586122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f56e12705e2f0746bfbcc3a2f0a928f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b3f6df5e3f10d14cbfaf875bc1fd3ff, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReincarnationButton
+  m_EditorClassIdentifier: Assembly-CSharp::RebirthButtonController
+  rebirthButton: {fileID: 1635586125}
+  buttonImage: {fileID: 1635586126}
+  baseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1640813546
 GameObject:
   m_ObjectHideFlags: 0
@@ -55897,9 +55901,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

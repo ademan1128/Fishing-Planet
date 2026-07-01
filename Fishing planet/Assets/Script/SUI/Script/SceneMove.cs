@@ -25,7 +25,7 @@ public class SceneMove : MonoBehaviour
 
     void Start()
     {
-        limitTimer = BaselimitTimer * GameManager.instance.AddTimemagni;
+        limitTimer = BaselimitTimer * GameManager.instance.AddTimemagni * (RebirthDataHandler.Instance.GetRebirthMultiplier()); 
 
         CanPlay = false;
         StartCoroutine(StartCount());
