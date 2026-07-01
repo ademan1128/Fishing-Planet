@@ -61,30 +61,19 @@ public class SkillManager : MonoBehaviour
         return learnedSkills;
     }
 
-    // ★重要: あなたのSkillDataに合わせて変数名を書き換える必要があります
     public float GetTotalMultiplier(SkillEffectType type)
     {
-        float multiplier = 1.0f;
+        float totalBonus = 0.0f; // ★0からスタート
         foreach (var skill in learnedSkills)
         {
-            if (skill != null)
+            if (skill != null && skill.effectType == type)
             {
-                // ─── 【重要：もしエラーが消えない場合】 ───
-                // あなたの「SkillData.cs」を開いて、効果の種類（enum）が入っている変数名と、
-                // 効果量（floatやint）が入っている変数名を確認してください。
-                // もし変数名が「Type」や「Value」なら、以下のように書き換えます。
-                // 
-                // if (skill.Type == type) { multiplier *= skill.Value; }
-                // ─────────────────────────────────
-
-                // 一旦、仮で前回の命名に合わせておきます
-                if (skill.effectType == type)
-                {
-                    multiplier *= skill.effectValue;
-                }
+                // 1.02のような「増分」を足し合わせる
+                // もしeffectValueが1.02なら、0.02分を足すという考え方にするのが安全です
+                totalBonus += (skill.effectValue - 1.0f);
             }
         }
-        return multiplier;
+        return 1.0f + totalBonus; // 最後に1を足して「倍率」にする
     }
 
     public void ClearAllSkills()

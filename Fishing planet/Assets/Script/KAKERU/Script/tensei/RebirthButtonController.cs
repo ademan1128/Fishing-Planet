@@ -3,51 +3,68 @@ using UnityEngine.UI;
 
 public class RebirthButtonController : MonoBehaviour
 {
-    private Button rebirthButton;
+    public Button rebirthButton;
+    public Image buttonImage;
 
-    private void Awake()
+    [Header("色設定")]
+    public Color baseColor = new Color(0.8f, 0.8f, 0.8f, 1f); // 薄灰色
+    public Color highlightColor = Color.white;              // 点滅時の色
+
+    private void Awake() // Start ではなく Awake で取得
     {
-        // 自身のアタッチされているButtonコンポーネントを取得
-        rebirthButton = GetComponent<Button>();
+        if (rebirthButton == null) rebirthButton = GetComponent<Button>();
+        if (buttonImage == null) buttonImage = GetComponent<Image>();
+    }
 
-        if (rebirthButton != null)
+    // 重要なポイント：Startで初期色を適用する
+    private void Start()
+    {
+        if (buttonImage != null)
         {
-            // ボタンがクリックされたときにRebirthManagerの転生処理を呼ぶ
-            rebirthButton.onClick.AddListener(OnRebirthButtonClicked);
+            buttonImage.color = baseColor;
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        UpdateButtonInteractable();
-    }
+        if (rebirthButton == null) Debug.LogError("rebirthButtonのスロットが空です！");
+        else Debug.Log("操作対象のボタン名: " + rebirthButton.name);
+        // GameManagerやDataHandlerがないなら何もしない
+        if (GameManager.instance == null || RebirthDataHandler.Instance == null) return;
 
-    /// <summary>
-    /// 条件（目標金額）を満たしているかチェックし、ボタンを押せるか決める
-    /// </summary>
-    public void UpdateButtonInteractable()
-    {
-        if (rebirthButton == null) return;
-        if (RebirthManager.Instance == null || GameManager.instance == null) return;
-
-        // 現在の転生回数から必要な目標金額を計算
-        int count = RebirthManager.Instance.permanent.rebirthCount;
-        float targetMoney = 10000f * Mathf.Pow(10f, count);
+        float targetMoney = 10000f;
         float currentMoney = GameManager.instance.PlayerMoney;
 
-        // 目標金額に達していればボタンを活性化（白く押せる状態）、達していなければ非活性（グレー）
-        rebirthButton.interactable = (currentMoney >= targetMoney);
+        if (currentMoney >= targetMoney)
+        {
+            float alpha = Mathf.PingPong(Time.time * 2f, 1f);
+            // ここでLerpすることで、ベース色から点滅色が計算される
+            buttonImage.color = Color.Lerp(baseColor, highlightColor, alpha);
+            rebirthButton.interactable = true;
+        }
+        else
+        {
+            // 1万円未満：初期の薄灰色を強制的に適用
+            buttonImage.color = baseColor;
+            rebirthButton.interactable = false;
+        }
     }
 
-    private void OnRebirthButtonClicked()
+    public void OnClickRebirth()
     {
-        if (RebirthManager.Instance != null)
+        if (RebirthDataHandler.Instance != null)
         {
-            Debug.Log("右下の転生ボタンが押されました。転生を実行します。");
-            RebirthManager.Instance.ExecuteRebirth();
+            RebirthDataHandler.Instance.ExecuteRebirth();
+            RefreshAllSkillButtons();
+        }
+    }
 
-            // 転生直後にボタンの状態を再更新（お金がリセットされるので押せなくなるはず）
-            UpdateButtonInteractable();
+    public void RefreshAllSkillButtons()
+    {
+        RebirthSkillParam[] typeParams = FindObjectsByType<RebirthSkillParam>(FindObjectsSortMode.None);
+        foreach (var param in typeParams)
+        {
+            if (param != null) param.CheckButtonOnOff();
         }
     }
 }

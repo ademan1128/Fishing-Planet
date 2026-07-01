@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     [Range(0, 100)]
     //ここで設定した確率で魚がリポップする
     //パーセント
-    public int fishRespawnChance = 30;
+    public float fishRespawnChance;
+    public float BasefishRespawnChance = 30;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip CoinSE;
@@ -160,12 +161,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //public void AllReset()
-    //{
-    //    GetFishList.Clear();
-    //    PlayerMoney = 0;
-    //    PlayerArea = 1;
-    //}
+  
     // GameManager.cs の該当箇所を修正
 
     /// <summary>
@@ -228,26 +224,33 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
-        if (fishing.GotFish)
+        // UIが戻ってきたタイミングで、溜まっていた金額を反映
+        if (moneyUI == null)
         {
-            FishMove.GetFishArea.Clear();
-            fishing.GotFish = false;
+            moneyUI = FindFirstObjectByType<MoneyUI>();
+            if (moneyUI != null && pendingMoneyAddition > 0)
+            {
+                moneyUI.UpdateMoney(PlayerMoney);
+                pendingMoneyAddition = 0; // 反映したのでリセット
+            }
         }
 
         if (SkillManager.Instance != null)
         {
-            float rebirthMagni = 1f;
-            if (RebirthManager.Instance != null && RebirthManager.Instance.permanent != null)
-            {
-                rebirthMagni = RebirthManager.Instance.GetRebirthMultiplier();
-            }
-            Feedmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Feed) * rebirthMagni;
-            StrengthenStoresmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.StrengthenStores) * rebirthMagni;
-            AddTimemagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.AddTime) * rebirthMagni;
-            FishingHookmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.FishingHook) * rebirthMagni;
-            Piermagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Pier) * rebirthMagni;
-            Repopmagni = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Repop) * rebirthMagni;
+            float rebirthBonus = (RebirthDataHandler.Instance != null) ? (RebirthDataHandler.Instance.GetRebirthMultiplier() - 1f) : 0f;
+
+            float skillFeed = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Feed);
+            float skillStores = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.StrengthenStores);
+            float skillTime = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.AddTime);
+            float skillHook = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.FishingHook);
+            float skillPier = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Pier);
+            float skillRepop = SkillManager.Instance.GetTotalMultiplier(SkillEffectType.Repop);
+            Feedmagni = skillFeed;
+            StrengthenStoresmagni = skillStores;
+            AddTimemagni = skillTime;
+            FishingHookmagni = skillHook;
+            Piermagni = skillPier;
+            Repopmagni = skillRepop;
         }
     }
 
@@ -331,20 +334,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    private float pendingMoneyAddition = 0f; // UI反映待ちの金額
 
     void AddMoneyNow(float fishMoney)
     {
-        PlayerMoney += Mathf.FloorToInt(fishMoney * StrengthenStoresmagni);
+
+
+        // 1. まずはお金の計算と加算を確定させる（UIの有無に関係なく）
+        float rebirthMultiplier = (RebirthDataHandler.Instance != null) ? RebirthDataHandler.Instance.GetRebirthMultiplier() : 1f;
+        Debug.Log($"計算開始: 元金={fishMoney}, 転生倍率={rebirthMultiplier}, ストア倍率={StrengthenStoresmagni}");
+        float finalMultiplier = 1.0f + (rebirthMultiplier - 1.0f) + (StrengthenStoresmagni - 1.0f);
+        float finalMoney = fishMoney * finalMultiplier;
+        Debug.Log($"最終計算結果: {finalMoney}");
+        PlayerMoney += Mathf.FloorToInt(finalMoney);
         if (moneyUI != null)
         {
             moneyUI.UpdateMoney(PlayerMoney);
+            pendingMoneyAddition = 0; // 反映済みなのでリセット
         }
-        Debug.Log("現在の所持金：" + PlayerMoney);
+        else
+        {
+            // UIがないので、今の全額を「反映待ち」として記録
+            pendingMoneyAddition = PlayerMoney;
+        }
         if (SceneManager.GetActiveScene().name == "Main game")
         {
             audioSource.PlayOneShot(CoinSE);
-            if (Random.Range(0, 100) < fishRespawnChance)
+            if (Random.Range(0, 100) < (fishRespawnChance * Repopmagni))
+
             {
                 int index = fishCloneList.Count;
 
@@ -357,10 +374,6 @@ public class GameManager : MonoBehaviour
         }
 
             RebirthButtonController rebirthBtn = FindAnyObjectByType<RebirthButtonController>();
-        if (rebirthBtn != null)
-        {
-            rebirthBtn.UpdateButtonInteractable();
-        }
     }
 
     public void ShowFishPrice(float price)
@@ -442,9 +455,19 @@ public class GameManager : MonoBehaviour
         PlayerMoney = 0;
 
         Debug.Log($"[転生ロード開始] 超過金 {carryOverMoneyCache} を保持してMain gameシーンを再読み込みします。");
-
+        
         // 5. シーンを最初から読み直す（これによりUIやFishMove、FishSlotが完璧な順序で初期化されます）
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main game");
+    }
+
+    public void ReassignReferences()
+    {
+        // シーン内に新しく配置されたオブジェクトを再度探し直す
+        moneyUI = FindFirstObjectByType<MoneyUI>();
+        fishing = FindFirstObjectByType<Fishing>();
+
+        // これでNullでなくなるはずです
+        Debug.Log("参照の再接続完了");
     }
 }
 

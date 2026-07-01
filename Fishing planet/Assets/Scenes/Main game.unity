@@ -632,6 +632,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &330023054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330023056}
+  - component: {fileID: 330023055}
+  - component: {fileID: 330023057}
+  m_Layer: 0
+  m_Name: ManagerBridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &330023055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330023054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6130ac89e352c67499acf445e6cb3639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bridge
+--- !u!4 &330023056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330023054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.89972, y: -0.49733, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330023057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330023054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb314a794c83ace459c01f0df7d7c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebirthDataHandler
 --- !u!1 &633304517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1831,7 @@ MonoBehaviour:
   fishRespawnChance: 100
   audioSource: {fileID: 1333404016}
   CoinSE: {fileID: 8300000, guid: 393294e811d7a4e49b1db9e37aaff51c, type: 3}
+  BasefishRespawnChance: 30
   stageTime: 0
 --- !u!4 &1333404015
 Transform:
@@ -3256,3 +3314,4 @@ SceneRoots:
   - {fileID: 1903356073}
   - {fileID: 1819503846}
   - {fileID: 1950407373}
+  - {fileID: 330023056}
