@@ -16,4 +16,16 @@ MonoBehaviour:
   effectType: 5
   effectValue: 1
   required: []
-  requiredGroups: []
+  requiredGroups:
+  - skills:
+    - {fileID: 11400000, guid: 41ed0c5e55405dd41b6a7f317d66d067, type: 2}
+    - {fileID: 11400000, guid: 29845c57f3245a74ebf5605c01238422, type: 2}
+    - {fileID: 11400000, guid: aa600ab180eba6f46bcc233bb33e2853, type: 2}
+  - skills:
+    - {fileID: 11400000, guid: 869a1cb77d2295845933993b9ed68a04, type: 2}
+    - {fileID: 11400000, guid: 7aafc3a5646e5c64fa7ec0d886cb4194, type: 2}
+    - {fileID: 11400000, guid: e3b9db5fabff7794888ce8140dc52bbd, type: 2}
+  - skills:
+    - {fileID: 11400000, guid: 89cb5edbe0bdb9d409255303e20f4529, type: 2}
+    - {fileID: 11400000, guid: d39e2c4da1758244b85d5d8df8b4bf0b, type: 2}
+    - {fileID: 11400000, guid: fac14bd100473934ab9023aa38765d5c, type: 2}
