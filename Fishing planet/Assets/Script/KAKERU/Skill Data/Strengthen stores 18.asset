@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c66cda45dfc4646aec25fca6fb5bca, type: 3}
   m_Name: Strengthen stores 18
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  cost: 105000
+  cost: 6
   effectType: 1
-  effectValue: 4.6
+  effectValue: 1
   required:
   - {fileID: 11400000, guid: d4ff0c0371a02ca4eb7a99ff77ae853e, type: 2}
   requiredGroups: []
